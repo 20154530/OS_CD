@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:OS_CD"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/ColorConfig/DefaultTheme.xaml"/>
+                <ResourceDictionary Source="Themes/CostumeStyles/SimpleStyles.xaml"/>
+                <ResourceDictionary Source="Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OS_CD
+namespace OS_CD.FunctionPages
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// FilePage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : YT_Window
+    public partial class FilePage : Page
     {
-        public MainWindow()
+        public FilePage()
         {
             InitializeComponent();
         }
