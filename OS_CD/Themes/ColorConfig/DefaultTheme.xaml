@@ -11,8 +11,15 @@
     <SolidColorBrush x:Key="MainWindow_Border_Normal" Color="#606060" />
     <SolidColorBrush x:Key="MainWindow_Border_Focus" Color="#080808" />
 
+    <!--TitleBar-->
     <SolidColorBrush x:Key="TitleBar_BG" Color="#00000000" />
     
+    <!--Button-->
+    <SolidColorBrush x:Key="DefaultButton_Icon_BG" Color="#080808"/>
+    <SolidColorBrush x:Key="DefaultButton_IconMask_BG_N" Color="Transparent"/>
+    <SolidColorBrush x:Key="DefaultButton_IconMask_BG_R" Color="#20000000"/>
+    <SolidColorBrush x:Key="DefaultButton_IconMask_BG_P" Color="#40000000"/>
+
     <!--ToolTip-->
     <SolidColorBrush x:Key="DefaultToolTip_BG" Color="#efefef"/>
     <SolidColorBrush x:Key="DefaultToolTip_Border" Color="#080808"/>
@@ -20,6 +27,13 @@
 
 
     <!--Sizes-->
+    
+    <!--MainWindows-->
     <sys:Double x:Key="MainWindow_TileBar_Height">24</sys:Double>
+    <Thickness x:Key="MainWindow_SizeBorder_Thickness">3</Thickness>
+    
+    <!--Button-->
+    <sys:Double x:Key="DefaultButton_Size" >24</sys:Double>
+    <sys:Double x:Key="DefaultButton_Icon_Size">14</sys:Double>
 
 </ResourceDictionary>

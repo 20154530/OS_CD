@@ -13,14 +13,32 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Grid x:Name="USER_ID">
-                <TextBlock x:Name="ID" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="User_ID">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="User_Icon" Style="{DynamicResource IconTextBlock}"/>
+                <TextBlock x:Name="ID" Grid.Column="1"/>
+            </Grid>
+            <Grid x:Name="Function_Area" MinWidth="320" Grid.Column="1">
                 
             </Grid>
+            <Grid x:Name="SubFunction_Area" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
+                
+            </Grid>
+            <local:YT_IconButton x:Name="ExitBtn" Grid.Column="2" IconVisiblity="Collapsed" ForeToolTip="关闭" ContentText="123" ContentTextVisiblity="Visible"
+                                 Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:YT_TitleBar}}"
+                                 Style="{DynamicResource DefaultButtonStyle}"
+                                 AllowAni="False" ToolTipVisiblity="Visible"/>
         </Grid>
     </local:YT_Window.TitleArea>
     <Grid>
 
     </Grid>
-    
+
 </local:YT_Window>

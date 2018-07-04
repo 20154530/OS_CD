@@ -27,7 +27,7 @@
 
     <!--YT_SizeBorder-->
     <Style TargetType="{x:Type local:YT_SizeBorder}">
-        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource MainWindow_SizeBorder_Thickness}"/>
         <Setter Property="BorderBrush" Value="#00000000"/>
     </Style>
     
@@ -49,7 +49,7 @@
                             Margin="2">
                         <Grid Background="{TemplateBinding Background}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="24" />
+                                <RowDefinition Height="auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <AdornerDecorator x:Name="Content"
@@ -111,14 +111,13 @@
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
-            
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:YT_IconButton}">
                     <Border x:Name="RootBorder"
-                            SnapsToDevicePixels="True"
-                            Background="{TemplateBinding IconMaskN}">
+                            SnapsToDevicePixels="True">
                         <Grid x:Name="RootGrid"
-                              Margin="{TemplateBinding Padding}">
+                              Margin="{TemplateBinding Padding}"
+                              Background="{TemplateBinding IconMaskN}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
@@ -128,8 +127,9 @@
                                        FontFamily="{DynamicResource Segoe}"
                                        Foreground="{TemplateBinding IconN}"
                                        FontSize="{TemplateBinding FontSize}"
-                                       FontWeight="{TemplateBinding FontWeight}"
-                                       TextAlignment="Center"
+                                       FontWeight="{TemplateBinding FontWeight}"        
+                                       Visibility="{TemplateBinding IconVisiblity}"
+                                       HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        RenderTransformOrigin=".5 .5">
                                 <TextBlock.RenderTransform>
@@ -171,7 +171,7 @@
                             </MultiTrigger.Setters>
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard>
-                                    <Storyboard>
+                                    <Storyboard >
                                         <DoubleAnimation Storyboard.TargetName="ContentIconRotateTransform"
                                                          Storyboard.TargetProperty="Angle"
                                                          To="-90"
@@ -220,6 +220,10 @@
                             <Setter TargetName="RootBorder"
                                     Property="Background"
                                     Value="{Binding IconMaskP,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        </Trigger>
+                        <Trigger Property="IconVisiblity"
+                                 Value="Collapsed">
+                            <Setter TargetName="ContentTexts" Property="Margin" Value="0"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

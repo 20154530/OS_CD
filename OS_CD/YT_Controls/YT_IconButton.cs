@@ -12,13 +12,23 @@ namespace OS_CD {
     public class YT_IconButton : Button {
 
         #region IconOnly
-        public bool ContentTextVisiblity {
-            get { return (bool)GetValue(ContentTextVisiblityProperty); }
+        public Visibility ContentTextVisiblity {
+            get { return (Visibility)GetValue(ContentTextVisiblityProperty); }
             set { SetValue(ContentTextVisiblityProperty, value); }
         }
         public static readonly DependencyProperty ContentTextVisiblityProperty =
-            DependencyProperty.Register("ContentTextVisiblity", typeof(bool), typeof(YT_IconButton),
-                new PropertyMetadata(true));
+            DependencyProperty.Register("ContentTextVisiblity", typeof(Visibility), typeof(YT_IconButton),
+                new PropertyMetadata(Visibility.Collapsed));
+        #endregion
+
+        #region TextOnly
+        public Visibility IconVisiblity {
+            get { return (Visibility)GetValue(IconVisiblityProperty); }
+            set { SetValue(IconVisiblityProperty, value); }
+        }
+        public static readonly DependencyProperty IconVisiblityProperty =
+            DependencyProperty.Register("IconVisiblity", typeof(Visibility),
+                typeof(YT_IconButton), new PropertyMetadata(Visibility.Visible));
         #endregion
 
         #region ButtonColor
@@ -110,6 +120,16 @@ namespace OS_CD {
                 typeof(YT_IconButton), new PropertyMetadata(false));
         #endregion
 
+        #region RrotateAngle
+        public double RrotateAngle {
+            get { return (double)GetValue(RrotateAngleProperty); }
+            set { SetValue(RrotateAngleProperty, value); }
+        }
+        public static readonly DependencyProperty RrotateAngleProperty =
+            DependencyProperty.Register("RrotateAngle", typeof(double), 
+                typeof(YT_IconButton), new PropertyMetadata(0.0));
+        #endregion
+
         #region ForeTip
         public string ForeToolTip {
             get { return (string)GetValue(ForeToolTipProperty); }
@@ -138,13 +158,23 @@ namespace OS_CD {
     public class YT_IconToggelButton : ToggleButton {
 
         #region IconOnly
-        public bool LabelVisibility {
-            get { return (bool)GetValue(LabelVisibilityProperty); }
+        public Visibility LabelVisibility {
+            get { return (Visibility)GetValue(LabelVisibilityProperty); }
             set { SetValue(LabelVisibilityProperty, value); }
         }
         public static readonly DependencyProperty LabelVisibilityProperty =
-            DependencyProperty.Register("LabelVisibility", typeof(bool), typeof(YT_IconToggelButton),
-                new PropertyMetadata(true));
+            DependencyProperty.Register("LabelVisibility", typeof(Visibility), typeof(YT_IconToggelButton),
+                new PropertyMetadata(Visibility.Collapsed));
+        #endregion
+
+        #region TextOnly
+        public Visibility IconVisiblity {
+            get { return (Visibility)GetValue(IconVisiblityProperty); }
+            set { SetValue(IconVisiblityProperty, value); }
+        }
+        public static readonly DependencyProperty IconVisiblityProperty =
+            DependencyProperty.Register("IconVisiblity", typeof(Visibility), 
+                typeof(YT_IconToggelButton), new PropertyMetadata(Visibility.Visible));
         #endregion
 
         #region ButtonColor
@@ -339,13 +369,13 @@ namespace OS_CD {
     public class YT_IconRadioButton : RadioButton {
 
         #region IconOnly
-        public bool LabelVisibility {
-            get { return (bool)GetValue(LabelVisibilityProperty); }
+        public Visibility LabelVisibility {
+            get { return (Visibility)GetValue(LabelVisibilityProperty); }
             set { SetValue(LabelVisibilityProperty, value); }
         }
         public static readonly DependencyProperty LabelVisibilityProperty =
-            DependencyProperty.Register("LabelVisibility", typeof(bool), typeof(YT_IconRadioButton),
-                new PropertyMetadata(true));
+            DependencyProperty.Register("LabelVisibility", typeof(Visibility), typeof(YT_IconRadioButton),
+                new PropertyMetadata(Visibility.Collapsed));
         #endregion
 
         #region ButtonColor

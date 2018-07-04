@@ -22,6 +22,7 @@ namespace OS_CD
     {
         public MainWindow()
         {
+            
             InitializeComponent();
         }
     }

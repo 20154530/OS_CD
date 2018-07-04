@@ -8,10 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace OS_CD
-{
-    public class YT_TitleBar: ContentControl
-    {
+namespace OS_CD {
+    public class YT_TitleBar : ContentControl {
         #region AttachedWindow
         private Window attachedWindow;
         public Window AttachedWindow {
@@ -29,28 +27,37 @@ namespace OS_CD
             DependencyProperty.Register("CloseCommand", typeof(CommandBase), typeof(YT_TitleBar), new PropertyMetadata(null));
         #endregion
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
+        #region Methods Overrides
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e) {
             AttachedWindow.DragMove();
             base.OnMouseLeftButtonDown(e);
         }
 
-        public YT_TitleBar() {
-            
-        }
-
-        public override void EndInit()
-        {
+        public override void EndInit() {
             DependencyObject RootElement = this;
             while (!(RootElement is Window)) { RootElement = VisualTreeHelper.GetParent(RootElement); }
             AttachedWindow = RootElement as Window;
 
             base.EndInit();
         }
+        #endregion
 
-        static YT_TitleBar()
-        {
+        #region EventActions
+        private void CloseCommand_Commandaction(object para) {
+            AttachedWindow.Close();
+        }
+
+        #endregion
+
+        #region Constructors
+        public YT_TitleBar() {
+            CloseCommand = new CommandBase();
+            CloseCommand.Commandaction += CloseCommand_Commandaction;
+        }
+
+        static YT_TitleBar() {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(YT_TitleBar), new FrameworkPropertyMetadata(typeof(YT_TitleBar)));
         }
+        #endregion
     }
 }
