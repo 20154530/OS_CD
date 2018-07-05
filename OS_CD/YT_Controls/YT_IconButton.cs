@@ -1,10 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
-using System.ComponentModel;
-using System.Windows.Automation.Peers;
-using System.Windows.Automation;
-using System;
 using System.Windows.Controls.Primitives;
 
 namespace OS_CD {
@@ -157,6 +153,26 @@ namespace OS_CD {
 
     public class YT_IconToggelButton : ToggleButton {
 
+        #region LabelPadding
+        public Thickness LabelPadding {
+            get { return (Thickness)GetValue(LabelPaddingProperty); }
+            set { SetValue(LabelPaddingProperty, value); }
+        }
+        public static readonly DependencyProperty LabelPaddingProperty =
+            DependencyProperty.Register("LabelPadding", typeof(Thickness),
+                typeof(YT_IconToggelButton), new PropertyMetadata(new Thickness(0)));
+        #endregion
+
+        #region Textloc
+        public bool Textloc {
+            get { return (bool)GetValue(TextlocProperty); }
+            set { SetValue(TextlocProperty, value); }
+        }
+        public static readonly DependencyProperty TextlocProperty =
+            DependencyProperty.Register("Textloc", typeof(bool),
+                typeof(YT_IconToggelButton), new PropertyMetadata(false));
+        #endregion
+
         #region IconOnly
         public Visibility LabelVisibility {
             get { return (Visibility)GetValue(LabelVisibilityProperty); }
@@ -202,6 +218,14 @@ namespace OS_CD {
             DependencyProperty.Register("IconMaskP", typeof(Brush), typeof(YT_IconToggelButton),
                 new PropertyMetadata(new SolidColorBrush(Color.FromArgb(160, 0, 0, 0))));
 
+        public Brush IconMaskS {
+            get { return (Brush)GetValue(IconMaskSProperty); }
+            set { SetValue(IconMaskSProperty, value); }
+        }
+        public static readonly DependencyProperty IconMaskSProperty =
+            DependencyProperty.Register("IconMaskS", typeof(Brush), typeof(YT_IconToggelButton),
+                new PropertyMetadata(new SolidColorBrush(Color.FromArgb(160, 0, 0, 0))));
+
         public Brush IconN {
             get { return (Brush)GetValue(IconNProperty); }
             set { SetValue(IconNProperty, value); }
@@ -225,16 +249,14 @@ namespace OS_CD {
         public static readonly DependencyProperty IconPProperty =
             DependencyProperty.Register("IconP", typeof(Brush), typeof(YT_IconToggelButton),
                 new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
-        #endregion
 
-        #region ContentTextFontWeight
-        public double ContentTextFontSize {
-            get { return (double)GetValue(ContentTextFontSizeProperty); }
-            set { SetValue(ContentTextFontSizeProperty, value); }
+        public Brush IconS {
+            get { return (Brush)GetValue(IconSProperty); }
+            set { SetValue(IconSProperty, value); }
         }
-        public static readonly DependencyProperty ContentTextFontSizeProperty =
-            DependencyProperty.Register("ContentTextFontSize", typeof(double), typeof(YT_IconToggelButton),
-                new PropertyMetadata(0.0));
+        public static readonly DependencyProperty IconSProperty =
+            DependencyProperty.Register("IconS", typeof(Brush), typeof(YT_IconToggelButton),
+                new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
         #endregion
 
         #region AllowShadow
@@ -264,16 +286,6 @@ namespace OS_CD {
         public static readonly DependencyProperty LabelFontSizeProperty =
             DependencyProperty.Register("LabelFontSize", typeof(double),
                 typeof(YT_IconToggelButton), new PropertyMetadata(10.0));
-        #endregion
-
-        #region LabelText
-        public string ContentText {
-            get { return (string)GetValue(ContentTextProperty); }
-            set { SetValue(ContentTextProperty, value); }
-        }
-        public static readonly DependencyProperty ContentTextProperty =
-            DependencyProperty.Register("ContentText", typeof(string), typeof(YT_IconToggelButton),
-                new PropertyMetadata(""));
         #endregion
 
         #region BackLabelText
@@ -368,6 +380,26 @@ namespace OS_CD {
 
     public class YT_IconRadioButton : RadioButton {
 
+        #region LabelPadding
+        public Thickness LabelPadding {
+            get { return (Thickness)GetValue(LabelPaddingProperty); }
+            set { SetValue(LabelPaddingProperty, value); }
+        }
+        public static readonly DependencyProperty LabelPaddingProperty =
+            DependencyProperty.Register("LabelPadding", typeof(Thickness),
+                typeof(YT_IconRadioButton), new PropertyMetadata(new Thickness(0)));
+        #endregion
+
+        #region Textloc
+        public bool Textloc {
+            get { return (bool)GetValue(TextlocProperty); }
+            set { SetValue(TextlocProperty, value); }
+        }
+        public static readonly DependencyProperty TextlocProperty =
+            DependencyProperty.Register("Textloc", typeof(bool),
+                typeof(YT_IconRadioButton), new PropertyMetadata(false));
+        #endregion
+
         #region IconOnly
         public Visibility LabelVisibility {
             get { return (Visibility)GetValue(LabelVisibilityProperty); }
@@ -376,6 +408,16 @@ namespace OS_CD {
         public static readonly DependencyProperty LabelVisibilityProperty =
             DependencyProperty.Register("LabelVisibility", typeof(Visibility), typeof(YT_IconRadioButton),
                 new PropertyMetadata(Visibility.Collapsed));
+        #endregion
+
+        #region TextOnly
+        public Visibility IconVisiblity {
+            get { return (Visibility)GetValue(IconVisiblityProperty); }
+            set { SetValue(IconVisiblityProperty, value); }
+        }
+        public static readonly DependencyProperty IconVisiblityProperty =
+            DependencyProperty.Register("IconVisiblity", typeof(Visibility),
+                typeof(YT_IconRadioButton), new PropertyMetadata(Visibility.Visible));
         #endregion
 
         #region ButtonColor
@@ -403,6 +445,14 @@ namespace OS_CD {
             DependencyProperty.Register("IconMaskP", typeof(Brush), typeof(YT_IconRadioButton),
                 new PropertyMetadata(new SolidColorBrush(Color.FromArgb(160, 0, 0, 0))));
 
+        public Brush IconMaskS {
+            get { return (Brush)GetValue(IconMaskSProperty); }
+            set { SetValue(IconMaskSProperty, value); }
+        }
+        public static readonly DependencyProperty IconMaskSProperty =
+            DependencyProperty.Register("IconMaskS", typeof(Brush), typeof(YT_IconRadioButton),
+                new PropertyMetadata(new SolidColorBrush(Color.FromArgb(160, 0, 0, 0))));
+
         public Brush IconN {
             get { return (Brush)GetValue(IconNProperty); }
             set { SetValue(IconNProperty, value); }
@@ -426,6 +476,14 @@ namespace OS_CD {
         public static readonly DependencyProperty IconPProperty =
             DependencyProperty.Register("IconP", typeof(Brush), typeof(YT_IconRadioButton),
                 new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+
+        public Brush IconS {
+            get { return (Brush)GetValue(IconSProperty); }
+            set { SetValue(IconSProperty, value); }
+        }
+        public static readonly DependencyProperty IconSProperty =
+            DependencyProperty.Register("IconS", typeof(Brush), typeof(YT_IconRadioButton),
+                new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
         #endregion
 
         #region Labelfontsize
@@ -438,16 +496,6 @@ namespace OS_CD {
                 typeof(YT_IconRadioButton), new PropertyMetadata(10.0));
         #endregion
 
-        #region ContentText
-        public string ContentText {
-            get { return (string)GetValue(ContentTextProperty); }
-            set { SetValue(ContentTextProperty, value); }
-        }
-        public static readonly DependencyProperty ContentTextProperty =
-            DependencyProperty.Register("ContentText", typeof(string), typeof(YT_IconRadioButton),
-                new PropertyMetadata(""));
-        #endregion
-
         #region BackText
         public string BackText {
             get { return (string)GetValue(BackTextProperty); }
@@ -456,16 +504,6 @@ namespace OS_CD {
         public static readonly DependencyProperty BackTextProperty =
             DependencyProperty.Register("BackText", typeof(string), typeof(YT_IconRadioButton),
                 new PropertyMetadata(""));
-        #endregion
-
-        #region ContentTextFontWeight
-        public double ContentTextFontSize {
-            get { return (double)GetValue(ContentTextFontSizeProperty); }
-            set { SetValue(ContentTextFontSizeProperty, value); }
-        }
-        public static readonly DependencyProperty ContentTextFontSizeProperty =
-            DependencyProperty.Register("ContentTextFontSize", typeof(double), typeof(YT_IconRadioButton),
-                new PropertyMetadata(0.0));
         #endregion
 
         #region AllowShadow

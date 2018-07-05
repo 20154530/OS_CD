@@ -17,44 +17,123 @@
 
     <!--YT_IconButtonToolTipText-->
     <Style x:Key="YT_IconButtonToolTipText"
-         TargetType="TextBlock">
+           TargetType="TextBlock">
         <Setter Property="FontSize"
-            Value="10" />
+                Value="10" />
         <Setter Property="Foreground"
-            Value="{DynamicResource MainWindow_Border_Normal}" />
-        <Setter Property="FontWeight"
-            Value="Thin" />
+                Value="{DynamicResource MainWindow_Border_Normal}" />
         <Setter Property="Margin"
-            Value="5,2,5,2" />
+                Value="5,2,5,2" />
     </Style>
 
-    <!--YT_IconBox-->
+    <!--IconTextBlock-->
     <Style x:Key="IconTextBlock"
-         TargetType="TextBlock">
+           TargetType="TextBlock">
         <Setter Property="FontFamily"
-            Value="{DynamicResource Segoe}" />
+                Value="{DynamicResource Segoe}" />
         <Setter Property="Foreground"
-            Value="{DynamicResource MainTextColor}" />
+                Value="{DynamicResource MainTextColor}" />
         <Setter Property="TextAlignment"
-            Value="Center" />
+                Value="Center" />
         <Setter Property="HorizontalAlignment"
-            Value="Center" />
+                Value="Center" />
         <Setter Property="VerticalAlignment"
-            Value="Center" />
-    </Style>
-    
-    <!--DefaultButtonStyle-->
-    <Style x:Key="DefaultButtonStyle" TargetType="local:YT_IconButton">
-        <Setter Property="IconN" Value="{DynamicResource DefaultButton_Icon_BG}"/>
-        <Setter Property="IconR" Value="{DynamicResource DefaultButton_Icon_BG}"/>
-        <Setter Property="IconP" Value="{DynamicResource DefaultButton_Icon_BG}"/>
-        <Setter Property="IconMaskN" Value="{DynamicResource DefaultButton_IconMask_BG_N}"/>
-        <Setter Property="IconMaskR" Value="{DynamicResource DefaultButton_IconMask_BG_R}"/>
-        <Setter Property="IconMaskP" Value="{DynamicResource DefaultButton_IconMask_BG_P}"/>
-        <Setter Property="FontSize" Value="{DynamicResource DefaultButton_Icon_Size}"/>
-        <Setter Property="Width" Value="{DynamicResource DefaultButton_Size}"/>
-        <Setter Property="Height" Value="{DynamicResource DefaultButton_Size}"/>
+                Value="Center" />
     </Style>
 
+    <!--DefaultButtonStyle-->
+    <Style x:Key="DefaultButtonStyle"
+           TargetType="local:YT_IconButton">
+        <Setter Property="IconN"
+                Value="{DynamicResource DefaultButton_Icon_BG}" />
+        <Setter Property="IconR"
+                Value="{DynamicResource DefaultButton_Icon_BG}" />
+        <Setter Property="IconP"
+                Value="{DynamicResource DefaultButton_Icon_BG}" />
+        <Setter Property="IconMaskN"
+                Value="{DynamicResource DefaultButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{DynamicResource DefaultButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{DynamicResource DefaultButton_IconMask_BG_P}" />
+        <Setter Property="FontSize"
+                Value="{DynamicResource DefaultButton_Icon_Size}" />
+        <Setter Property="Width"
+                Value="{DynamicResource DefaultButton_Size}" />
+        <Setter Property="Height"
+                Value="{DynamicResource DefaultButton_Size}" />
+    </Style>
+
+    <!--UserIconToggelButtonStyle-->
+    <Style x:Key="UserIconToggelButtonStyle"
+           TargetType="local:YT_IconToggelButton">
+        <Setter Property="IconN"
+                Value="{DynamicResource DefaultToggleButton_Icon_BG_N}" />
+        <Setter Property="IconR"
+                Value="{DynamicResource DefaultToggleButton_Icon_BG_R}" />
+        <Setter Property="IconP"
+                Value="{DynamicResource DefaultToggleButton_Icon_BG_P}" />
+        <Setter Property="IconS"
+                Value="{DynamicResource DefaultToggleButton_Icon_BG_S}" />
+        <Setter Property="IconMaskN"
+                Value="{DynamicResource DefaultToggleButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{DynamicResource DefaultToggleButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{DynamicResource DefaultToggleButton_IconMask_BG_P}" />
+        <Setter Property="IconMaskS"
+                Value="{DynamicResource DefaultToggleButton_IconMask_BG_S}" />
+        <Setter Property="Height"
+                Value="{DynamicResource UserButton_Icon_Size}" />
+        <Setter Property="Width"
+                Value="{DynamicResource UserButton_Icon_Size}" />
+        <Setter Property="FontSize"
+                Value="20" />
+    </Style>
+
+    <!--FunctionRadioButton-->
+    <Style x:Key="FunctionRadioButton"
+           TargetType="local:YT_IconRadioButton">
+        <Setter Property="IconN"
+                Value="{DynamicResource DefaultRadioButton_Icon_BG_N}" />
+        <Setter Property="IconR"
+                Value="{DynamicResource DefaultRadioButton_Icon_BG_R}" />
+        <Setter Property="IconP"
+                Value="{DynamicResource DefaultRadioButton_Icon_BG_P}" />
+        <Setter Property="IconS"
+                Value="{DynamicResource DefaultRadioButton_Icon_BG_S}" />
+        <Setter Property="IconMaskN"
+                Value="{DynamicResource DefaultRadioButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{DynamicResource DefaultRadioButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{DynamicResource DefaultRadioButton_IconMask_BG_P}" />
+        <Setter Property="IconMaskS"
+                Value="{DynamicResource DefaultRadioButton_IconMask_BG_S}" />
+        <Setter Property="LabelFontSize"
+                Value="{DynamicResource MainWindow_FunctionButton_Label_Size}" />
+        <Setter Property="FontWeight"
+                Value="Light" />
+        <Setter Property="IconVisiblity"
+                Value="Collapsed" />
+        <Setter Property="LabelVisibility"
+                Value="Visible" />
+    </Style>
+
+
+    <!--UsernameTextStyle-->
+    <Style x:Key="UsernameTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="Margin"
+                Value="5,2,0,0" />
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="TextTrimming"
+                Value="CharacterEllipsis" />
+        <Setter Property="FontWeight"
+                Value="Light" />
+    </Style>
 
 </ResourceDictionary>

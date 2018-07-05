@@ -100,6 +100,10 @@
     </Compile>
     <Compile Include="Mangers\Commands.cs" />
     <Compile Include="Mangers\Win32Funcs.cs" />
+    <Compile Include="MixControls\MenuTable.xaml.cs">
+      <DependentUpon>MenuTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModels\MainPageViewModel.cs" />
     <Compile Include="Models\ViewModels\ViewModelBase.cs" />
     <Compile Include="YT_Controls\YT_IconButton.cs" />
     <Compile Include="YT_Windows\YT_AreaIcon.cs" />
@@ -110,6 +114,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MixControls\MenuTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\ColorConfig\DefaultTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

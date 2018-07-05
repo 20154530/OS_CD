@@ -27,10 +27,12 @@
 
     <!--YT_SizeBorder-->
     <Style TargetType="{x:Type local:YT_SizeBorder}">
-        <Setter Property="BorderThickness" Value="{DynamicResource MainWindow_SizeBorder_Thickness}"/>
-        <Setter Property="BorderBrush" Value="#00000000"/>
+        <Setter Property="BorderThickness"
+                Value="{DynamicResource MainWindow_SizeBorder_Thickness}" />
+        <Setter Property="BorderBrush"
+                Value="#00000000" />
     </Style>
-    
+
     <!--YT_Window-->
     <Style TargetType="{x:Type local:YT_Window}">
         <Setter Property="WindowStyle"
@@ -59,8 +61,9 @@
                             <local:YT_TitleBar x:Name="TitleBar"
                                                Background="{DynamicResource TitleBar_BG}"
                                                Content="{TemplateBinding TitleArea}" />
-                            <local:YT_SizeBorder Grid.Row="0" Grid.RowSpan="2" 
-                                                 AttachedWindow="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:YT_Window}}"/>
+                            <local:YT_SizeBorder Grid.Row="0"
+                                                 Grid.RowSpan="2"
+                                                 AttachedWindow="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:YT_Window}}" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -127,7 +130,7 @@
                                        FontFamily="{DynamicResource Segoe}"
                                        Foreground="{TemplateBinding IconN}"
                                        FontSize="{TemplateBinding FontSize}"
-                                       FontWeight="{TemplateBinding FontWeight}"        
+                                       FontWeight="{TemplateBinding FontWeight}"
                                        Visibility="{TemplateBinding IconVisiblity}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -171,7 +174,7 @@
                             </MultiTrigger.Setters>
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard>
-                                    <Storyboard >
+                                    <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="ContentIconRotateTransform"
                                                          Storyboard.TargetProperty="Angle"
                                                          To="-90"
@@ -223,7 +226,9 @@
                         </Trigger>
                         <Trigger Property="IconVisiblity"
                                  Value="Collapsed">
-                            <Setter TargetName="ContentTexts" Property="Margin" Value="0"/>
+                            <Setter TargetName="ContentTexts"
+                                    Property="Margin"
+                                    Value="0" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -266,32 +271,29 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:YT_IconToggelButton}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="RootBorder" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding IconMaskN}">
                         <Grid x:Name="RootGrid"
-                              Background="{TemplateBinding Background}">
+                              Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Rectangle x:Name="DarkMask"
-                                       Fill="{TemplateBinding IconMaskN}"
-                                       Visibility="Collapsed"
-                                       Grid.ColumnSpan="2" />
                             <TextBlock x:Name="ContentIcon"
                                        Grid.Column="1"
-                                       Margin="{TemplateBinding Padding}"
                                        Style="{DynamicResource IconTextBlock}"
                                        Text="{TemplateBinding ForeIcon}"
                                        FontSize="{TemplateBinding FontSize}"
                                        Foreground="{TemplateBinding IconN}"
                                        FontWeight="{TemplateBinding FontWeight}"
+                                       Visibility="{TemplateBinding IconVisiblity}"
                                        RenderTransformOrigin=".5 .5"
                                        RenderTransform="{TemplateBinding IconRotate}" />
                             <TextBlock x:Name="Label"
-                                       Margin="0,0,5,0"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Margin="{TemplateBinding LabelPadding}"
                                        Text="{TemplateBinding Content}"
                                        FontSize="{TemplateBinding LabelFontSize}"
                                        Foreground="{TemplateBinding IconN}"
@@ -300,6 +302,15 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="Textloc"
+                                 Value="True">
+                            <Setter TargetName="Label"
+                                    Property="Grid.Column"
+                                    Value="1" />
+                            <Setter TargetName="ContentIcon"
+                                    Property="Grid.Column"
+                                    Value="0" />
+                        </Trigger>
                         <Trigger Property="IsChecked"
                                  Value="True">
                             <Setter TargetName="ContentIcon"
@@ -308,25 +319,38 @@
                             <Setter TargetName="Label"
                                     Property="Text"
                                     Value="{Binding BackText, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver"
-                                 Value="True">
-                            <Setter TargetName="DarkMask"
-                                    Property="Fill"
-                                    Value="{Binding IconMaskR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="RootBorder"
+                                    Property="Background"
+                                    Value="{Binding IconMaskS, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                             <Setter TargetName="ContentIcon"
                                     Property="Foreground"
-                                    Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    Value="{Binding IconS, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
-                            <Setter TargetName="DarkMask"
-                                    Property="Fill"
+                            <Setter TargetName="RootBorder"
+                                    Property="Background"
                                     Value="{Binding IconMaskP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                             <Setter TargetName="ContentIcon"
                                     Property="Foreground"
                                     Value="{Binding IconP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition  Property="IsMouseOver"
+                                            Value="True" />
+                                <Condition  Property="IsChecked"
+                                            Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="RootBorder"
+                                        Property="Background"
+                                        Value="{Binding IconMaskR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                <Setter TargetName="ContentIcon"
+                                        Property="Foreground"
+                                        Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -368,30 +392,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:YT_IconRadioButton}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="RootBorder" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding IconMaskN}">
                         <Grid x:Name="RootGrid"
-                              Background="{TemplateBinding Background}">
+                              Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Rectangle x:Name="DarkMask"
-                                       Fill="{TemplateBinding IconMaskN}"
-                                       Visibility="Collapsed"
-                                       Grid.ColumnSpan="2" />
                             <TextBlock x:Name="ContentIcon"
                                        Grid.Column="1"
-                                       Margin="{TemplateBinding Padding}"
                                        Style="{DynamicResource IconTextBlock}"
                                        Text="{TemplateBinding ForeIcon}"
                                        FontSize="{TemplateBinding FontSize}"
                                        Foreground="{TemplateBinding IconN}"
-                                       FontWeight="{TemplateBinding FontWeight}" />
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       Visibility="{TemplateBinding IconVisiblity}" />
                             <TextBlock x:Name="Label"
-                                       Margin="0,0,4,0"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Margin="{TemplateBinding LabelPadding}"
                                        Text="{TemplateBinding Content}"
                                        FontSize="{TemplateBinding LabelFontSize}"
                                        Foreground="{TemplateBinding IconN}"
@@ -400,27 +420,51 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="Textloc"
+                                 Value="True">
+                            <Setter TargetName="Label"
+                                    Property="Grid.Column"
+                                    Value="1" />
+                            <Setter TargetName="ContentIcon"
+                                    Property="Grid.Column"
+                                    Value="0" />
+                        </Trigger>
                         <Trigger Property="IsChecked"
                                  Value="True">
                             <Setter TargetName="ContentIcon"
                                     Property="Text"
                                     Value="{Binding BackIcon, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="RootBorder"
+                                    Property="Background"
+                                    Value="{Binding IconMaskS, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="ContentIcon"
+                                    Property="Foreground"
+                                    Value="{Binding IconS, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="Label"
+                                    Property="Foreground"
+                                    Value="{Binding IconS, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
-                            <Setter TargetName="DarkMask"
-                                    Property="Fill"
+                            <Setter TargetName="RootBorder"
+                                    Property="Background"
                                     Value="{Binding IconMaskR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                             <Setter TargetName="ContentIcon"
+                                    Property="Foreground"
+                                    Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="Label"
                                     Property="Foreground"
                                     Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">
-                            <Setter TargetName="DarkMask"
-                                    Property="Fill"
+                            <Setter TargetName="RootBorder"
+                                    Property="Background"
                                     Value="{Binding IconMaskP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                             <Setter TargetName="ContentIcon"
+                                    Property="Foreground"
+                                    Value="{Binding IconP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="Label"
                                     Property="Foreground"
                                     Value="{Binding IconP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
@@ -430,6 +474,25 @@
                                     Property="Text"
                                     Value="{Binding DisIcon, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition  Property="IsMouseOver"
+                                            Value="True" />
+                                <Condition  Property="IsChecked"
+                                            Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="RootBorder"
+                                        Property="Background"
+                                        Value="{Binding IconMaskR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                <Setter TargetName="ContentIcon"
+                                        Property="Foreground"
+                                        Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                <Setter TargetName="Label"
+                                        Property="Foreground"
+                                        Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsEnabled"

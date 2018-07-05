@@ -20,10 +20,19 @@ namespace OS_CD
     /// </summary>
     public partial class MainWindow : YT_Window
     {
+        MainPageViewModel viewModel;
+
         public MainWindow()
         {
-            
+            Loaded += MainWindow_Loaded;
+            viewModel = new MainPageViewModel();
+            DataContext = viewModel;
             InitializeComponent();
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e) {
+            
+
         }
     }
 }
