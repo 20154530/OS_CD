@@ -99,11 +99,16 @@
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mangers\Commands.cs" />
+    <Compile Include="Mangers\Converters\Converter.cs" />
     <Compile Include="Mangers\Systeminfo.cs" />
     <Compile Include="Mangers\Win32Funcs.cs" />
+    <Compile Include="MixControls\DiskBlocks.xaml.cs">
+      <DependentUpon>DiskBlocks.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MixControls\MenuTable.xaml.cs">
       <DependentUpon>MenuTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\DiskPageViewModel.cs" />
     <Compile Include="Models\ViewModels\MainPageViewModel.cs" />
     <Compile Include="Models\ViewModels\ViewModelBase.cs" />
     <Compile Include="YT_Controls\YT_IconButton.cs" />
@@ -115,6 +120,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MixControls\DiskBlocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MixControls\MenuTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

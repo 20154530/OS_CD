@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:OS_CD">
+    <!--Font-->
+    <FontFamily x:Key="Segoe">/FontLibrary;Component/#Segoe</FontFamily>
+    <FontFamily x:Key="Digital">/FontLibrary;Component/#Digital</FontFamily>
+
+    <!--Converters-->
+    <local:StringOriConverter x:Key="StringOriConverter" />
+    <local:OriStringConverter x:Key="OriStringConverter" />
+    
+    
+</ResourceDictionary>

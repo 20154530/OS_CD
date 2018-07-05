@@ -2,11 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:OS_CD">
 
-    <!--Font-->
-    <FontFamily x:Key="Segoe">/FontLibrary;Component/#Segoe</FontFamily>
-    <FontFamily x:Key="Digital">/FontLibrary;Component/#Digital</FontFamily>
-
-
     <!--YT_TitleBar-->
     <Style TargetType="{x:Type local:YT_TitleBar}">
         <Setter Property="HorizontalAlignment"

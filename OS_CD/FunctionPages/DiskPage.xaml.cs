@@ -20,8 +20,12 @@ namespace OS_CD.FunctionPages
     /// </summary>
     public partial class DiskPage : Page
     {
+        private DiskPageViewModel DiskVM { get; set; }
+
         public DiskPage()
         {
+            DiskVM = new DiskPageViewModel();
+            DataContext = DiskVM;
             InitializeComponent();
         }
     }

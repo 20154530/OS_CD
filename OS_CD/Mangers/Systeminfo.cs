@@ -18,14 +18,13 @@ namespace OS_CD {
             set {
                 sysTime_HMS = value;
                 OnPropertyChanged("SysTime_HMS");
-                Console.WriteLine(sysTime_HMS);
             }
         }
         #endregion
 
         #region TimerMethod
         private void Systime_timer_Elapsed(object sender, ElapsedEventArgs e) {
-            SysTime_HMS = DateTime.Now.ToLongTimeString();
+            SysTime_HMS = "Time : " + DateTime.Now.ToLongTimeString();
         }
         #endregion
 
