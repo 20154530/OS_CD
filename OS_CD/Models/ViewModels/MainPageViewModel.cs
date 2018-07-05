@@ -27,6 +27,7 @@ namespace OS_CD {
 
 
         public MainPageViewModel() {
+            Userid = "12";
             Username = "Administor";
         }
     }

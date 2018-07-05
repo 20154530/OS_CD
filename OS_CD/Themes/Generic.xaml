@@ -292,7 +292,8 @@
                                        RenderTransformOrigin=".5 .5"
                                        RenderTransform="{TemplateBinding IconRotate}" />
                             <TextBlock x:Name="Label"
-                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
                                        Margin="{TemplateBinding LabelPadding}"
                                        Text="{TemplateBinding Content}"
                                        FontSize="{TemplateBinding LabelFontSize}"
@@ -410,7 +411,8 @@
                                        FontWeight="{TemplateBinding FontWeight}"
                                        Visibility="{TemplateBinding IconVisiblity}" />
                             <TextBlock x:Name="Label"
-                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
                                        Margin="{TemplateBinding LabelPadding}"
                                        Text="{TemplateBinding Content}"
                                        FontSize="{TemplateBinding LabelFontSize}"
@@ -443,18 +445,6 @@
                             <Setter TargetName="Label"
                                     Property="Foreground"
                                     Value="{Binding IconS, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver"
-                                 Value="True">
-                            <Setter TargetName="RootBorder"
-                                    Property="Background"
-                                    Value="{Binding IconMaskR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="ContentIcon"
-                                    Property="Foreground"
-                                    Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="Label"
-                                    Property="Foreground"
-                                    Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="IsPressed"
                                  Value="True">

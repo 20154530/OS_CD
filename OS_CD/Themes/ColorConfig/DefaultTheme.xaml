@@ -32,7 +32,7 @@
                      Color="#40000000" />
 
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_N"
-                     Color="#080808" />
+                     Color="#404040" />
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_R"
                      Color="#EFEFEF" />
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_P"
@@ -77,7 +77,7 @@
 
     <!--MainWindows-->
     <sys:Double x:Key="MainWindow_TileBar_Height">24</sys:Double>
-    <sys:Double x:Key="MainWindow_FunctionButton_Label_Size">15</sys:Double>
+    <sys:Double x:Key="MainWindow_FunctionButton_Label_Size">14</sys:Double>
     <Thickness x:Key="MainWindow_SizeBorder_Thickness">3</Thickness>
     
 

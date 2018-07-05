@@ -99,6 +99,7 @@
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mangers\Commands.cs" />
+    <Compile Include="Mangers\Systeminfo.cs" />
     <Compile Include="Mangers\Win32Funcs.cs" />
     <Compile Include="MixControls\MenuTable.xaml.cs">
       <DependentUpon>MenuTable.xaml</DependentUpon>
@@ -119,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ColorConfig\DefaultTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CostumeStyles\ComplexStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

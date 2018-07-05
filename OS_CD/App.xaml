@@ -7,7 +7,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/ColorConfig/DefaultTheme.xaml"/>
-                <ResourceDictionary Source="Themes/CostumeStyles/SimpleStyles.xaml"/>
+                <ResourceDictionary Source="Themes/CostumeStyles/SimpleStyles.xaml" />
+                <ResourceDictionary Source="Themes/CostumeStyles/ComplexStyles.xaml" />
                 <ResourceDictionary Source="Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
