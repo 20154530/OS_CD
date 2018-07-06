@@ -7,8 +7,10 @@
                  xmlns:local="clr-namespace:OS_CD"
                  mc:Ignorable="d"
                  Title="MainWindow"
-                 MinWidth="320"
+                 MinWidth="480"
                  MinHeight="480"
+                 MaxWidth="778"
+                 MaxHeight="640"
                  Background="{DynamicResource MainWindow_BG}">
     <local:YT_Window.TitleArea>
         <Border x:Name="RootBorder"
@@ -19,11 +21,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="24" />
                     <RowDefinition Height="8" />
+                    <RowDefinition Height="24" />
                 </Grid.RowDefinitions>
                 <Grid x:Name="User_ID"
                       Grid.RowSpan="2">
@@ -32,14 +33,14 @@
                                                ForeToolTip="选择用户"
                                                BackToolTip="选择用户"
                                                ForeIcon="&#xE13D;"
-                                               BackIcon="&#xE125;" />
+                                               BackIcon="&#xE13D;" />
                 </Grid>
                 <Grid x:Name="Function_Area"
-                      Grid.Column="1"
-                      VerticalAlignment="Top"
-                      Height="{DynamicResource MainWindow_TileBar_Height}">
+                      Grid.Row="1"
+                      Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition MinWidth="100"/>
+                        <ColumnDefinition MinWidth="100" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -81,35 +82,49 @@
                                               Style="{DynamicResource FunctionRadioButton}"
                                               Command="{Binding NavigateCommand}"
                                               CommandParameter="UserPage.xaml"
-                                              Content="用户" />
+                                              Content="用户"
+                                              ForeIcon="&#xEA4A;"
+                                              BackIcon="&#xEA4A;" />
                     <local:YT_IconRadioButton x:Name="File_Btn"
                                               Grid.Column="2"
                                               Style="{DynamicResource FunctionRadioButton}"
                                               Command="{Binding NavigateCommand}"
                                               CommandParameter="FilePage.xaml"
-                                              Content="文件" />
+                                              Content="文件"
+                                              ForeIcon="&#xEC50;"
+                                              BackIcon="&#xEC50;" />
                     <local:YT_IconRadioButton x:Name="Disk_Btn"
                                               Grid.Column="3"
                                               Style="{DynamicResource FunctionRadioButton}"
                                               Command="{Binding NavigateCommand}"
                                               CommandParameter="DiskPage.xaml"
-                                              Content="磁盘" />
+                                              Content="磁盘"
+                                              ForeIcon="&#xEB05;"
+                                              BackIcon="&#xEB05;" />
                     <local:YT_IconRadioButton x:Name="Mem_Btn"
                                               Grid.Column="4"
                                               Style="{DynamicResource FunctionRadioButton}"
                                               Command="{Binding NavigateCommand}"
                                               CommandParameter="MemoryPage.xaml"
-                                              Content="内存" />
+                                              Content="内存"
+                                              ForeIcon="&#xE020;"
+                                              BackIcon="&#xE020;" />
+                    <local:YT_IconButton x:Name="Exit_Btn"
+                                         Grid.Column="5"
+                                         ContentText="退出"
+                                         Content="&#xE7E8;"
+                                         Style="{StaticResource ExitButtonStyle}"
+                                         DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:YT_TitleBar}}"
+                                         Command="{Binding CloseCommand}" />
                 </Grid>
-                <local:YT_IconButton x:Name="ExitBtn"
-                                     Grid.Column="2"
-                                     Content="&#xE106;"
-                                     ForeToolTip="关闭"
-                                     VerticalAlignment="Top"
-                                     Command="{Binding CloseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:YT_TitleBar}}"
-                                     Style="{DynamicResource DefaultButtonStyle}"
-                                     AllowAni="False"
-                                     ToolTipVisiblity="Visible" />
+                <Rectangle Style="{StaticResource H_Seperoator}"
+                           Fill="#606060"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1"
+                           VerticalAlignment="Bottom" />
+                <Rectangle Fill="#606060"
+                           Grid.ColumnSpan="2"
+                           Grid.Column="1" />
             </Grid>
         </Border>
     </local:YT_Window.TitleArea>

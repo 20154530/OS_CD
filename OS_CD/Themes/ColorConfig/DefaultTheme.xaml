@@ -32,29 +32,31 @@
     <!--Button-->
     <SolidColorBrush x:Key="DefaultButton_Icon_BG"
                      Color="#080808" />
+    <SolidColorBrush x:Key="DefaultButton_Icon_BG_R"
+                     Color="#EFEFEF" />
+    <SolidColorBrush x:Key="DefaultButton_Icon_BG_P"
+                     Color="#EFEFEF" />
     <SolidColorBrush x:Key="DefaultButton_IconMask_BG_N"
                      Color="Transparent" />
     <SolidColorBrush x:Key="DefaultButton_IconMask_BG_R"
-                     Color="#20000000" />
+                     Color="#B0B0B0" />
     <SolidColorBrush x:Key="DefaultButton_IconMask_BG_P"
-                     Color="#40000000" />
-    <SolidColorBrush x:Key="DefaultButton_IconMask_BG_S"
-                     Color="#40000000" />
+                     Color="#606060" />
 
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_N"
-                     Color="#404040" />
+                     Color="#A0A0A0" />
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_R"
                      Color="#EFEFEF" />
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_P"
-                     Color="#EFEFEF" />
+                     Color="#FFFFFF" />
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_S"
                      Color="#EFEFEF" />
     <SolidColorBrush x:Key="DefaultToggleButton_IconMask_BG_N"
-                     Color="#B0B0B0" />
+                     Color="#606060" />
     <SolidColorBrush x:Key="DefaultToggleButton_IconMask_BG_R"
-                     Color="#B0B0B0" />
+                     Color="#606060" />
     <SolidColorBrush x:Key="DefaultToggleButton_IconMask_BG_P"
-                     Color="#B0B0B0" />
+                     Color="#606060" />
     <SolidColorBrush x:Key="DefaultToggleButton_IconMask_BG_S"
                      Color="#606060" />
 
@@ -96,7 +98,7 @@
 
     <!--Button-->
     <sys:Double x:Key="DefaultButton_Size">24</sys:Double>
-    <sys:Double x:Key="DefaultButton_Icon_Size">14</sys:Double>
+    <sys:Double x:Key="DefaultButton_Icon_Size">18</sys:Double>
 
     <sys:Double x:Key="UserButton_Icon_Size">32</sys:Double>
 

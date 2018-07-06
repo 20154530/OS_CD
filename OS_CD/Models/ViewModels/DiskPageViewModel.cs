@@ -9,7 +9,7 @@ namespace OS_CD {
     internal class DiskPageViewModel : ViewModelBase {
 
         /// <summary>
-        /// 磁盘块 位图
+        /// 磁盘块 位示图
         /// </summary>
         private int[] blockcell;
         public int[] Blockcell {

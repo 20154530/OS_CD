@@ -28,15 +28,28 @@ namespace OS_CD {
             }
         }
 
+
+
         public Frame Mainframe { get; set; }
 
         public CommandBase NavigateCommand { get; set; }
+
+        public CommandBase OpenUserSelectMenuCommand { get; set; }
+        
         #endregion
 
         #region PrivateMethods
         private void InitAction() {
             NavigateCommand = new CommandBase();
             NavigateCommand.Commandaction += NavigateCommand_Commandaction;
+            OpenUserSelectMenuCommand = new CommandBase();
+            OpenUserSelectMenuCommand.Commandaction += OpenUserSelectMenuCommand_Commandaction;
+            
+            
+        }
+
+        private void OpenUserSelectMenuCommand_Commandaction(object para) {
+            throw new NotImplementedException();
         }
 
         private void NavigateCommand_Commandaction(object para) {

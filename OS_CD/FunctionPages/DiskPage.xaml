@@ -8,15 +8,39 @@
       Title="DiskPage">
     <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <TextBlock x:Name="BlockLabel" FontSize="22" Text="" Style="{StaticResource IconTextBlock}" />
-        <Viewbox x:Name="BlockArea" MinWidth="320" MaxWidth="640" Stretch="Uniform" Grid.Row="1" Margin="5,0,5,0">
-             <ListView x:Name="DiskBlocks"
+        <Grid x:Name="TitleArea" Height="48">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="BlockLabel"
+                       FontSize="24"
+                       HorizontalAlignment="Left"
+                       FontWeight="Light"
+                       Margin="8,0,0,0"
+                       Text="磁盘信息" />
+            <TextBlock x:Name="UsedBlocks"
+                       Text="已用块数"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top"
+                       FontWeight="Light"
+                       FontSize="14"/>
+            <TextBlock x:Name="LastBlocks" 
+                       Text="剩余块数"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       FontWeight="Light"
+                       FontSize="14"/>
+        </Grid>
+        <Viewbox x:Name="BlockArea" MinWidth="480" MaxWidth="768" Stretch="Uniform" Grid.Row="1" Margin="5,0,5,0">
+              <ListView x:Name="DiskBlocks"
                   Style="{StaticResource DiskBlockView}"
                   ItemsSource="{Binding Blockcell}" />
         </Viewbox>
+           
     </Grid>
 </Page>

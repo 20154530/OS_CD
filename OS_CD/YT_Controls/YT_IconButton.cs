@@ -27,6 +27,26 @@ namespace OS_CD {
                 typeof(YT_IconButton), new PropertyMetadata(Visibility.Visible));
         #endregion
 
+        #region LabelPadding
+        public Thickness LabelPadding {
+            get { return (Thickness)GetValue(LabelPaddingProperty); }
+            set { SetValue(LabelPaddingProperty, value); }
+        }
+        public static readonly DependencyProperty LabelPaddingProperty =
+            DependencyProperty.Register("LabelPadding", typeof(Thickness),
+                typeof(YT_IconButton), new PropertyMetadata(new Thickness(0)));
+        #endregion
+
+        #region Textloc
+        public bool Textloc {
+            get { return (bool)GetValue(TextlocProperty); }
+            set { SetValue(TextlocProperty, value); }
+        }
+        public static readonly DependencyProperty TextlocProperty =
+            DependencyProperty.Register("Textloc", typeof(bool),
+                typeof(YT_IconButton), new PropertyMetadata(false));
+        #endregion
+
         #region ButtonColor
         public Brush IconMaskN {
             get { return (Brush)GetValue(IconMaskNProperty); }
@@ -145,6 +165,7 @@ namespace OS_CD {
             DependencyProperty.Register("ToolTipVisiblity", typeof(Visibility), typeof(YT_IconButton),
                 new PropertyMetadata(Visibility.Visible));
         #endregion
+
         static YT_IconButton()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(YT_IconButton), new FrameworkPropertyMetadata(typeof(YT_IconButton)));

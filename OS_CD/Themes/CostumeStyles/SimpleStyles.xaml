@@ -38,9 +38,9 @@
     <Style x:Key="IconTextBlock"
            TargetType="TextBlock">
         <Setter Property="FontFamily"
-                Value="{StaticResource Segoe}" />
+                Value="{DynamicResource Segoe}" />
         <Setter Property="Foreground"
-                Value="{StaticResource MainTextColor}" />
+                Value="{StaticResource MainWindow_FG}" />
         <Setter Property="TextAlignment"
                 Value="Center" />
         <Setter Property="HorizontalAlignment"
@@ -107,7 +107,39 @@
         <Setter Property="Height"
                 Value="{StaticResource DefaultButton_Size}" />
     </Style>
-
+    
+    <!--ExitButtonStyle-->
+    <Style x:Key="ExitButtonStyle"
+           TargetType="local:YT_IconButton">
+        <Setter Property="IconN"
+                Value="{StaticResource DefaultButton_Icon_BG}" />
+        <Setter Property="IconR"
+                Value="{StaticResource DefaultButton_Icon_BG_R}" />
+        <Setter Property="IconP"
+                Value="{StaticResource DefaultButton_Icon_BG_P}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource DefaultButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource DefaultButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource DefaultButton_IconMask_BG_P}" />
+        <Setter Property="FontSize"
+                Value="{StaticResource DefaultButton_Icon_Size}" />
+        <Setter Property="Height"
+                Value="{StaticResource DefaultButton_Size}" />
+        <Setter Property="MinWidth"
+                Value="48" />
+        <Setter Property="Padding"
+                Value="10,0,0,0" />
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="ContentTextFontSize"
+                Value="14" />
+        <Setter Property="ContentTextVisiblity"
+                Value="Visible" />
+    </Style>
+    
+    
     <!--UserIconToggelButtonStyle-->
     <Style x:Key="UserIconToggelButtonStyle"
            TargetType="local:YT_IconToggelButton">
@@ -158,6 +190,10 @@
                 Value="{StaticResource MainWindow_FunctionButton_Label_Size}" />
         <Setter Property="ToolTipVisiblity"
                 Value="Collapsed" />
+        <Setter Property="Padding"
+                Value="10,0,0,0" />
+        <Setter Property="FontSize"
+                Value="16" />
         <Setter Property="Textloc"
                 Value="True" />
         <Setter Property="MinWidth"
@@ -165,7 +201,7 @@
         <Setter Property="FontWeight"
                 Value="Light" />
         <Setter Property="IconVisiblity"
-                Value="Collapsed" />
+                Value="Visible" />
         <Setter Property="LabelVisibility"
                 Value="Visible" />
     </Style>
@@ -188,6 +224,8 @@
                 Value="1" />
         <Setter Property="VerticalAlignment"
                 Value="Stretch" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
     </Style>
 
 

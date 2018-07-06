@@ -34,8 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FontLibrary">
-      <HintPath>Resources\Font\FontLibrary.dll</HintPath>
+    <Reference Include="FontLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Visual C#\FontLibrary1\FontLibrary1\bin\Release\FontLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -70,6 +71,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FunctionPages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FunctionPages\MemoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,11 +91,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CustomeControls\CustomeMenuItem.cs" />
     <Compile Include="FunctionPages\DiskPage.xaml.cs">
       <DependentUpon>DiskPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="FunctionPages\FilePage.xaml.cs">
       <DependentUpon>FilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionPages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="FunctionPages\MemoryPage.xaml.cs">
       <DependentUpon>MemoryPage.xaml</DependentUpon>
@@ -106,15 +115,14 @@
     <Compile Include="MixControls\DiskBlocks.xaml.cs">
       <DependentUpon>DiskBlocks.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MixControls\MenuTable.xaml.cs">
-      <DependentUpon>MenuTable.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewModels\DiskPageViewModel.cs" />
     <Compile Include="Models\ViewModels\MainPageViewModel.cs" />
     <Compile Include="Models\ViewModels\ViewModelBase.cs" />
     <Compile Include="YT_Controls\YT_IconButton.cs" />
     <Compile Include="YT_Panels\CellPanel.cs" />
     <Compile Include="YT_Windows\YT_AreaIcon.cs" />
+    <Compile Include="YT_Windows\YT_Dailogs\YT_DialogBase.cs" />
+    <Compile Include="YT_Windows\YT_Dailogs\YT_ExitDialog.cs" />
     <Compile Include="YT_Windows\YT_SizeBorder.cs" />
     <Compile Include="YT_Windows\YT_TitleBar.cs" />
     <Compile Include="YT_Windows\YT_Window.cs" />
@@ -126,15 +134,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MixControls\MenuTable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\ColorConfig\DefaultTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CostumeStyles\ComplexStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CostumeStyles\ControlResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CostumeStyles\DialogStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
