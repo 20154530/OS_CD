@@ -5,6 +5,16 @@
 
     <!--Brushes-->
 
+    <SolidColorBrush x:Key="DarkMask_A"
+                     Color="#C0000000" />
+    <SolidColorBrush x:Key="DarkMask_B"
+                     Color="#A0000000" />
+    <SolidColorBrush x:Key="DarkMask_C"
+                     Color="#80000000" />
+    <SolidColorBrush x:Key="DarkMask_D"
+                     Color="#40000000" />
+    
+
     <!--MainWindow-->
     <SolidColorBrush x:Key="MainWindow_BG"
                      Color="#efefef" />
@@ -70,7 +80,10 @@
                      Color="#efefef" />
     <SolidColorBrush x:Key="DefaultToolTip_Border"
                      Color="#080808" />
-
+   
+    
+    
+    
 
 
     <!--Sizes-->

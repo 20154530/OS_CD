@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using System.Timers;
 
 namespace OS_CD {
+    /// <summary>
+    /// 系统信息类,记录全局系统活动
+    /// </summary>
     internal class Systeminfo : ViewModelBase {
+
         public static Systeminfo Instence = new Systeminfo();
 
         #region Properties
@@ -18,6 +22,15 @@ namespace OS_CD {
             set {
                 sysTime_HMS = value;
                 OnPropertyChanged("SysTime_HMS");
+            }
+        }
+
+        private string sys_Op_state;
+        public string Sys_Op_state {
+            get => sys_Op_state;
+            set {
+                sys_Op_state = value;
+                OnPropertyChanged("Sys_Op_state");
             }
         }
         #endregion
@@ -37,4 +50,13 @@ namespace OS_CD {
         }
         #endregion
     }
+
+    /// <summary>
+    /// 系统状态信息表
+    /// </summary>
+    internal class SystemOpStateTable {
+    
+
+    }
+
 }

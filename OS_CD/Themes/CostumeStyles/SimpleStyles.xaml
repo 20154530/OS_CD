@@ -4,26 +4,26 @@
 
     <!--ToolTops-->
     
-    <!--YT_IconButtonToolTip-->
-    <Style x:Key="YT_IconButtonToolTip"
+    <!--DefaultToolTip-->
+    <Style x:Key="DefaultToolTip"
            TargetType="ToolTip">
         <Setter Property="Padding"
                 Value="0" />
         <Setter Property="BorderBrush"
-                Value="{DynamicResource MainWindow_Border_Normal}" />
+                Value="{StaticResource MainWindow_Border_Normal}" />
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="DataContext"
                 Value="{Binding PlacementTarget, RelativeSource={RelativeSource Mode=Self}}" />
     </Style>
 
-    <!--YT_IconButtonToolTipText-->
-    <Style x:Key="YT_IconButtonToolTipText"
+    <!--DefaultToolTipText-->
+    <Style x:Key="DefaultToolTipText"
            TargetType="TextBlock">
         <Setter Property="FontSize"
                 Value="10" />
         <Setter Property="Foreground"
-                Value="{DynamicResource MainWindow_Border_Normal}" />
+                Value="{StaticResource MainWindow_Border_Normal}" />
         <Setter Property="Margin"
                 Value="5,2,5,2" />
     </Style>
@@ -38,9 +38,9 @@
     <Style x:Key="IconTextBlock"
            TargetType="TextBlock">
         <Setter Property="FontFamily"
-                Value="{DynamicResource Segoe}" />
+                Value="{StaticResource Segoe}" />
         <Setter Property="Foreground"
-                Value="{DynamicResource MainTextColor}" />
+                Value="{StaticResource MainTextColor}" />
         <Setter Property="TextAlignment"
                 Value="Center" />
         <Setter Property="HorizontalAlignment"
@@ -75,8 +75,6 @@
                 Value="12" />
         <Setter Property="VerticalAlignment"
                 Value="Center" />
-        <Setter Property="Margin"
-                Value="8,0,0,0" />
         <Setter Property="FontWeight"
                 Value="Light" />
     </Style>
@@ -91,48 +89,48 @@
     <Style x:Key="DefaultButtonStyle"
            TargetType="local:YT_IconButton">
         <Setter Property="IconN"
-                Value="{DynamicResource DefaultButton_Icon_BG}" />
+                Value="{StaticResource DefaultButton_Icon_BG}" />
         <Setter Property="IconR"
-                Value="{DynamicResource DefaultButton_Icon_BG}" />
+                Value="{StaticResource DefaultButton_Icon_BG}" />
         <Setter Property="IconP"
-                Value="{DynamicResource DefaultButton_Icon_BG}" />
+                Value="{StaticResource DefaultButton_Icon_BG}" />
         <Setter Property="IconMaskN"
-                Value="{DynamicResource DefaultButton_IconMask_BG_N}" />
+                Value="{StaticResource DefaultButton_IconMask_BG_N}" />
         <Setter Property="IconMaskR"
-                Value="{DynamicResource DefaultButton_IconMask_BG_R}" />
+                Value="{StaticResource DefaultButton_IconMask_BG_R}" />
         <Setter Property="IconMaskP"
-                Value="{DynamicResource DefaultButton_IconMask_BG_P}" />
+                Value="{StaticResource DefaultButton_IconMask_BG_P}" />
         <Setter Property="FontSize"
-                Value="{DynamicResource DefaultButton_Icon_Size}" />
+                Value="{StaticResource DefaultButton_Icon_Size}" />
         <Setter Property="Width"
-                Value="{DynamicResource DefaultButton_Size}" />
+                Value="{StaticResource DefaultButton_Size}" />
         <Setter Property="Height"
-                Value="{DynamicResource DefaultButton_Size}" />
+                Value="{StaticResource DefaultButton_Size}" />
     </Style>
 
     <!--UserIconToggelButtonStyle-->
     <Style x:Key="UserIconToggelButtonStyle"
            TargetType="local:YT_IconToggelButton">
         <Setter Property="IconN"
-                Value="{DynamicResource DefaultToggleButton_Icon_BG_N}" />
+                Value="{StaticResource DefaultToggleButton_Icon_BG_N}" />
         <Setter Property="IconR"
-                Value="{DynamicResource DefaultToggleButton_Icon_BG_R}" />
+                Value="{StaticResource DefaultToggleButton_Icon_BG_R}" />
         <Setter Property="IconP"
-                Value="{DynamicResource DefaultToggleButton_Icon_BG_P}" />
+                Value="{StaticResource DefaultToggleButton_Icon_BG_P}" />
         <Setter Property="IconS"
-                Value="{DynamicResource DefaultToggleButton_Icon_BG_S}" />
+                Value="{StaticResource DefaultToggleButton_Icon_BG_S}" />
         <Setter Property="IconMaskN"
-                Value="{DynamicResource DefaultToggleButton_IconMask_BG_N}" />
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_N}" />
         <Setter Property="IconMaskR"
-                Value="{DynamicResource DefaultToggleButton_IconMask_BG_R}" />
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_R}" />
         <Setter Property="IconMaskP"
-                Value="{DynamicResource DefaultToggleButton_IconMask_BG_P}" />
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_P}" />
         <Setter Property="IconMaskS"
-                Value="{DynamicResource DefaultToggleButton_IconMask_BG_S}" />
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_S}" />
         <Setter Property="Height"
-                Value="{DynamicResource UserButton_Icon_Size}" />
+                Value="{StaticResource UserButton_Icon_Size}" />
         <Setter Property="Width"
-                Value="{DynamicResource UserButton_Icon_Size}" />
+                Value="{StaticResource UserButton_Icon_Size}" />
         <Setter Property="FontSize"
                 Value="20" />
     </Style>
@@ -141,23 +139,23 @@
     <Style x:Key="FunctionRadioButton"
            TargetType="local:YT_IconRadioButton">
         <Setter Property="IconN"
-                Value="{DynamicResource DefaultRadioButton_Icon_BG_N}" />
+                Value="{StaticResource DefaultRadioButton_Icon_BG_N}" />
         <Setter Property="IconR"
-                Value="{DynamicResource DefaultRadioButton_Icon_BG_R}" />
+                Value="{StaticResource DefaultRadioButton_Icon_BG_R}" />
         <Setter Property="IconP"
-                Value="{DynamicResource DefaultRadioButton_Icon_BG_P}" />
+                Value="{StaticResource DefaultRadioButton_Icon_BG_P}" />
         <Setter Property="IconS"
-                Value="{DynamicResource DefaultRadioButton_Icon_BG_S}" />
+                Value="{StaticResource DefaultRadioButton_Icon_BG_S}" />
         <Setter Property="IconMaskN"
-                Value="{DynamicResource DefaultRadioButton_IconMask_BG_N}" />
+                Value="{StaticResource DefaultRadioButton_IconMask_BG_N}" />
         <Setter Property="IconMaskR"
-                Value="{DynamicResource DefaultRadioButton_IconMask_BG_R}" />
+                Value="{StaticResource DefaultRadioButton_IconMask_BG_R}" />
         <Setter Property="IconMaskP"
-                Value="{DynamicResource DefaultRadioButton_IconMask_BG_P}" />
+                Value="{StaticResource DefaultRadioButton_IconMask_BG_P}" />
         <Setter Property="IconMaskS"
-                Value="{DynamicResource DefaultRadioButton_IconMask_BG_S}" />
+                Value="{StaticResource DefaultRadioButton_IconMask_BG_S}" />
         <Setter Property="LabelFontSize"
-                Value="{DynamicResource MainWindow_FunctionButton_Label_Size}" />
+                Value="{StaticResource MainWindow_FunctionButton_Label_Size}" />
         <Setter Property="ToolTipVisiblity"
                 Value="Collapsed" />
         <Setter Property="Textloc"

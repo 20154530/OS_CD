@@ -2,12 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:OS_C">
-    
+
     <!--SimpleFrame-->
     <Style x:Key="SimpleFrame"
            TargetType="{x:Type Frame}">
         <Setter Property="Margin"
-                Value="0,24,0,0" />
+                Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Frame}">
@@ -21,27 +21,114 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!--ListView-->
     <Style x:Key="DiskBlockView"
            TargetType="ListView">
+        <Setter Property="SelectionMode"
+                Value="Single" />
+        <Setter Property="BorderThickness"
+                Value="0" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <WrapPanel MaxWidth="480" 
-                               MinWidth="300"
-                               Orientation="Horizontal"
-                               IsItemsHost="True" />
+                    <UniformGrid Width="768"
+                                 Height="384"
+                                 IsItemsHost="True"
+                                 Columns="32"
+                                 Rows="16" />
                 </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="RootBorder">
+                                    <Grid x:Name="RootGrid">
+                                        <ContentPresenter x:Name="Content"
+                                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                          Margin="0" />
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
             </Setter.Value>
         </Setter>
         <Setter Property="ItemTemplate">
             <Setter.Value>
-                <DataTemplate DataType="{sys:int}">
+                <DataTemplate>
                     <Grid x:Name="BlockCell"
-                          Width="12"
-                          Height="12" />
+                          Width="24"
+                          Height="24"
+                          UseLayoutRounding="True">
+                        <Rectangle x:Name="CellItem"
+                                   StrokeThickness="2"
+                                   Stroke="Transparent"
+                                   Fill="{Binding Converter={StaticResource ColorSelector}}" />
+                        <Rectangle x:Name="CellMask"
+                                   Visibility="Collapsed"
+                                   Fill="{StaticResource DarkMask_D}" />
+                        <Grid.ToolTip>
+                            <ToolTip Style="{StaticResource DefaultToolTip}"
+                                     DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Mode=Self}}"
+                                     Placement="Top">
+                                <Grid Background="{DynamicResource DefaultToolTip_BG}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="状态"
+                                               Style="{DynamicResource DefaultToolTipText}" />
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding Converter={StaticResource NoneValueC}}"
+                                               Style="{DynamicResource DefaultToolTipText}" />
+                                    <TextBlock Text="文件ID"
+                                               Grid.Row="1"
+                                               Style="{DynamicResource DefaultToolTipText}" />
+                                    <TextBlock Grid.Column="1"
+                                               Grid.Row="1"
+                                               Text="{Binding}"
+                                               Style="{DynamicResource DefaultToolTipText}" />
+                                </Grid>
+                            </ToolTip>
+                        </Grid.ToolTip>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="CellItem"
+                                    Property="Stroke"
+                                    Value="{Binding Fill, ElementName=CellItem}" />
+                            <Setter TargetName="CellMask"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border x:Name="Bd"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

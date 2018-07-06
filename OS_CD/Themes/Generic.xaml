@@ -99,11 +99,11 @@
                 Value="Collapsed" />
         <Setter Property="ToolTip">
             <Setter.Value>
-                <ToolTip Style="{DynamicResource YT_IconButtonToolTip}"
+                <ToolTip Style="{DynamicResource DefaultToolTip}"
                          Visibility="{Binding ToolTipVisiblity}">
                     <Grid Background="{DynamicResource DefaultToolTip_BG}">
                         <TextBlock Text="{Binding ForeToolTip}"
-                                   Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                   Style="{DynamicResource DefaultToolTipText}" />
                     </Grid>
                 </ToolTip>
             </Setter.Value>
@@ -238,11 +238,11 @@
                      Value="True">
                 <Setter Property="ToolTip">
                     <Setter.Value>
-                        <ToolTip Style="{DynamicResource YT_IconButtonToolTip}"
+                        <ToolTip Style="{DynamicResource DefaultToolTip}"
                                  Visibility="{Binding ToolTipVisiblity}">
                             <Grid Background="{DynamicResource DefaultToolTip_BG}">
                                 <TextBlock Text="{Binding BackToolTip}"
-                                           Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                           Style="{DynamicResource DefaultToolTipText}" />
                             </Grid>
                         </ToolTip>
                     </Setter.Value>
@@ -252,11 +252,11 @@
                      Value="False">
                 <Setter Property="ToolTip">
                     <Setter.Value>
-                        <ToolTip Style="{DynamicResource YT_IconButtonToolTip}"
+                        <ToolTip Style="{DynamicResource DefaultToolTip}"
                                  Visibility="{Binding ToolTipVisiblity}">
                             <Grid Background="{DynamicResource DefaultToolTip_BG}">
                                 <TextBlock Text="{Binding ForeToolTip}"
-                                           Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                           Style="{DynamicResource DefaultToolTipText}" />
                             </Grid>
                         </ToolTip>
                     </Setter.Value>
@@ -360,11 +360,11 @@
                      Value="True">
                 <Setter Property="ToolTip">
                     <Setter.Value>
-                        <ToolTip Style="{DynamicResource YT_IconButtonToolTip}"
+                        <ToolTip Style="{DynamicResource DefaultToolTip}"
                                  Visibility="{Binding ToolTipVisiblity}">
                             <Grid Background="{DynamicResource DefaultToolTip_BG}">
                                 <TextBlock Text="{Binding BackToolTip}"
-                                           Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                           Style="{DynamicResource DefaultToolTipText}" />
                             </Grid>
                         </ToolTip>
                     </Setter.Value>
@@ -374,11 +374,11 @@
                      Value="False">
                 <Setter Property="ToolTip">
                     <Setter.Value>
-                        <ToolTip Style="{DynamicResource YT_IconButtonToolTip}"
+                        <ToolTip Style="{DynamicResource DefaultToolTip}"
                                  Visibility="{Binding ToolTipVisiblity}">
                             <Grid Background="{DynamicResource DefaultToolTip_BG}">
                                 <TextBlock Text="{Binding ForeToolTip}"
-                                           Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                           Style="{DynamicResource DefaultToolTipText}" />
                             </Grid>
                         </ToolTip>
                     </Setter.Value>

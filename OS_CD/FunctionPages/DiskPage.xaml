@@ -7,10 +7,16 @@
       mc:Ignorable="d"
       Title="DiskPage">
     <Grid x:Name="RootGrid">
-        <ListView x:Name="DiskBlocks"
-                  Style="{DynamicResource DiskBlockView}"
-                  ItemsSource="{Binding Blockcell}">
-            
-        </ListView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="BlockLabel" FontSize="22" Text="" Style="{StaticResource IconTextBlock}" />
+        <Viewbox x:Name="BlockArea" MinWidth="320" MaxWidth="640" Stretch="Uniform" Grid.Row="1" Margin="5,0,5,0">
+             <ListView x:Name="DiskBlocks"
+                  Style="{StaticResource DiskBlockView}"
+                  ItemsSource="{Binding Blockcell}" />
+        </Viewbox>
     </Grid>
 </Page>

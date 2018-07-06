@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 namespace OS_CD {
     internal class MainPageViewModel : ViewModelBase {
+        #region Properties
         private string userid;
         public string Userid {
             get => userid;
@@ -27,13 +28,29 @@ namespace OS_CD {
             }
         }
 
-        private Frame mainframe;
         public Frame Mainframe { get; set; }
 
+        public CommandBase NavigateCommand { get; set; }
+        #endregion
 
+        #region PrivateMethods
+        private void InitAction() {
+            NavigateCommand = new CommandBase();
+            NavigateCommand.Commandaction += NavigateCommand_Commandaction;
+        }
+
+        private void NavigateCommand_Commandaction(object para) {
+            Mainframe.Navigate(new Uri("FunctionPages/"+para.ToString(), UriKind.Relative));
+            Systeminfo.Instence.Sys_Op_state = para.ToString().Trim().Replace(".xaml","");
+        }
+        #endregion
+
+        #region Constructors
         public MainPageViewModel() {
+            InitAction();
             Userid = "12";
             Username = "Administor";
         }
+        #endregion
     }
 }

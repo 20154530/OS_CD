@@ -6,8 +6,8 @@
     <FontFamily x:Key="Digital">/FontLibrary;Component/#Digital</FontFamily>
 
     <!--Converters-->
-    <local:StringOriConverter x:Key="StringOriConverter" />
-    <local:OriStringConverter x:Key="OriStringConverter" />
-    
-    
+    <local:ColorSelector x:Key="ColorSelector" />
+    <local:JudgeNone x:Key="NoneValueC" />
+
+
 </ResourceDictionary>

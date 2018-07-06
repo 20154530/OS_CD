@@ -15,32 +15,43 @@
                 BorderThickness="0">
             <Grid Background="Transparent"
                   HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  Height="32">
+                  VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="User_ID">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="32" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24" />
+                    <RowDefinition Height="8" />
+                </Grid.RowDefinitions>
+                <Grid x:Name="User_ID"
+                      Grid.RowSpan="2">
                     <local:YT_IconToggelButton x:Name="User_Icon"
                                                Style="{DynamicResource UserIconToggelButtonStyle}"
                                                ForeToolTip="选择用户"
                                                BackToolTip="选择用户"
                                                ForeIcon="&#xE13D;"
                                                BackIcon="&#xE125;" />
+                </Grid>
+                <Grid x:Name="Function_Area"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      Height="{DynamicResource MainWindow_TileBar_Height}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="100"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
                     <TextBlock x:Name="UserName"
-                               Grid.Column="1"
                                Text="{Binding Username}"
-                               Style="{DynamicResource UsernameTextStyle}" >
+                               Style="{DynamicResource UsernameTextStyle}">
                         <TextBlock.ToolTip>
-                            <ToolTip Style="{DynamicResource YT_IconButtonToolTip}"
+                            <ToolTip Style="{DynamicResource DefaultToolTip}"
                                      DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Mode=Self}}">
-                                <Grid Background="{DynamicResource DefaultToolTip_BG}" >
+                                <Grid Background="{DynamicResource DefaultToolTip_BG}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60" />
                                         <ColumnDefinition Width="*" />
@@ -50,46 +61,44 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="UserName"
-                                               Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                               Style="{DynamicResource DefaultToolTipText}" />
                                     <TextBlock Text="{Binding Username}"
                                                Grid.Column="1"
-                                               Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                               Style="{DynamicResource DefaultToolTipText}" />
                                     <TextBlock Text="UserID "
                                                Grid.Row="1"
-                                               Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                               Style="{DynamicResource DefaultToolTipText}" />
                                     <TextBlock Text="{Binding Userid}"
                                                Grid.Row="1"
                                                Grid.Column="1"
-                                               Style="{DynamicResource YT_IconButtonToolTipText}" />
+                                               Style="{DynamicResource DefaultToolTipText}" />
                                 </Grid>
                             </ToolTip>
                         </TextBlock.ToolTip>
                     </TextBlock>
-                </Grid>
-                <Grid x:Name="Function_Area"
-                      Grid.Column="1"
-                      VerticalAlignment="Top"
-                      Height="{DynamicResource MainWindow_TileBar_Height}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
                     <local:YT_IconRadioButton x:Name="User_Btn"
-                                              Style="{DynamicResource FunctionRadioButton}"
-                                              Content="用户" />
-                    <local:YT_IconRadioButton x:Name="File_Btn"
                                               Grid.Column="1"
                                               Style="{DynamicResource FunctionRadioButton}"
-                                              Content="文件" />
-                    <local:YT_IconRadioButton x:Name="Disk_Btn"
+                                              Command="{Binding NavigateCommand}"
+                                              CommandParameter="UserPage.xaml"
+                                              Content="用户" />
+                    <local:YT_IconRadioButton x:Name="File_Btn"
                                               Grid.Column="2"
                                               Style="{DynamicResource FunctionRadioButton}"
-                                              Content="磁盘" />
-                    <local:YT_IconRadioButton x:Name="Mem_Btn"
+                                              Command="{Binding NavigateCommand}"
+                                              CommandParameter="FilePage.xaml"
+                                              Content="文件" />
+                    <local:YT_IconRadioButton x:Name="Disk_Btn"
                                               Grid.Column="3"
                                               Style="{DynamicResource FunctionRadioButton}"
+                                              Command="{Binding NavigateCommand}"
+                                              CommandParameter="DiskPage.xaml"
+                                              Content="磁盘" />
+                    <local:YT_IconRadioButton x:Name="Mem_Btn"
+                                              Grid.Column="4"
+                                              Style="{DynamicResource FunctionRadioButton}"
+                                              Command="{Binding NavigateCommand}"
+                                              CommandParameter="MemoryPage.xaml"
                                               Content="内存" />
                 </Grid>
                 <local:YT_IconButton x:Name="ExitBtn"
@@ -123,6 +132,18 @@
                        Margin="2,0,2,0"
                        Fill="{DynamicResource MainWindow_Border_Normal}"
                        Style="{DynamicResource H_Seperoator}" />
+            <TextBlock x:Name="Op_State"
+                       Padding="0"
+                       HorizontalAlignment="Left"
+                       Margin="4,0,0,0"
+                       Style="{DynamicResource SysTimeTextStyle}"
+                       Text="{Binding Sys_Op_state,Source={x:Static local:Systeminfo.Instence}}" />
+            <Rectangle x:Name="Seperator_H_1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       Margin="0,3,0,2"
+                       Fill="{DynamicResource MainWindow_Border_Normal}"
+                       Style="{DynamicResource V_Seperoator}" />
             <Rectangle x:Name="Seperator_H_2"
                        Grid.Column="2"
                        HorizontalAlignment="Left"
@@ -131,6 +152,8 @@
                        Style="{DynamicResource V_Seperoator}" />
             <TextBlock x:Name="Sys_Time"
                        Grid.Column="2"
+                       HorizontalAlignment="Left"
+                       Margin="4,0,0,0"
                        Style="{DynamicResource SysTimeTextStyle}"
                        Text="{Binding SysTime_HMS,Source={x:Static local:Systeminfo.Instence}}" />
         </Grid>
