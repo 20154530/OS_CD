@@ -28,5 +28,6 @@ namespace OS_CD.FunctionPages
             DataContext = DiskVM;
             InitializeComponent();
         }
+
     }
 }

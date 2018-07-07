@@ -5,9 +5,6 @@
     <!--ContextMenu-->
 
     <!--UserMenu-->
-    <ContextMenu x:Key="UserSelectMenu" Style="{StaticResource UserSelectMenuStyle}">
-        
-    </ContextMenu>
     
     
     <!--DialogContent-->
@@ -20,4 +17,5 @@
                    TextWrapping="Wrap"
                    Text="确认退出?" />
     </Grid>
+    
 </ResourceDictionary>

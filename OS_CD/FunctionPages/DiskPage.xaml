@@ -12,35 +12,50 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Grid x:Name="TitleArea" Height="48">
+        <Grid x:Name="TitleArea"
+              Height="auto"
+              Margin="8,0,8,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <TextBlock x:Name="BlockLabel"
-                       FontSize="24"
+                       FontSize="32"
                        HorizontalAlignment="Left"
                        FontWeight="Light"
-                       Margin="8,0,0,0"
-                       Text="磁盘信息" />
-            <TextBlock x:Name="UsedBlocks"
-                       Text="已用块数"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontWeight="Light"
-                       FontSize="14"/>
-            <TextBlock x:Name="LastBlocks" 
-                       Text="剩余块数"
-                       HorizontalAlignment="Right"
+                       Margin="0,4,0,4"
+                       Foreground="#606060"
+                       Text="磁 盘" />
+            <Rectangle Style="{StaticResource H_Seperoator}"
+                       Fill="#606060"
                        VerticalAlignment="Bottom"
-                       FontWeight="Light"
-                       FontSize="14"/>
+                       Grid.Row="1" />
         </Grid>
-        <Viewbox x:Name="BlockArea" MinWidth="480" MaxWidth="768" Stretch="Uniform" Grid.Row="1" Margin="5,0,5,0">
-              <ListView x:Name="DiskBlocks"
-                  Style="{StaticResource DiskBlockView}"
-                  ItemsSource="{Binding Blockcell}" />
+        <TextBlock x:Name="UsedBlocks"
+                   Text="已用块数"
+                   Margin="0,0,168,4"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   FontWeight="Light"
+                   FontSize="12" />
+        <TextBlock x:Name="LastBlocks"
+                   Text="剩余块数"
+                   Margin="0,0,68,4"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   FontWeight="Light"
+                   FontSize="12" />
+        <Viewbox x:Name="BlockArea"
+                 MinWidth="460"
+                 MaxWidth="768"
+                 Stretch="Uniform"
+                 Grid.Row="1"
+                 Margin="8,0,8,0">
+            <ListView x:Name="DiskBlocks"
+                      SelectionChanged="{Binding DiskBlocks_SelectionChanged}"
+                      Style="{StaticResource DiskBlockView}"
+                      ItemsSource="{Binding Blockcell}" />
         </Viewbox>
-           
+
     </Grid>
 </Page>
