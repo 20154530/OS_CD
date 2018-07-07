@@ -79,6 +79,22 @@
                 Value="Light" />
     </Style>
 
+    <!--LoginPage-->
+    <Style x:Key="LoginPage_Label"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="17" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainWindow_FG}" />
+        <Setter Property="FontWeight"
+                Value="Thin" />
+        <Setter Property="TextAlignment"
+                Value="Left" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+    </Style>
 
 
 
@@ -129,23 +145,22 @@
                 Value="5,2" />
     </Style>
 
-
     <Style x:Key="DialogTextButtonStyle"
            TargetType="local:YT_IconButton">
         <Setter Property="IconN"
-                Value="{StaticResource Dialog_Button_Icon_BG}" />
+                Value="{StaticResource Dialog_Button_Text_BG}" />
         <Setter Property="IconR"
-                Value="{StaticResource Dialog_Button_Icon_BG_R}" />
+                Value="{StaticResource Dialog_Button_Text_BG_R}" />
         <Setter Property="IconP"
-                Value="{StaticResource Dialog_Button_Icon_BG_P}" />
+                Value="{StaticResource Dialog_Button_Text_BG_P}" />
         <Setter Property="IconMaskN"
-                Value="{StaticResource Dialog_Button_IconMask_BG_N}" />
+                Value="{StaticResource Dialog_Button_TextMask_BG_N}" />
         <Setter Property="IconMaskR"
-                Value="{StaticResource Dialog_Button_IconMask_BG_R}" />
+                Value="{StaticResource Dialog_Button_TextMask_BG_R}" />
         <Setter Property="IconMaskP"
-                Value="{StaticResource Dialog_Button_IconMask_BG_P}" />
+                Value="{StaticResource Dialog_Button_TextMask_BG_P}" />
         <Setter Property="Width"
-                Value="48" />
+                Value="24" />
         <Setter Property="Height"
                 Value="24" />
         <Setter Property="HorizontalAlignment"
@@ -154,6 +169,32 @@
                 Value="Bottom" />
         <Setter Property="ContentTextFontSize"
                 Value="14" />
+        <Setter Property="ContentTextVisiblity"
+                Value="Visible" />
+        <Setter Property="IconVisiblity"
+                Value="Collapsed" />
+    </Style>
+
+    <Style x:Key="LoginPage_SubmitButton"
+           TargetType="local:YT_IconButton">
+        <Setter Property="IconN"
+                Value="{StaticResource Dialog_Button_Text_BG}" />
+        <Setter Property="IconR"
+                Value="{StaticResource Dialog_Button_Text_BG_R}" />
+        <Setter Property="IconP"
+                Value="{StaticResource Dialog_Button_Text_BG_P}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource Dialog_Button_TextMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource Dialog_Button_TextMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource Dialog_Button_TextMask_BG_P}" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="ContentTextFontSize"
+                Value="17" />
         <Setter Property="ContentTextVisiblity"
                 Value="Visible" />
         <Setter Property="IconVisiblity"
@@ -216,6 +257,33 @@
                 Value="{StaticResource UserButton_Icon_Size}" />
         <Setter Property="FontSize"
                 Value="20" />
+    </Style>
+    
+    <!--UserIconbuttonStyle-->
+    <Style x:Key="UserIconbuttonStyle"
+           TargetType="local:YT_IconButton">
+        <Setter Property="IconN"
+                Value="{StaticResource DefaultToggleButton_Icon_BG_N}" />
+        <Setter Property="IconR"
+                Value="{StaticResource DefaultToggleButton_Icon_BG_R}" />
+        <Setter Property="IconP"
+                Value="{StaticResource DefaultToggleButton_Icon_BG_P}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_P}" />
+        <Setter Property="Height"
+                Value="{StaticResource UserButton_Icon_Size}" />
+        <Setter Property="Width"
+                Value="{StaticResource UserButton_Icon_Size}" />
+        <Setter Property="ToolTipVisiblity"
+                Value="Visible" />
+        <Setter Property="FontSize"
+                Value="20" />
+        <Setter Property="Textloc"
+                Value="True" />
     </Style>
 
     <!--FunctionRadioButton-->

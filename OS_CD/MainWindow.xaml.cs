@@ -20,14 +20,25 @@ namespace OS_CD
     /// </summary>
     public partial class MainWindow : YT_Window
     {
-        MainPageViewModel viewModel;
+        MainPageViewModel viewModel = new MainPageViewModel();
 
         public MainWindow()
         {
             Loaded += MainWindow_Loaded;
-            viewModel = new MainPageViewModel();
             DataContext = viewModel;
+            viewModel.OpenUserSelectMenuAction += ViewModel_OpenUserSelectMenuAction;
             InitializeComponent();
+        }
+
+        private void ViewModel_OpenUserSelectMenuAction(object sender, EventArgs e) {
+            ClearSelection();
+        }
+
+        public void ClearSelection() {
+            User_Btn.IsChecked = false;
+            File_Btn.IsChecked = false;
+            Disk_Btn.IsChecked = false;
+            Mem_Btn.IsChecked = false;
         }
         
 

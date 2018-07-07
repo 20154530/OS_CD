@@ -86,12 +86,10 @@
         <Setter Property="FontWeight"
                 Value="Light" />
         <Setter Property="Padding"
-                Value="1" />
+                Value="0" />
         <Setter Property="BorderThickness"
-                Value="1" />
+                Value="0" />
         <Setter Property="Background"
-                Value="Transparent" />
-        <Setter Property="BorderBrush"
                 Value="Transparent" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
@@ -632,7 +630,7 @@
                             <local:YT_IconButton x:Name="YesButton"
                                                  Grid.Row="1"
                                                  ContentText="是"
-                                                 Margin="0,0,60,8"
+                                                 Margin="0,0,68,8"
                                                  Command="{TemplateBinding YesCommand}"
                                                  Style="{StaticResource DialogTextButtonStyle}" />
                             <local:YT_IconButton x:Name="NoButton"

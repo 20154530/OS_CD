@@ -28,19 +28,18 @@
                 </Grid.RowDefinitions>
                 <Grid x:Name="User_ID"
                       Grid.RowSpan="2">
-                    <local:YT_IconToggelButton x:Name="User_Icon"
-                                               Style="{DynamicResource UserIconToggelButtonStyle}"
-                                               ForeToolTip="选择用户"
-                                               BackToolTip="选择用户"
-                                               ForeIcon="&#xE13D;"
-                                               BackIcon="&#xE13D;" />
+                    <local:YT_IconButton x:Name="User_Icon"
+                                         Style="{DynamicResource UserIconbuttonStyle}"
+                                         Command="{Binding OpenUserSelectMenuCommand}"
+                                         ForeToolTip="选择用户"
+                                         Content="&#xE13D;" />
                 </Grid>
                 <Grid x:Name="Function_Area"
                       Grid.Row="1"
                       Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition MinWidth="100" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition MaxWidth="120" />
+                        <ColumnDefinition Width="{Binding UserPageVis,Converter={StaticResource HideNoVisual}}" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -83,6 +82,7 @@
                                               Command="{Binding NavigateCommand}"
                                               CommandParameter="UserPage.xaml"
                                               Content="用户"
+                                              Visibility="{Binding UserPageVis}"
                                               ForeIcon="&#xEA4A;"
                                               BackIcon="&#xEA4A;" />
                     <local:YT_IconRadioButton x:Name="File_Btn"
@@ -143,7 +143,6 @@
             <Rectangle x:Name="Seperator_Top"
                        Grid.ColumnSpan="3"
                        VerticalAlignment="Top"
-                       Margin="2,0,2,0"
                        Fill="{DynamicResource MainWindow_Border_Normal}"
                        Style="{DynamicResource H_Seperoator}" />
             <TextBlock x:Name="Op_State"

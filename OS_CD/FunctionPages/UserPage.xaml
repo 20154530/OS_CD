@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:OS_CD.FunctionPages"
       mc:Ignorable="d"
       Title="UserPage">
-    <Grid>
-        
+    <Grid x:Name="RootGrid">
+
     </Grid>
 </Page>

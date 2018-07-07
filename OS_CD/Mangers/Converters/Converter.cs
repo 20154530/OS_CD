@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace OS_CD {
@@ -26,6 +27,19 @@ namespace OS_CD {
     public class JudgeNone : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             return System.Convert.ToInt32(value) == 0 ? "空闲" : "占用";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class HideNoVisual : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            if(((Visibility)value).Equals(Visibility.Collapsed))
+                return new GridLength(0, GridUnitType.Star);
+            else
+                return new GridLength(1,GridUnitType.Star);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

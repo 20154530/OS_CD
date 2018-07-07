@@ -13,9 +13,22 @@ namespace OS_CD {
 
         public static Systeminfo Instence = new Systeminfo();
 
-        #region Properties
+        #region PropertiesNoVisual
         private Timer systime_timer;
 
+        public event EventHandler LoginStateChanged;
+        public string loginState;
+        public string LoginState {
+            get => loginState;
+            set {
+                LoginStateChanged.Invoke(this, new PropertyChangeArgs(loginState, value));
+                loginState = value;
+            }
+        }
+        #endregion
+
+
+        #region Properties
         private string sysTime_HMS;
         public string SysTime_HMS {
             get => sysTime_HMS;
@@ -41,22 +54,21 @@ namespace OS_CD {
         }
         #endregion
 
-        #region Constructors
-        public Systeminfo() {
+        #region PrivateMethod
+        private void InitTiemr() {
             systime_timer = new Timer();
             systime_timer.Interval = 1000;
             systime_timer.Elapsed += Systime_timer_Elapsed;
             systime_timer.Enabled = true;
         }
         #endregion
-    }
 
-    /// <summary>
-    /// 系统状态信息表
-    /// </summary>
-    internal class SystemOpStateTable {
-    
-
+        #region Constructors
+        public Systeminfo() {
+            InitTiemr();
+            //初始化属性
+        }
+        #endregion
     }
 
 }

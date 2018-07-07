@@ -18,8 +18,18 @@ namespace OS_CD.FunctionPages {
     /// LoginPage.xaml 的交互逻辑
     /// </summary>
     public partial class LoginPage : Page {
+        LoginPageViewModel viewModel = new LoginPageViewModel();
+
+
         public LoginPage() {
+            DataContext = viewModel;
+            viewModel.SubmitAction += ViewModel_SubmitAction;
             InitializeComponent();
+        }
+
+        private void ViewModel_SubmitAction(object sender, EventArgs e) {
+            ((LoginPageViewModel)sender).Password = Password.Password;
+            ((LoginPageViewModel)sender).UserAccount = Account.Text;
         }
     }
 }

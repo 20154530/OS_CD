@@ -59,17 +59,17 @@
 
 
     <SolidColorBrush x:Key="Dialog_Button_Text_BG"
-                     Color="#080808" />
+                     Color="#606060" />
     <SolidColorBrush x:Key="Dialog_Button_Text_BG_R"
-                     Color="#EFEFEF" />
+                     Color="#080808" />
     <SolidColorBrush x:Key="Dialog_Button_Text_BG_P"
-                     Color="#EFEFEF" />
+                     Color="#000000" />
     <SolidColorBrush x:Key="Dialog_Button_TextMask_BG_N"
                      Color="Transparent" />
     <SolidColorBrush x:Key="Dialog_Button_TextMask_BG_R"
-                     Color="#B0B0B0" />
+                     Color="Transparent" />
     <SolidColorBrush x:Key="Dialog_Button_TextMask_BG_P"
-                     Color="#606060" />
+                     Color="Transparent" />
 
 
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_N"
@@ -126,7 +126,9 @@
     <Thickness x:Key="MainWindow_SizeBorder_Thickness">3</Thickness>
 
     <sys:Double x:Key="Dialog_TileBar_Height">24</sys:Double>
-    
+    <sys:Double x:Key="Dialog_Content_Text_Size">15</sys:Double>
+
+    <sys:Double x:Key="Default_Textbox_Text_Size">18</sys:Double>
     
     <!--Button-->
     <sys:Double x:Key="DefaultButton_Size">24</sys:Double>

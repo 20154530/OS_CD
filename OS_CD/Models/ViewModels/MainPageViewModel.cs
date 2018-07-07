@@ -10,6 +10,15 @@ using System.Windows.Controls;
 namespace OS_CD {
     internal class MainPageViewModel : ViewModelBase {
         #region Properties
+        private Visibility userPageVis;
+        public Visibility UserPageVis {
+            get => userPageVis;
+            set {
+                userPageVis = value;
+                OnPropertyChanged("UserPageVis");
+            }
+        }
+
         private string userid;
         public string Userid {
             get => userid;
@@ -28,7 +37,7 @@ namespace OS_CD {
             }
         }
 
-
+        public event EventHandler OpenUserSelectMenuAction;
 
         public Frame Mainframe { get; set; }
 
@@ -37,7 +46,7 @@ namespace OS_CD {
         public CommandBase OpenUserSelectMenuCommand { get; set; }
 
         public CommandBase CloseCommand { get; set; }
-        
+
         #endregion
 
         #region PrivateMethods
@@ -63,7 +72,7 @@ namespace OS_CD {
         }
 
         private void _ExitDialog_NoAction() {
-            
+
         }
 
         private void _ExitDialog_YesAction() {
@@ -71,21 +80,29 @@ namespace OS_CD {
         }
 
         private void OpenUserSelectMenuCommand_Commandaction(object para) {
-            throw new NotImplementedException();
+            Mainframe.Navigate(new Uri("FunctionPages/LoginPage.xaml", UriKind.Relative));
+            OpenUserSelectMenuAction.Invoke(this, EventArgs.Empty);
         }
 
         private void NavigateCommand_Commandaction(object para) {
-            Mainframe.Navigate(new Uri("FunctionPages/"+para.ToString(), UriKind.Relative));
-            Systeminfo.Instence.Sys_Op_state = para.ToString().Trim().Replace(".xaml","");
+            Mainframe.Navigate(new Uri("FunctionPages/" + para.ToString(), UriKind.Relative));
+        }
+
+        private void Instence_LoginStateChanged(object sender, EventArgs e) {
+            if (!(((PropertyChangeArgs)e).NewValue is null))
+                UserPageVis = ((PropertyChangeArgs)e).NewValue.Equals("Administor") ?
+                    Visibility.Visible : Visibility.Collapsed;
         }
         #endregion
 
         #region Constructors
         public MainPageViewModel() {
             InitAction();
+            Systeminfo.Instence.LoginStateChanged += Instence_LoginStateChanged;
             Userid = "12";
             Username = "Administor";
         }
+
         #endregion
     }
 }
