@@ -91,6 +91,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Control\FileSystem.cs" />
     <Compile Include="CustomeControls\CustomeMenuItem.cs" />
     <Compile Include="FunctionPages\DiskPage.xaml.cs">
       <DependentUpon>DiskPage.xaml</DependentUpon>
@@ -120,6 +121,11 @@
     <Compile Include="Models\ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Models\ViewModels\MainPageViewModel.cs" />
     <Compile Include="Models\ViewModels\ViewModelBase.cs" />
+    <Compile Include="Modules\Disc.cs" />
+    <Compile Include="Modules\File.cs" />
+    <Compile Include="Modules\Global.cs" />
+    <Compile Include="Modules\Record.cs" />
+    <Compile Include="Modules\User.cs" />
     <Compile Include="YT_Controls\YT_IconButton.cs" />
     <Compile Include="YT_Panels\CellPanel.cs" />
     <Compile Include="YT_Windows\YT_AreaIcon.cs" />
