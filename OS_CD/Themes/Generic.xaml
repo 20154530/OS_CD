@@ -76,8 +76,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
+
+
 
     <!--IconButtons-->
 
@@ -145,7 +145,7 @@
                                        FontWeight="{TemplateBinding FontWeight}"
                                        Visibility="{TemplateBinding ContentTextVisiblity}"
                                        HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
+                                       VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -272,7 +272,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:YT_IconToggelButton}">
-                    <Border x:Name="RootBorder" 
+                    <Border x:Name="RootBorder"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding IconMaskN}">
@@ -394,7 +394,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:YT_IconRadioButton}">
-                    <Border x:Name="RootBorder" BorderBrush="{TemplateBinding BorderBrush}"
+                    <Border x:Name="RootBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding IconMaskN}">
                         <Grid x:Name="RootGrid"
@@ -410,8 +411,8 @@
                                        FontSize="{TemplateBinding FontSize}"
                                        Foreground="{TemplateBinding IconN}"
                                        FontWeight="{TemplateBinding FontWeight}"
-                                       Visibility="{TemplateBinding IconVisiblity}" 
-                                       SnapsToDevicePixels="True"/>
+                                       Visibility="{TemplateBinding IconVisiblity}"
+                                       SnapsToDevicePixels="True" />
                             <TextBlock x:Name="Label"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -503,9 +504,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
-    
+
+
+
     <!--MenuItem-->
     <Style TargetType="local:CustomeMenuItem">
         <Setter Property="FontWeight"
@@ -533,7 +534,7 @@
                                    FontWeight="{TemplateBinding FontWeight}"
                                    Visibility="{TemplateBinding IconVisiblity}"
                                    HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+                                   VerticalAlignment="Center" />
                         <TextBlock x:Name="ContentTexts"
                                    Grid.Column="1"
                                    Margin="{TemplateBinding LabelPadding}"
@@ -584,13 +585,62 @@
 
 
     <!--Dialogs-->
+
+    <!--YT_ExitDialog-->
     <Style TargetType="local:YT_ExitDialog">
+        <Setter Property="ResizeMode"
+                Value="NoResize" />
+        <Setter Property="SizeToContent"
+                Value="WidthAndHeight" />
+        <Setter Property="ShowInTaskbar"
+                Value="False" />
+        <Setter Property="Background"
+                Value="{StaticResource MainWindow_BG}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource MainWindow_Border_Normal}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:YT_ExitDialog">
-                    <Border x:Name="RootBorder">
-                        <Grid x:Name="RootGrid">
-                            
+                    <Border x:Name="RootBorder"
+                            Width="{TemplateBinding ContentWidth}"
+                            Height="{TemplateBinding ContentHeight}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid x:Name="RootGrid"
+                              Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid x:Name="TitleArea" Height="{StaticResource Dialog_TileBar_Height}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:YT_IconButton x:Name="CancleButton"
+                                                     Grid.Column="1"
+                                                     Content="&#xE711;"
+                                                     Command="{TemplateBinding CancelCommand}"
+                                                     Style="{StaticResource DialogButtonStyle}" />
+                            </Grid>
+                            <AdornerDecorator x:Name="Content"
+                                              Grid.Row="1">
+                                <ContentPresenter />
+                            </AdornerDecorator>
+                            <local:YT_IconButton x:Name="YesButton"
+                                                 Grid.Row="1"
+                                                 ContentText="是"
+                                                 Margin="0,0,60,8"
+                                                 Command="{TemplateBinding YesCommand}"
+                                                 Style="{StaticResource DialogTextButtonStyle}" />
+                            <local:YT_IconButton x:Name="NoButton"
+                                                 Grid.Row="1"
+                                                 ContentText="否"
+                                                 Margin="0,0,8,8"
+                                                 Command="{TemplateBinding NoCommand}"
+                                                 Style="{StaticResource DialogTextButtonStyle}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>

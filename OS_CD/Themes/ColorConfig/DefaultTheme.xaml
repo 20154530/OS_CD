@@ -43,6 +43,35 @@
     <SolidColorBrush x:Key="DefaultButton_IconMask_BG_P"
                      Color="#606060" />
 
+
+    <SolidColorBrush x:Key="Dialog_Button_Icon_BG"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="Dialog_Button_Icon_BG_R"
+                     Color="#EFEFEF" />
+    <SolidColorBrush x:Key="Dialog_Button_Icon_BG_P"
+                     Color="#EFEFEF" />
+    <SolidColorBrush x:Key="Dialog_Button_IconMask_BG_N"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="Dialog_Button_IconMask_BG_R"
+                     Color="#B0B0B0" />
+    <SolidColorBrush x:Key="Dialog_Button_IconMask_BG_P"
+                     Color="#606060" />
+
+
+    <SolidColorBrush x:Key="Dialog_Button_Text_BG"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="Dialog_Button_Text_BG_R"
+                     Color="#EFEFEF" />
+    <SolidColorBrush x:Key="Dialog_Button_Text_BG_P"
+                     Color="#EFEFEF" />
+    <SolidColorBrush x:Key="Dialog_Button_TextMask_BG_N"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="Dialog_Button_TextMask_BG_R"
+                     Color="#B0B0B0" />
+    <SolidColorBrush x:Key="Dialog_Button_TextMask_BG_P"
+                     Color="#606060" />
+
+
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_N"
                      Color="#A0A0A0" />
     <SolidColorBrush x:Key="DefaultToggleButton_Icon_BG_R"
@@ -59,6 +88,7 @@
                      Color="#606060" />
     <SolidColorBrush x:Key="DefaultToggleButton_IconMask_BG_S"
                      Color="#606060" />
+    
 
     <SolidColorBrush x:Key="DefaultRadioButton_Icon_BG_N"
                      Color="#080808" />
@@ -94,8 +124,10 @@
     <sys:Double x:Key="MainWindow_TileBar_Height">24</sys:Double>
     <sys:Double x:Key="MainWindow_FunctionButton_Label_Size">14</sys:Double>
     <Thickness x:Key="MainWindow_SizeBorder_Thickness">3</Thickness>
-    
 
+    <sys:Double x:Key="Dialog_TileBar_Height">24</sys:Double>
+    
+    
     <!--Button-->
     <sys:Double x:Key="DefaultButton_Size">24</sys:Double>
     <sys:Double x:Key="DefaultButton_Icon_Size">18</sys:Double>

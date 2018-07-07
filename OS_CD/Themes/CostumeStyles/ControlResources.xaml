@@ -9,4 +9,15 @@
         
     </ContextMenu>
     
+    
+    <!--DialogContent-->
+    
+    <!--ExitDialogContent-->
+    <Grid x:Key="DefaultExitContent" Margin="5">
+        <TextBlock Style="{StaticResource DefaultToolTipText}"
+                   FontSize="16"
+                   Width="300"
+                   TextWrapping="Wrap"
+                   Text="确认退出?" />
+    </Grid>
 </ResourceDictionary>

@@ -12,6 +12,26 @@ namespace OS_CD {
     /// </summary>
     public class YT_DialogBase : Window {
 
+        public delegate void CommandAction();
+
+        #region Properties
+        public double ContentWidth {
+            get { return (double)GetValue(ContentWidthProperty); }
+            set { SetValue(ContentWidthProperty, value); }
+        }
+        public static readonly DependencyProperty ContentWidthProperty =
+            DependencyProperty.Register("ContentWidth", typeof(double), 
+                typeof(YT_DialogBase), new PropertyMetadata(0.0));
+
+        public double ContentHeight {
+            get { return (double)GetValue(ContentHeightProperty); }
+            set { SetValue(ContentHeightProperty, value); }
+        }
+        public static readonly DependencyProperty ContentHeightProperty =
+            DependencyProperty.Register("ContentHeight", typeof(double),
+                typeof(YT_DialogBase), new PropertyMetadata(0.0));
+        #endregion
+
         #region ButtonCommands
         public CommandBase CancelCommand {
             get { return (CommandBase)GetValue(CancelCommandProperty); }
@@ -36,6 +56,20 @@ namespace OS_CD {
         public static readonly DependencyProperty NoCommandProperty =
             DependencyProperty.Register("NoCommand", typeof(CommandBase),
                 typeof(YT_DialogBase), new PropertyMetadata(null));
+
+        private CommandAction yesAction;
+        public event CommandAction YesAction {
+            add { yesAction = value; }
+            remove { yesAction -= value; }
+            
+        }
+
+        private CommandAction noAction;
+        public event CommandAction NoAction {
+            add { noAction = value; }
+            remove { noAction -= value; }
+
+        }
         #endregion
 
         #region CommandActions
@@ -59,11 +93,13 @@ namespace OS_CD {
 
         protected virtual void NoCommand_Commandaction(object para) {
             DialogResult = false;
+            noAction();
             Close();
         }
 
         protected virtual void YesCommand_Commandaction(object para) {
             DialogResult = true;
+            yesAction();
             Close();
         }
 
@@ -74,16 +110,14 @@ namespace OS_CD {
 
         #region PublicMethod
         public virtual void ShowDialog(Window Holder) {
-            Owner = Holder;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Holder;
             ShowDialog();
         }
         #endregion
 
         #region Constructors
         public YT_DialogBase() {
-            this.WindowStyle = WindowStyle.None;
-            this.AllowsTransparency = true;
             InitCommands();
         }
         #endregion

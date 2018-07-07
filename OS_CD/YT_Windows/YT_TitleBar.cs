@@ -18,15 +18,6 @@ namespace OS_CD {
         }
         #endregion
 
-        #region CloseCommand
-        public CommandBase CloseCommand {
-            get { return (CommandBase)GetValue(CloseCommandProperty); }
-            set { SetValue(CloseCommandProperty, value); }
-        }
-        public static readonly DependencyProperty CloseCommandProperty =
-            DependencyProperty.Register("CloseCommand", typeof(CommandBase), typeof(YT_TitleBar), new PropertyMetadata(null));
-        #endregion
-
         #region Methods Overrides
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e) {
             AttachedWindow.DragMove();
@@ -43,16 +34,12 @@ namespace OS_CD {
         #endregion
 
         #region EventActions
-        private void CloseCommand_Commandaction(object para) {
-            AttachedWindow.Close();
-        }
 
         #endregion
 
         #region Constructors
         public YT_TitleBar() {
-            CloseCommand = new CommandBase();
-            CloseCommand.Commandaction += CloseCommand_Commandaction;
+       
         }
 
         static YT_TitleBar() {

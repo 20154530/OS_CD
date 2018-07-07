@@ -114,7 +114,6 @@
                                          ContentText="退出"
                                          Content="&#xE7E8;"
                                          Style="{StaticResource ExitButtonStyle}"
-                                         DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:YT_TitleBar}}"
                                          Command="{Binding CloseCommand}" />
                 </Grid>
                 <Rectangle Style="{StaticResource H_Seperoator}"

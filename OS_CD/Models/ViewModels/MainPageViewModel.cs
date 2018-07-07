@@ -35,6 +35,8 @@ namespace OS_CD {
         public CommandBase NavigateCommand { get; set; }
 
         public CommandBase OpenUserSelectMenuCommand { get; set; }
+
+        public CommandBase CloseCommand { get; set; }
         
         #endregion
 
@@ -44,8 +46,28 @@ namespace OS_CD {
             NavigateCommand.Commandaction += NavigateCommand_Commandaction;
             OpenUserSelectMenuCommand = new CommandBase();
             OpenUserSelectMenuCommand.Commandaction += OpenUserSelectMenuCommand_Commandaction;
+            CloseCommand = new CommandBase();
+            CloseCommand.Commandaction += CloseCommand_Commandaction;
+        }
+
+        private void CloseCommand_Commandaction(object para) {
+            YT_ExitDialog _ExitDialog = new YT_ExitDialog
+            {
+                ContentWidth = 280,
+                ContentHeight = 120,
+                Content = App.Current.FindResource("DefaultExitContent")
+            };
+            _ExitDialog.YesAction += _ExitDialog_YesAction;
+            _ExitDialog.NoAction += _ExitDialog_NoAction;
+            _ExitDialog.ShowDialog(App.Current.MainWindow);
+        }
+
+        private void _ExitDialog_NoAction() {
             
-            
+        }
+
+        private void _ExitDialog_YesAction() {
+            App.Current.MainWindow.Close();
         }
 
         private void OpenUserSelectMenuCommand_Commandaction(object para) {

@@ -86,7 +86,7 @@
     <!--Buttons-->
 
     <!--DefaultButtonStyle-->
-    <Style x:Key="DefaultButtonStyle"
+    <Style x:Key="DefaultIconButtonStyle"
            TargetType="local:YT_IconButton">
         <Setter Property="IconN"
                 Value="{StaticResource DefaultButton_Icon_BG}" />
@@ -108,6 +108,58 @@
                 Value="{StaticResource DefaultButton_Size}" />
     </Style>
     
+    <!--DialogButtonStyle-->
+    <Style x:Key="DialogButtonStyle"
+           TargetType="local:YT_IconButton">
+        <Setter Property="IconN"
+                Value="{StaticResource Dialog_Button_Icon_BG}" />
+        <Setter Property="IconR"
+                Value="{StaticResource Dialog_Button_Icon_BG_R}" />
+        <Setter Property="IconP"
+                Value="{StaticResource Dialog_Button_Icon_BG_P}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource Dialog_Button_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource Dialog_Button_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource Dialog_Button_IconMask_BG_P}" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="Padding"
+                Value="5,2" />
+    </Style>
+
+
+    <Style x:Key="DialogTextButtonStyle"
+           TargetType="local:YT_IconButton">
+        <Setter Property="IconN"
+                Value="{StaticResource Dialog_Button_Icon_BG}" />
+        <Setter Property="IconR"
+                Value="{StaticResource Dialog_Button_Icon_BG_R}" />
+        <Setter Property="IconP"
+                Value="{StaticResource Dialog_Button_Icon_BG_P}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource Dialog_Button_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource Dialog_Button_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource Dialog_Button_IconMask_BG_P}" />
+        <Setter Property="Width"
+                Value="48" />
+        <Setter Property="Height"
+                Value="24" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="ContentTextFontSize"
+                Value="14" />
+        <Setter Property="ContentTextVisiblity"
+                Value="Visible" />
+        <Setter Property="IconVisiblity"
+                Value="Collapsed" />
+    </Style>
+
     <!--ExitButtonStyle-->
     <Style x:Key="ExitButtonStyle"
            TargetType="local:YT_IconButton">
@@ -138,8 +190,7 @@
         <Setter Property="ContentTextVisiblity"
                 Value="Visible" />
     </Style>
-    
-    
+
     <!--UserIconToggelButtonStyle-->
     <Style x:Key="UserIconToggelButtonStyle"
            TargetType="local:YT_IconToggelButton">
