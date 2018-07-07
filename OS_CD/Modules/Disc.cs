@@ -5,8 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace OsFileSystem.Modules
-{
+namespace OS_CD {
     public class Disc
     {
         public static Disc Instance = new Disc();

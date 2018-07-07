@@ -29,5 +29,9 @@ namespace OS_CD.FunctionPages
             InitializeComponent();
         }
 
+        private void DiskBlocks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            int selected = (int)((ListView)sender).SelectedItem;
+            //Console.WriteLine(selected);
+        }
     }
 }

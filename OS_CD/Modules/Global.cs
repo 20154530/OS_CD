@@ -1,5 +1,4 @@
 ﻿using System;
 
-namespace OsFileSystem.Modules
-{
+namespace OS_CD {
 }

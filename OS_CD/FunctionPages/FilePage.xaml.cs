@@ -20,9 +20,13 @@ namespace OS_CD.FunctionPages
     /// </summary>
     public partial class FilePage : Page
     {
+        FilePageViewModel viewModel = new FilePageViewModel();
         public FilePage()
         {
+            DataContext = viewModel;
+            
             InitializeComponent();
         }
+
     }
 }

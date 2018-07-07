@@ -117,11 +117,11 @@
                                          Command="{Binding CloseCommand}" />
                 </Grid>
                 <Rectangle Style="{StaticResource H_Seperoator}"
-                           Fill="#606060"
+                           Fill="{StaticResource DiskPage_FG}"
                            Grid.ColumnSpan="2"
                            Grid.Row="1"
                            VerticalAlignment="Bottom" />
-                <Rectangle Fill="#606060"
+                <Rectangle Fill="{StaticResource DiskPage_FG}"
                            Grid.ColumnSpan="2"
                            Grid.Column="1" />
             </Grid>
@@ -145,18 +145,25 @@
                        VerticalAlignment="Top"
                        Fill="{DynamicResource MainWindow_Border_Normal}"
                        Style="{DynamicResource H_Seperoator}" />
-            <TextBlock x:Name="Op_State"
+            <TextBlock x:Name="Current_User"
                        Padding="0"
                        HorizontalAlignment="Left"
                        Margin="4,0,0,0"
                        Style="{DynamicResource SysTimeTextStyle}"
-                       Text="{Binding Sys_Op_state,Source={x:Static local:Systeminfo.Instence}}" />
+                       Text="{Binding UserNow.Name,Source={x:Static local:Systeminfo.Instence}}" />
             <Rectangle x:Name="Seperator_H_1"
                        Grid.Column="1"
                        HorizontalAlignment="Left"
                        Margin="0,3,0,2"
                        Fill="{DynamicResource MainWindow_Border_Normal}"
                        Style="{DynamicResource V_Seperoator}" />
+            <TextBlock x:Name="FilePath"
+                       Grid.Column="1"
+                       Padding="0"
+                       HorizontalAlignment="Left"
+                       Margin="4,0,0,0"
+                       Style="{DynamicResource SysTimeTextStyle}"
+                       Text="{Binding FilePath,Source={x:Static local:Systeminfo.Instence}}" />
             <Rectangle x:Name="Seperator_H_2"
                        Grid.Column="2"
                        HorizontalAlignment="Left"

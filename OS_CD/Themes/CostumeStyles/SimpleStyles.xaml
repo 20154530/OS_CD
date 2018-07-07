@@ -95,6 +95,15 @@
         <Setter Property="VerticalAlignment"
                 Value="Center" />
     </Style>
+    
+    <!--DiskPageLabel-->
+    <Style x:Key="DiskPageLabel"
+           TargetType="TextBlock">
+        <Setter Property="FontWeight"
+                Value="Light" />
+        <Setter Property="Foreground"
+                Value="#606060" />
+    </Style>
 
 
 

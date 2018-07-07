@@ -99,8 +99,6 @@ namespace OS_CD {
         public MainPageViewModel() {
             InitAction();
             Systeminfo.Instence.LoginStateChanged += Instence_LoginStateChanged;
-            Userid = "12";
-            Username = "Administor";
         }
 
         #endregion

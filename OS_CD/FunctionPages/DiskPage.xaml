@@ -6,56 +6,184 @@
       xmlns:local="clr-namespace:OS_CD"
       mc:Ignorable="d"
       Title="DiskPage">
-    <Grid x:Name="RootGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid x:Name="TitleArea"
-              Height="auto"
-              Margin="8,0,8,20">
+    <ScrollViewer x:Name="RootScroll"
+                  Style="{StaticResource SC_ScrollViewer}"
+                  HorizontalScrollBarVisibility="Disabled"
+                  Background="Transparent">
+        <Grid x:Name="RootGrid"
+              Margin="8,0,8,0"
+              Width="{Binding Width, ElementName=RootScroll}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="BlockLabel"
-                       FontSize="32"
-                       HorizontalAlignment="Left"
-                       FontWeight="Light"
-                       Margin="0,4,0,4"
-                       Foreground="#606060"
-                       Text="磁 盘" />
-            <Rectangle Style="{StaticResource H_Seperoator}"
-                       Fill="#606060"
-                       VerticalAlignment="Bottom"
-                       Grid.Row="1" />
+            <Grid x:Name="TitleArea">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="BlockLabel"
+                           FontSize="32"
+                           HorizontalAlignment="Left"
+                           Margin="0,4,0,4"
+                           Style="{StaticResource DiskPageLabel}"
+                           Text="磁 盘" />
+            </Grid>
+            <Grid x:Name="GeneralInf"
+                  Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Rectangle Style="{StaticResource H_Seperoator}"
+                           Fill="{StaticResource DiskPage_FG}"
+                           VerticalAlignment="Top" />
+                <TextBlock x:Name="GeneralLabel"
+                           Text="概要信息"
+                           FontSize="16"
+                           HorizontalAlignment="Left"
+                           Margin="0,4,0,4"
+                           Style="{StaticResource DiskPageLabel}" />
+                <StackPanel Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="Useage"
+                                   Text="使用率"
+                                   Height="24"
+                                   Width="120"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   FontSize="12" />
+                        <TextBlock  Text="{Binding }"
+                                    Style="{StaticResource DiskPageLabel}"
+                                    Height="24"
+                                    FontSize="12" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="UsedBlocks"
+                                   Text="已用块数"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Width="120"
+                                   Height="24"
+                                   FontSize="12" />
+                        <TextBlock  Text="{Binding }"
+                                    Style="{StaticResource DiskPageLabel}"
+                                    Height="24"
+                                    FontSize="12" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="LastBlocks"
+                                   Text="剩余块数"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Width="120"
+                                   Height="24"
+                                   FontSize="12" />
+                        <TextBlock Text="{Binding }"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Height="24"
+                                   FontSize="12" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="BitRef"
+                  Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Rectangle Style="{StaticResource H_Seperoator}"
+                           Fill="{StaticResource DiskPage_FG}"
+                           VerticalAlignment="Top" />
+                <TextBlock Style="{StaticResource DiskPageLabel}"
+                           Margin="0,8,0,0"
+                           FontSize="16"
+                           Text="盘块位示图" />
+                <Viewbox x:Name="BlockArea"
+                         MinWidth="460"
+                         MaxWidth="768"
+                         Stretch="Uniform"
+                         Margin="0,0,0,8"
+                         Grid.Row="1">
+                    <ListView x:Name="DiskBlocks"
+                              SelectionChanged="DiskBlocks_SelectionChanged"
+                              Style="{StaticResource DiskBlockView}"
+                              ItemsSource="{Binding Blockcell}" />
+                </Viewbox>
+            </Grid>
+            <Grid x:Name="FileInfo"
+                  Grid.Row="3"
+                  Visibility="{Binding FileInfoVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Rectangle Style="{StaticResource H_Seperoator}"
+                           Fill="{StaticResource DiskPage_FG}"
+                           VerticalAlignment="Top" />
+                <TextBlock Style="{StaticResource DiskPageLabel}"
+                           Margin="0,8,0,0"
+                           FontSize="16"
+                           Text="文件块详情" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Width="24"
+                               Height="24"
+                               StrokeThickness="1"
+                               Stroke="#080808"
+                                VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               Fill="{Binding SelectedFile.ID,Converter={StaticResource ColorSelector}}" />
+                    <StackPanel Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="文件ID"
+                                       Height="24"
+                                       Width="120"
+                                       Style="{StaticResource DiskPageLabel}"
+                                       FontSize="12" />
+                            <TextBlock  Text="{Binding }"
+                                        Style="{StaticResource DiskPageLabel}"
+                                        Height="24"
+                                        FontSize="12" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="文件名称"
+                                       Style="{StaticResource DiskPageLabel}"
+                                       Width="120"
+                                       Height="24"
+                                       FontSize="12" />
+                            <TextBlock  Text="{Binding }"
+                                        Style="{StaticResource DiskPageLabel}"
+                                        Height="24"
+                                        FontSize="12" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="文件权限"
+                                       Style="{StaticResource DiskPageLabel}"
+                                       Width="120"
+                                       Height="24"
+                                       FontSize="12" />
+                            <TextBlock Text="{Binding }"
+                                       Style="{StaticResource DiskPageLabel}"
+                                       Height="24"
+                                       FontSize="12" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="文件磁盘块占用"
+                                       Style="{StaticResource DiskPageLabel}"
+                                       Width="120"
+                                       Height="24"
+                                       FontSize="12" />
+                            <TextBlock Text="{Binding }"
+                                       Style="{StaticResource DiskPageLabel}"
+                                       Height="24"
+                                       FontSize="12" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
-        <TextBlock x:Name="UsedBlocks"
-                   Text="已用块数"
-                   Margin="0,0,168,4"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Bottom"
-                   FontWeight="Light"
-                   FontSize="12" />
-        <TextBlock x:Name="LastBlocks"
-                   Text="剩余块数"
-                   Margin="0,0,68,4"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Bottom"
-                   FontWeight="Light"
-                   FontSize="12" />
-        <Viewbox x:Name="BlockArea"
-                 MinWidth="460"
-                 MaxWidth="768"
-                 Stretch="Uniform"
-                 Grid.Row="1"
-                 Margin="8,0,8,0">
-            <ListView x:Name="DiskBlocks"
-                      SelectionChanged="{Binding DiskBlocks_SelectionChanged}"
-                      Style="{StaticResource DiskBlockView}"
-                      ItemsSource="{Binding Blockcell}" />
-        </Viewbox>
-
-    </Grid>
+    </ScrollViewer>
 </Page>

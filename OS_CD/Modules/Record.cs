@@ -5,9 +5,8 @@ using System.IO;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Schema;
-using OsFileSystem.Control;
-namespace OsFileSystem.Modules
-{
+
+namespace OS_CD {
     
     #region 别名
     

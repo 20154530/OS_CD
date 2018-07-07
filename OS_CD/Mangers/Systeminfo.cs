@@ -11,18 +11,26 @@ namespace OS_CD {
     /// </summary>
     internal class Systeminfo : ViewModelBase {
 
-        public static Systeminfo Instence = new Systeminfo();
+        private static Systeminfo _Instence;
+        public static Systeminfo Instence {
+            get {
+                if (_Instence is null)
+                    _Instence = new Systeminfo();
+                return _Instence;
+            }
+        }
 
         #region PropertiesNoVisual
         private Timer systime_timer;
 
         public event EventHandler LoginStateChanged;
-        public string loginState;
-        public string LoginState {
-            get => loginState;
+        private User userNow ;
+        public User UserNow {
+            get => userNow;
             set {
-                LoginStateChanged.Invoke(this, new PropertyChangeArgs(loginState, value));
-                loginState = value;
+                LoginStateChanged.Invoke(this, new PropertyChangeArgs(userNow, value));
+                userNow = value;
+                OnPropertyChanged("UserNow");
             }
         }
         #endregion
@@ -38,12 +46,12 @@ namespace OS_CD {
             }
         }
 
-        private string sys_Op_state;
-        public string Sys_Op_state {
-            get => sys_Op_state;
+        private string filePath;
+        public string FilePath {
+            get => filePath;
             set {
-                sys_Op_state = value;
-                OnPropertyChanged("Sys_Op_state");
+                filePath = value;
+                OnPropertyChanged("FilePath");
             }
         }
         #endregion
@@ -66,6 +74,7 @@ namespace OS_CD {
         #region Constructors
         public Systeminfo() {
             InitTiemr();
+            userNow = new User(-1,"未登录");
             //初始化属性
         }
         #endregion

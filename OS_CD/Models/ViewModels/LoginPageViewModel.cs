@@ -21,15 +21,6 @@ namespace OS_CD {
             get => password;
             set { password = value; }
         }
-
-        private string sysState;
-        public string SysState {
-            get => sysState;
-            set {
-                sysState = value;
-                OnPropertyChanged("SysState");
-            }
-        }
         #endregion
 
         #region Events
@@ -42,13 +33,13 @@ namespace OS_CD {
         private void Submit_Commandaction(object para) {
             SubmitAction.Invoke(this, EventArgs.Empty);
             //判断用户名密码
-
+            
             //Yes
-            sysState = "已登录";
-            Systeminfo.Instence.LoginState = UserAccount;
+            
+            
             //No
-            sysState = "未登录";
-            Systeminfo.Instence.LoginState = null;
+            
+            Systeminfo.Instence.UserNow = null;
 
         }
         #endregion
@@ -61,7 +52,6 @@ namespace OS_CD {
 
         public LoginPageViewModel() {
             InitCommand();
-            sysState = "未登录";
         }
     }
 }

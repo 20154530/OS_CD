@@ -26,7 +26,7 @@ namespace OS_CD
         public void InitColorTable() {
             ColorTable = new Dictionary<int, string>
             {
-                { 0, "#A1CE5E" },
+                { 0, "#c0c0c0" },
                 { 1, "#DC6E65" },
                 { 2, "#701FFF" },
                 { 3, "#73BEFF" },
