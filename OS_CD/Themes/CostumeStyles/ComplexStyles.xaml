@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:Models="clr-namespace:OS_CD.Models"
                     xmlns:local="clr-namespace:OS_CD">
 
     <!--SimpleFrame-->
@@ -37,9 +38,36 @@
             <Setter.Value>
                 <ControlTemplate TargetType="GridSplitter">
                     <Grid x:Name="RootGrid"
+                          SnapsToDevicePixels="True"
                           Background="Transparent">
                         <Rectangle Fill="{StaticResource FilePage_FG}"
+                                   HorizontalAlignment="Center"
                                    Width="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DefaultSplitter_V"
+           TargetType="GridSplitter">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Height"
+                Value="3" />
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GridSplitter">
+                    <Grid x:Name="RootGrid"
+                          SnapsToDevicePixels="True"
+                          Background="Transparent">
+                        <Rectangle Fill="{StaticResource FilePage_FG}"
+                                   VerticalAlignment="Center"
+                                   Height="1" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -364,6 +392,10 @@
            TargetType="{x:Type TreeView}">
         <Setter Property="Background"
                 Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Padding"
+                Value="0,8,0,0" />
         <Setter Property="Foreground"
                 Value="{StaticResource FilePage_FG}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
@@ -376,6 +408,83 @@
                 Value="False" />
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="Foreground"
+                            Value="{StaticResource FilePage_FG}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TreeViewItem">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <local:YT_IconToggelButton Style="{StaticResource FileTreeRadioButton}"
+                                                               IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource Mode=TemplatedParent},Mode=TwoWay}"
+                                                               ForeToolTip="{Binding ElementName=PART_Header}"
+                                                               BackToolTip="折叠"
+                                                               ForeIcon="&#xED41;"
+                                                               BackIcon="&#xED43;" />
+                                    <Border x:Name="Bd"
+                                            Grid.Column="1"
+                                            Margin="0,0,0,1"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}"
+                                            Padding="{TemplateBinding Padding}"
+                                            SnapsToDevicePixels="true">
+                                        <ContentPresenter x:Name="PART_Header"
+                                                          ContentSource="Header"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </Border>
+                                    <ItemsPresenter x:Name="ItemsHost"
+                                                    Grid.ColumnSpan="2"
+                                                    Grid.Column="1"
+                                                    Grid.Row="1" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsExpanded"
+                                             Value="false">
+                                        <Setter Property="Visibility"
+                                                TargetName="ItemsHost"
+                                                Value="Collapsed" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected"
+                                             Value="true">
+                                        <Setter Property="Background"
+                                                TargetName="Bd"
+                                                Value="{StaticResource DarkMask_D}" />
+                                        <Setter Property="Foreground"
+                                                Value="#FFFFFF" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <HierarchicalDataTemplate DataType="{x:Type Models:TFileNode}"
+                                          ItemsSource="{Binding Contains}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="FileName"
+                                   Style="{StaticResource FileTreeLabel}"
+                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TreeViewItem}}"
+                                   Text="{Binding Name}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeView}">

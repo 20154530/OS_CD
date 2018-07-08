@@ -5,5 +5,11 @@
     <Setting Name="UserCount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="AdministorN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Administor</Value>
+    </Setting>
+    <Setting Name="AdministorP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123456</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

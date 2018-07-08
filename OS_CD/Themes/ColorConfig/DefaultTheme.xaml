@@ -106,7 +106,25 @@
                      Color="#B0B0B0" />
     <SolidColorBrush x:Key="DefaultRadioButton_IconMask_BG_S"
                      Color="#606060" />
-    
+
+
+    <SolidColorBrush x:Key="FileTreeButton_Icon_BG_N"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreeButton_Icon_BG_R"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreeButton_Icon_BG_P"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreeButton_Icon_BG_S"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreeButton_IconMask_BG_N"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="FileTreeButton_IconMask_BG_R"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="FileTreeButton_IconMask_BG_P"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="FileTreeButton_IconMask_BG_S"
+                     Color="Transparent" />
+
     <!--Thumb-->
     <SolidColorBrush x:Key="Default_Thumb_N"
                      Color="#606060" />
@@ -115,6 +133,8 @@
     <SolidColorBrush x:Key="Default_Thumb_P"
                      Color="#505050" />
 
+    
+    
 
     <!--DiskPage-->
     <SolidColorBrush x:Key="DiskPage_FG"

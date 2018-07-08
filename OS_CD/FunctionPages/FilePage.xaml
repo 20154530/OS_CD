@@ -21,9 +21,9 @@
         <Grid x:Name="ContentArea"
               Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" MinWidth="160"/>
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" MinWidth="240"/>
             </Grid.ColumnDefinitions>
             <Rectangle Style="{StaticResource H_Seperoator}"
                        Fill="{StaticResource DiskPage_FG}"
@@ -33,12 +33,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TreeView x:Name="FileTree"
-                          BorderThickness="0"
-                          Style="{StaticResource FileTreeView}">
-                    
-                </TreeView>
+                          ItemsSource="{Binding FileDictionary}"
+                          Style="{StaticResource FileTreeView}" />
+                <GridSplitter Grid.Row="1"
+                              Style="{StaticResource DefaultSplitter_V}" />
+
                 <Grid x:Name="FileProperty"
                       Grid.Row="1">
                     

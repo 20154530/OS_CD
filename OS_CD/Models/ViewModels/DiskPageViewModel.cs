@@ -41,7 +41,7 @@ namespace OS_CD {
         /// <summary>
         /// 文件详细信息标识
         /// </summary>
-        private Visibility fileInfoVisibility = Visibility.Visible;
+        private Visibility fileInfoVisibility = Visibility.Collapsed;
         public Visibility FileInfoVisibility {
             get => fileInfoVisibility;
             set {
@@ -52,6 +52,8 @@ namespace OS_CD {
 
         public DiskPageViewModel() {
             blockcell = new int[512];
+            for (int i = 0; i < 512; i++)
+                blockcell[i] = -1;
             blockcell[38] = 14;
             blockcell[40] = 15;
             blockcell[42] = 16;

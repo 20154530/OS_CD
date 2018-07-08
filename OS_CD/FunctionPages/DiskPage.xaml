@@ -160,6 +160,17 @@
                                         FontSize="12" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="文件夹"
+                                       Style="{StaticResource DiskPageLabel}"
+                                       Width="120"
+                                       Height="24"
+                                       FontSize="12" />
+                            <TextBlock  Text="{Binding }"
+                                        Style="{StaticResource DiskPageLabel}"
+                                        Height="24"
+                                        FontSize="12" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="文件权限"
                                        Style="{StaticResource DiskPageLabel}"
                                        Width="120"
@@ -181,6 +192,7 @@
                                        Height="24"
                                        FontSize="12" />
                         </StackPanel>
+                        
                     </StackPanel>
                 </Grid>
             </Grid>

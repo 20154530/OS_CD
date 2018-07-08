@@ -34,5 +34,29 @@ namespace OS_CD.Properties {
                 this["UserCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Administor")]
+        public string AdministorN {
+            get {
+                return ((string)(this["AdministorN"]));
+            }
+            set {
+                this["AdministorN"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        public string AdministorP {
+            get {
+                return ((string)(this["AdministorP"]));
+            }
+            set {
+                this["AdministorP"] = value;
+            }
+        }
     }
 }

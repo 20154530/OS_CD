@@ -116,6 +116,7 @@
     <Compile Include="MixControls\DiskBlocks.xaml.cs">
       <DependentUpon>DiskBlocks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataModels\ConvertModel.cs" />
     <Compile Include="Models\Events\Events.cs" />
     <Compile Include="Models\ViewModels\DiskPageViewModel.cs" />
     <Compile Include="Models\ViewModels\FilePageViewModel.cs" />

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace OS_CD {
@@ -34,12 +35,37 @@ namespace OS_CD {
         }
     }
 
+    /// <summary>
+    /// 使无显示的控件原来布局空间消失
+    /// </summary>
     public class HideNoVisual : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if(((Visibility)value).Equals(Visibility.Collapsed))
                 return new GridLength(0, GridUnitType.Star);
             else
                 return new GridLength(1,GridUnitType.Star);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class FileTreeIconSelector : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            return null;   
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class FileTreeToolTipSelector : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

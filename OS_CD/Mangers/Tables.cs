@@ -14,6 +14,7 @@ namespace OS_CD
         public Dictionary<int, string> ColorTable { get; set; }
 
         public Dictionary<int, string> SysInfoTable { get;set; }
+
         #endregion
 
 
@@ -26,7 +27,8 @@ namespace OS_CD
         public void InitColorTable() {
             ColorTable = new Dictionary<int, string>
             {
-                { 0, "#c0c0c0" },
+                { -1, "#c0c0c0" },
+                { 0, "#CC7CFF" },
                 { 1, "#DC6E65" },
                 { 2, "#701FFF" },
                 { 3, "#73BEFF" },
@@ -58,6 +60,7 @@ namespace OS_CD
                 { 29, "#FF931F" },
             };
 
+           
         }
     }
 }

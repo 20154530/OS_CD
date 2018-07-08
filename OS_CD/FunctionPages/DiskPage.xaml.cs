@@ -20,7 +20,7 @@ namespace OS_CD.FunctionPages
     /// </summary>
     public partial class DiskPage : Page
     {
-        private DiskPageViewModel DiskVM { get; set; }
+        private DiskPageViewModel DiskVM;
 
         public DiskPage()
         {
@@ -31,7 +31,10 @@ namespace OS_CD.FunctionPages
 
         private void DiskBlocks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             int selected = (int)((ListView)sender).SelectedItem;
-            //Console.WriteLine(selected);
+            if (selected != -1)
+                DiskVM.FileInfoVisibility = Visibility.Visible;
+            else
+                DiskVM.FileInfoVisibility = Visibility.Collapsed;
         }
     }
 }
