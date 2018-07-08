@@ -33,7 +33,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition MaxHeight="120" />
+                    <RowDefinition MaxHeight="160" />
                 </Grid.RowDefinitions>
                 <TreeView x:Name="FileTree"
                           ItemsSource="{Binding FileDictionary}"
@@ -46,7 +46,7 @@
                               Style="{StaticResource SC_ScrollViewer}"
                               HorizontalScrollBarVisibility="Visible"
                               Grid.Row="2"
-                              Margin="0,8,0,0">
+                              Margin="0,8,0,4">
                     <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
@@ -111,7 +111,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
+                
             </Grid>
         </Grid>
     </Grid>

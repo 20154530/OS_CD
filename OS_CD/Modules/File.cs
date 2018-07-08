@@ -16,7 +16,6 @@ namespace OS_CD {
     #endregion
     public class FileNode
     {
-
         public int ID { get; set; }
         public string name { get; set; }
         //权限表 string为权限 使用rwx 分别表示读写执行.User为对应
