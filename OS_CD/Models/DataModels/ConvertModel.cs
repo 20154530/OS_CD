@@ -30,18 +30,18 @@ namespace OS_CD.Models {
         }
 
         private TFileNode FromFileNode(FileNode f) {
-            return new TFileNode(f.ID, f.PID, f.name);
+            return new TFileNode(f.ID, f.fatherFileNodeId, f.name);
         }
 
         public TFileNode(FileNode f) {
             Name = f.name;
             ID = f.ID;
-            PID = f.PID;
+            PID = f.fatherFileNodeId;
             if (f is Folder)
             {
                 foreach (int i in ((Folder)f).subFileNodeIdList)
                 {
-                    //Contains.Add(FromFileNode());
+                   // Contains.Add(FromFileNode(FileSystem.Instance));
                 }
             }
         }
