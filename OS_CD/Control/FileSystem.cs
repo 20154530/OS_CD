@@ -59,24 +59,27 @@ namespace OS_CD
         public void Init()
         {
             //rootUserId 为0
-            var rootUser = new User(GetNextUsefulID(), "rootUser");
+            var rootUser = new User(GetNextUserfulUserID(), "rootUser");
             UCBList.Add(rootUser.ID, rootUser);
             this.rootUserId = rootUser.ID;
-            //rootFolderId 为1
-            var rootFolder = new Folder(GetNextUsefulID(), "rootFolder");
+            //rootFolderId 为0
+            var rootFolder = new Folder(GetNextUserfulFileNodeId(), "rootFolder");
             FCBList.Add(rootFolder.ID, rootFolder);
             this.rootFolderId = rootFolder.ID;
 
         }
 
         //作为分配的ID
-        private static int IDTimeLine = 0;
-
-        private FileNodeId GetNextUsefulID()
+        private static int UserIdTimeLine = 0;
+        private UserId GetNextUserfulUserID()
         {
-            return IDTimeLine++;
+            return UserIdTimeLine++;
         }
-
+        private static int FileNodeIdTimeLine = 0;
+        private FileNodeId GetNextUserfulFileNodeId()
+        {
+            return FileNodeIdTimeLine++;
+        }
         public FileNodeId GetErrorID()
         {
             return -1;
@@ -94,7 +97,7 @@ namespace OS_CD
                 return GetErrorID();
             }
             //创建新文件
-            File newFile = new File(GetNextUsefulID(), name);
+            File newFile = new File(GetNextUserfulFileNodeId(), name);
             var blockAmount = newFile.GetFileSize();
             //分配内存空间
             if (Disc.Instance.IsFreeBlockEnough(blockAmount))
@@ -126,7 +129,7 @@ namespace OS_CD
                 return GetErrorID();
             }
             //创建文件夹
-            Folder newFile = new Folder(GetNextUsefulID(), name);
+            Folder newFile = new Folder(GetNextUserfulFileNodeId(), name);
             //将文件的索引以及文件控制块保存到系统列表中
             //并构建目录
             RegisterFileNode(newFile);
@@ -228,7 +231,7 @@ namespace OS_CD
         public FileNodeId CreateUser(string userName)
         {
             //创建用户，保存到系统记录中
-            User newUser = new User(GetNextUsefulID(), userName);
+            User newUser = new User(GetNextUserfulUserID(), userName);
             RegisterUser(newUser);
             Debug.Print("make a user ,id is :" + newUser.ID + "\n");
             return newUser.ID;
