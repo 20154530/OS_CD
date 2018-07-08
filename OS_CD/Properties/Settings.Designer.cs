@@ -37,7 +37,7 @@ namespace OS_CD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Administor")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Admin")]
         public string AdministorN {
             get {
                 return ((string)(this["AdministorN"]));
@@ -49,13 +49,25 @@ namespace OS_CD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Admin")]
         public string AdministorP {
             get {
                 return ((string)(this["AdministorP"]));
             }
             set {
                 this["AdministorP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("160")]
+        public double FilePageGridWidth {
+            get {
+                return ((double)(this["FilePageGridWidth"]));
+            }
+            set {
+                this["FilePageGridWidth"] = value;
             }
         }
     }

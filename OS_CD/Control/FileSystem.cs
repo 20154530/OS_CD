@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace OS_CD
-{
+namespace OS_CD {
     #region 别名
 
     using FileNodeId = Int32;
@@ -30,8 +29,8 @@ namespace OS_CD
         //单例
         public static FileSystem Instance = new FileSystem();
 
-        private FileSystem()
-        {
+        private FileSystem(){
+            Init();
         }
 
         //FCB文件控制块 List
@@ -48,6 +47,7 @@ namespace OS_CD
 
         //当前目录
         private FileNodeId currentFolderId = -1;
+
 
         //UCb用户控制块 List
         private Dictionary<UserId, User> uCBList = new Dictionary<UserId, User>();

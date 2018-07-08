@@ -31,7 +31,8 @@
                     <local:YT_IconButton x:Name="User_Icon"
                                          Style="{DynamicResource UserIconbuttonStyle}"
                                          Command="{Binding OpenUserSelectMenuCommand}"
-                                         ForeToolTip="选择用户"
+                                         CommandParameter="LoginPage.xaml"
+                                         ForeToolTip="登录"
                                          Content="&#xE13D;" />
                 </Grid>
                 <Grid x:Name="Function_Area"

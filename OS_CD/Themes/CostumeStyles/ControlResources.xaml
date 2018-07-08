@@ -18,13 +18,14 @@
                    Text="确认退出?" />
     </Grid>
     
-    <!---->
-    <Grid x:Key="WarningContent" Margin="5">
+    <!--LoginPageWarning-->
+    <Grid x:Key="WarningDialog" Margin="5" >
         <TextBlock Style="{StaticResource DefaultToolTipText}"
                    FontSize="{StaticResource Dialog_Content_Text_Size}"
                    Width="300"
                    TextWrapping="Wrap"
-                   Text="请先登录" />
+                   Text="{Binding ContentText}"/>
     </Grid> 
     
+
 </ResourceDictionary>

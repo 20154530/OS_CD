@@ -51,15 +51,7 @@ namespace OS_CD {
         }
 
         public DiskPageViewModel() {
-            blockcell = new int[512];
-            for (int i = 0; i < 512; i++)
-                blockcell[i] = -1;
-            blockcell[38] = 14;
-            blockcell[40] = 15;
-            blockcell[42] = 16;
-            blockcell[44] = 17;
-            blockcell[46] = 18;
-            blockcell[48] = 19;
+
         }
 
         #region   COLORTEST

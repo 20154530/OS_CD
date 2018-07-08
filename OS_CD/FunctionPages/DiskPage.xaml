@@ -30,6 +30,9 @@
                            Margin="0,4,0,4"
                            Style="{StaticResource DiskPageLabel}"
                            Text="磁 盘" />
+                <Rectangle Style="{StaticResource H_Seperoator}"
+                           Fill="{StaticResource DiskPage_FG}"
+                           VerticalAlignment="Bottom" />
             </Grid>
             <Grid x:Name="GeneralInf"
                   Grid.Row="1">
@@ -37,9 +40,6 @@
                     <RowDefinition Height="48" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Rectangle Style="{StaticResource H_Seperoator}"
-                           Fill="{StaticResource DiskPage_FG}"
-                           VerticalAlignment="Top" />
                 <TextBlock x:Name="GeneralLabel"
                            Text="概要信息"
                            FontSize="16"
@@ -107,7 +107,7 @@
                     <ListView x:Name="DiskBlocks"
                               SelectionChanged="DiskBlocks_SelectionChanged"
                               Style="{StaticResource DiskBlockView}"
-                              ItemsSource="{Binding Blockcell}" />
+                              ItemsSource="{Binding Blockcell,Source={x:Static local:Systeminfo.Instence}}" />
                 </Viewbox>
             </Grid>
             <Grid x:Name="FileInfo"

@@ -1,16 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Convert="clr-namespace:OS_CD.Mangers.ValueConverters"
                     xmlns:local="clr-namespace:OS_CD">
     <!--Font-->
     <FontFamily x:Key="Segoe">/FontLibrary;Component/#Segoe</FontFamily>
     <FontFamily x:Key="Digital">/FontLibrary;Component/#Digital</FontFamily>
 
     <!--Converters-->
-    <local:ColorSelector x:Key="ColorSelector" />
-    <local:JudgeNone x:Key="NoneValueC" />
-    <local:HideNoVisual x:Key="HideNoVisual" />
-    <local:FileTreeToolTipSelector x:Key="FileTreeToolTipSelector" />
-    <local:FileTreeIconSelector x:Key="FileTreeIconSelector" />
+    <Convert:ColorSelector x:Key="ColorSelector" />
+    <Convert:JudgeNone x:Key="NoneValueC" />
+    <Convert:HideNoVisual x:Key="HideNoVisual" />
+    <Convert:FileTreeToolTipSelector x:Key="FileTreeToolTipSelector" />
+    <Convert:FileTreeIconSelector x:Key="FileTreeIconSelector" />
+    <Convert:ConVisual x:Key="ConVisual" />
+    <Convert:DoubleToGrid x:Key="DoubleToGrid" />
+    <Convert:VisToTF x:Key="VisToTF" />
+    <Convert:HideFitValue x:Key="HideFitValue" />
 
 
 </ResourceDictionary>

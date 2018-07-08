@@ -17,8 +17,6 @@ namespace OS_CD
 
         #endregion
 
-
-
         public ConfigTable() {
             InitColorTable();
         }
@@ -27,7 +25,7 @@ namespace OS_CD
         public void InitColorTable() {
             ColorTable = new Dictionary<int, string>
             {
-                { -1, "#c0c0c0" },
+                { -1, "#D4D4D4" },
                 { 0, "#CC7CFF" },
                 { 1, "#DC6E65" },
                 { 2, "#701FFF" },

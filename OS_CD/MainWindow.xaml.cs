@@ -22,28 +22,33 @@ namespace OS_CD
     {
         MainPageViewModel viewModel = new MainPageViewModel();
 
-        public MainWindow()
-        {
-            Loaded += MainWindow_Loaded;
-            DataContext = viewModel;
-            viewModel.OpenUserSelectMenuAction += ViewModel_OpenUserSelectMenuAction;
-            InitializeComponent();
+        #region viewModelAction
+        private void ViewModel_OnNavigate(object sender, EventArgs e) {
+            var para = (e as PropertyChangeArgs).NewValue;
+            MainFrame.Navigate(new Uri("FunctionPages/" + para.ToString(), UriKind.Relative));
         }
 
         private void ViewModel_OpenUserSelectMenuAction(object sender, EventArgs e) {
             ClearSelection();
         }
+        #endregion
 
-        public void ClearSelection() {
+        private void ClearSelection() {
             User_Btn.IsChecked = false;
             File_Btn.IsChecked = false;
             Disk_Btn.IsChecked = false;
             Mem_Btn.IsChecked = false;
         }
         
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e) {
-            viewModel.Mainframe = MainFrame;
+            MainFrame.Navigate(new Uri("FunctionPages/LoginPage.xaml", UriKind.Relative));
+        }
+        public MainWindow() {
+            Loaded += MainWindow_Loaded;
+            DataContext = viewModel;
+            viewModel.OpenUserSelectMenuAction += ViewModel_OpenUserSelectMenuAction;
+            viewModel.OnNavigate += ViewModel_OnNavigate;
+            InitializeComponent();
         }
     }
 }

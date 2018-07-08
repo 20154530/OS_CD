@@ -517,6 +517,100 @@
         </Setter>
     </Style>
 
+    <Style x:Key="UserView"
+           TargetType="ListView">
+        <Setter Property="SelectionMode"
+                Value="Single" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="RootBorder">
+                                    <Grid x:Name="RootGrid">
+                                        <ContentPresenter x:Name="Content"
+                                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                          Margin="0" />
+                                        <Rectangle x:Name="CellMask"
+                                                   Visibility="Collapsed"
+                                                   Fill="{StaticResource DarkMask_D}" />
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected"
+                                             Value="True">
+                                        <Setter TargetName="CellMask"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="{x:Type local:User}">
+                    <Grid x:Name="UserItem"
+                          UseLayoutRounding="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ID}"
+                                   Style="{StaticResource LoginPage_Label}" />
+                        <TextBlock Text="{Binding Name}"
+                                   Grid.Column="1"
+                                   Style="{StaticResource LoginPage_Label}" />
+                        <Rectangle x:Name="CellItem" 
+                                   Height="1"
+                                   Grid.ColumnSpan="2"
+                                   VerticalAlignment="Bottom"
+                                   Visibility="Collapsed"
+                                   Fill="{StaticResource FilePage_FG}" />
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="CellItem"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border x:Name="Bd"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--TreeView-->
 
     <Style x:Key="FileTreeView"

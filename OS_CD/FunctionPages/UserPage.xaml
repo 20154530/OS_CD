@@ -3,15 +3,47 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:OS_CD.FunctionPages"
+      xmlns:local="clr-namespace:OS_CD"
       mc:Ignorable="d"
       Title="UserPage">
-    <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                      Background="Transparent"
-                      Style="{StaticResource SC_ScrollViewer}">
-            
-        </ScrollViewer>
+    <Grid x:Name="RootGrid" Margin="8,0,8,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TitleLabel"
+                   FontSize="32"
+                   HorizontalAlignment="Left"
+                   Margin="0,4,0,4"
+                   Style="{StaticResource DiskPageLabel}"
+                   Text="用  户" />
+        <Rectangle Style="{StaticResource H_Seperoator}"
+                   Fill="{StaticResource DiskPage_FG}"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Bottom" />
+        <Grid x:Name="FunctionArea" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="FileOperation"
+                  Margin="4,6,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                     ForeToolTip="添加用户"
+                                     Content="&#xE948;" />
+                <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                     ForeToolTip="删除用户"
+                                     Grid.Column="1"
+                                     Content="&#xE949;" />
+            </Grid>
+            <ListView Style="{StaticResource UserView}" Grid.Row="1">
+                
+            </ListView>
+        </Grid>
     </Grid>
 
 </Page>

@@ -6,10 +6,13 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="AdministorN" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Administor</Value>
+      <Value Profile="(Default)">Admin</Value>
     </Setting>
     <Setting Name="AdministorP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">123456</Value>
+      <Value Profile="(Default)">Admin</Value>
+    </Setting>
+    <Setting Name="FilePageGridWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">160</Value>
     </Setting>
   </Settings>
 </SettingsFile>

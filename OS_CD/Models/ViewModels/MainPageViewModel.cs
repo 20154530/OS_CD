@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using OS_CD.Mangers.Serverces;
 
 namespace OS_CD {
     internal class MainPageViewModel : ViewModelBase {
@@ -37,7 +38,10 @@ namespace OS_CD {
             }
         }
 
+
         public event EventHandler OpenUserSelectMenuAction;
+
+        public event EventHandler OnNavigate;
 
         public Frame Mainframe { get; set; }
 
@@ -60,15 +64,7 @@ namespace OS_CD {
         }
 
         private void CloseCommand_Commandaction(object para) {
-            YT_ExitDialog _ExitDialog = new YT_ExitDialog
-            {
-                ContentWidth = 280,
-                ContentHeight = 120,
-                Content = App.Current.FindResource("DefaultExitContent")
-            };
-            _ExitDialog.YesAction += _ExitDialog_YesAction;
-            _ExitDialog.NoAction += _ExitDialog_NoAction;
-            _ExitDialog.ShowDialog(App.Current.MainWindow);
+            MessageBoxSeverces.ShowSimpleStringDialog("确认离开系统吗？", true, true, true, _ExitDialog_YesAction, _ExitDialog_NoAction);
         }
 
         private void _ExitDialog_NoAction() {
@@ -80,18 +76,26 @@ namespace OS_CD {
         }
 
         private void OpenUserSelectMenuCommand_Commandaction(object para) {
-            Mainframe.Navigate(new Uri("FunctionPages/LoginPage.xaml", UriKind.Relative));
+            OnNavigate.Invoke(this,new PropertyChangeArgs(para, para));
             OpenUserSelectMenuAction.Invoke(this, EventArgs.Empty);
         }
 
         private void NavigateCommand_Commandaction(object para) {
-            Mainframe.Navigate(new Uri("FunctionPages/" + para.ToString(), UriKind.Relative));
+            if (Systeminfo.Instence.LoginState.Equals(Visibility.Collapsed)) {
+                MessageBoxSeverces.ShowSimpleStringDialog("请先登录！");
+                return;
+            }
+            OnNavigate.Invoke(this, new PropertyChangeArgs(para, para));
         }
 
         private void Instence_LoginStateChanged(object sender, EventArgs e) {
             if (!(((PropertyChangeArgs)e).NewValue is null))
-                UserPageVis = ((PropertyChangeArgs)e).NewValue.Equals("Administor") ?
-                    Visibility.Visible : Visibility.Collapsed;
+            {
+                User user = (User)((PropertyChangeArgs)e).NewValue;
+                UserPageVis = user.ID == 0 ? Visibility.Visible : Visibility.Collapsed;
+                Username = user.Name;
+                userid = user.ID.ToString();
+            }
         }
         #endregion
 

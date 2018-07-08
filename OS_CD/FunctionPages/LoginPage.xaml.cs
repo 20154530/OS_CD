@@ -24,7 +24,19 @@ namespace OS_CD.FunctionPages {
         public LoginPage() {
             DataContext = viewModel;
             viewModel.SubmitAction += ViewModel_SubmitAction;
+            viewModel.LoginAction += ViewModel_LoginAction;
+            viewModel.LogoutAction += ViewModel_LogoutAction;
             InitializeComponent();
+        }
+
+        private void ViewModel_LogoutAction(object sender, EventArgs e) {
+            Password.IsEnabled = true;
+            Account.IsEnabled = true;
+        }
+
+        private void ViewModel_LoginAction(object sender, EventArgs e) {
+            Password.IsEnabled = false;
+            Account.IsEnabled = false;
         }
 
         private void ViewModel_SubmitAction(object sender, EventArgs e) {

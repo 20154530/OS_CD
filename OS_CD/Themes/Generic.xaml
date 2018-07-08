@@ -620,6 +620,7 @@
                                 <local:YT_IconButton x:Name="CancleButton"
                                                      Grid.Column="1"
                                                      Content="&#xE711;"
+                                                     Visibility="{TemplateBinding CancelButtonVisibility}"
                                                      Command="{TemplateBinding CancelCommand}"
                                                      Style="{StaticResource DialogButtonStyle}" />
                             </Grid>
@@ -631,12 +632,14 @@
                                                  Grid.Row="1"
                                                  ContentText="是"
                                                  Margin="0,0,68,8"
+                                                 Visibility="{TemplateBinding YseButtonVisibility}"
                                                  Command="{TemplateBinding YesCommand}"
                                                  Style="{StaticResource DialogTextButtonStyle}" />
                             <local:YT_IconButton x:Name="NoButton"
                                                  Grid.Row="1"
                                                  ContentText="否"
                                                  Margin="0,0,8,8"
+                                                 Visibility="{TemplateBinding NoButtonVisibility}"
                                                  Command="{TemplateBinding NoCommand}"
                                                  Style="{StaticResource DialogTextButtonStyle}" />
                         </Grid>

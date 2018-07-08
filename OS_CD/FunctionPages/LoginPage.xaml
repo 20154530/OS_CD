@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:OS_CD"
       mc:Ignorable="d"
       Title="LoginPage">
-    <Border x:Name="RootBorder" Padding="8,0,8,0">
+    <Border x:Name="RootBorder"
+            Padding="8,0,8,0">
         <Grid x:Name="RootGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="48" />
@@ -21,63 +22,79 @@
             <Rectangle Style="{StaticResource H_Seperoator}"
                        Fill="{StaticResource DiskPage_FG}"
                        VerticalAlignment="Bottom" />
-            <Grid x:Name="LoginForm" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="72" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
+            <Grid x:Name="LoginForm"
+                  Grid.Row="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="72" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="48" />
                     <RowDefinition Height="48" />
                     <RowDefinition Height="48" />
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="AccountLabel"
-                       Text="用户名"
-                       Style="{StaticResource LoginPage_Label}" />
-            <TextBox x:Name="Account"
-                     Grid.Column="1"
-                     Style="{StaticResource LoginPage_TextBox}" />
-            <TextBlock x:Name="PasswordLabel"
-                       Grid.Row="1"
-                       Text="密码"
-                       Style="{StaticResource LoginPage_Label}" />
-            <PasswordBox x:Name="Password"
+                           Text="用户名"
+                           Style="{StaticResource LoginPage_Label}" />
+                <TextBox x:Name="Account"
                          Grid.Column="1"
-                         Grid.Row="1"
-                         Style="{StaticResource LoginPage_PassWord}" />
-            <TextBlock x:Name="Title"
-                       Text="当前系统状态:"
-                       Grid.ColumnSpan="3"
-                       Grid.Row="2"
-                       FontSize="12"
-                       Style="{StaticResource LoginPage_Label}" />
-            <TextBlock x:Name="SysState"
-                       HorizontalAlignment="Right"
-                       Grid.ColumnSpan="3"
-                       Grid.Row="2"
-                       FontSize="12"
-                       Text="{Binding SysState}"
-                       Style="{StaticResource LoginPage_Label}" />
-            <Border   Grid.RowSpan="2"
-                      Grid.Column="2"
-                      Width="72"
-                      Height="72"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Margin="16,0,0,0"
-                      BorderThickness="1"
-                      BorderBrush="{StaticResource MainWindow_Border_Normal}">
-                <local:YT_IconButton x:Name="Submit"
-                                     ContentText="登录"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Center"
-                                     Command="{Binding Submit}"
-                                     Style="{StaticResource LoginPage_SubmitButton}" />
-            </Border>
+                         IsEnabled="{Binding LoginState, Source={x:Static local:Systeminfo.Instence},Converter={StaticResource VisToTF},ConverterParameter=0}"
+                         Text="{Binding UserNow.Name, Source={x:Static local:Systeminfo.Instence},Mode=OneWay,Converter={StaticResource HideFitValue},ConverterParameter=未登录}"
+                         Style="{StaticResource LoginPage_TextBox}" />
+                <TextBlock x:Name="PasswordLabel"
+                           Grid.Row="1"
+                           Text="密码"
+                           Style="{StaticResource LoginPage_Label}" />
+                <PasswordBox x:Name="Password"
+                             Grid.Column="1"
+                             Grid.Row="1"
+                             IsEnabled="{Binding LoginState, Source={x:Static local:Systeminfo.Instence},Converter={StaticResource VisToTF},ConverterParameter=0}"
+                             Style="{StaticResource LoginPage_PassWord}" />
+                <TextBlock x:Name="Title"
+                           Text="当前系统状态:"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="2"
+                           FontSize="12"
+                           Style="{StaticResource LoginPage_Label}" />
+                <TextBlock x:Name="SysState"
+                           HorizontalAlignment="Right"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="2"
+                           FontSize="12"
+                           Text="{Binding UserNow.Name, Source={x:Static local:Systeminfo.Instence}}"
+                           Style="{StaticResource LoginPage_Label}" />
+                <Border   Grid.RowSpan="2"
+                          Grid.Column="2"
+                          Width="72"
+                          Height="72"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Margin="16,0,0,0"
+                          BorderThickness="1"
+                          BorderBrush="{StaticResource MainWindow_Border_Normal}">
+                    <Grid>
+                        <local:YT_IconButton x:Name="Submit"
+                                             ContentText="登录"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Command="{Binding Submit}"
+                                             Visibility="{Binding LoginState,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource ConVisual}}"
+                                             Style="{StaticResource LoginPage_SubmitButton}" />
+                        <local:YT_IconButton x:Name="Logout"
+                                             ContentText="注销"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Visibility="{Binding LoginState, Source={x:Static local:Systeminfo.Instence}}"
+                                             Command="{Binding Logout}"
+                                             Style="{StaticResource LoginPage_SubmitButton}" />
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
-        </Grid>
-  
+
     </Border>
 
 </Page>
