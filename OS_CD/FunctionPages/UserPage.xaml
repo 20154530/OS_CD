@@ -6,7 +6,13 @@
       xmlns:local="clr-namespace:OS_CD.FunctionPages"
       mc:Ignorable="d"
       Title="UserPage">
-    <Grid x:Name="RootGrid">
-
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      Background="Transparent"
+                     Style="{StaticResource SC_ScrollViewer}">
+            <Grid Width="1200"
+                  Height="1200"></Grid>
+        </ScrollViewer>
     </Grid>
+
 </Page>

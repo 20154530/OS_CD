@@ -35,6 +35,11 @@ namespace OS_CD {
             TFileNode file6 = new TFileNode(6,4, "文件5");
             TFileNode file7 = new TFileNode(7,4, "文件6");
             TFileNode file8 = new TFileNode(8,4, "文件7");
+            TFileNode file9 = new TFileNode(8,4, "文件7");
+            TFileNode file10 = new TFileNode(8,4, "文件7");
+            TFileNode file11 = new TFileNode(8,4, "文件7");
+            TFileNode file12 = new TFileNode(8,4, "文件7");
+            TFileNode file13 = new TFileNode(8,4, "文件7");
 
             folder.AddFileNode(file1);
             folder.AddFileNode(file2);
@@ -45,6 +50,11 @@ namespace OS_CD {
             folder1.AddFileNode(file6);
             folder1.AddFileNode(file7);
             folder1.AddFileNode(file8);
+            folder1.AddFileNode(file9);
+            folder1.AddFileNode(file10);
+            folder1.AddFileNode(file11);
+            folder1.AddFileNode(file12);
+            folder1.AddFileNode(file13);
 
             dic.Add(folder);
             return dic;

@@ -9,6 +9,8 @@
     <local:ColorSelector x:Key="ColorSelector" />
     <local:JudgeNone x:Key="NoneValueC" />
     <local:HideNoVisual x:Key="HideNoVisual" />
+    <local:FileTreeToolTipSelector x:Key="FileTreeToolTipSelector" />
+    <local:FileTreeIconSelector x:Key="FileTreeIconSelector" />
 
 
 </ResourceDictionary>

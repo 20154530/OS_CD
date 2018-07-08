@@ -192,7 +192,6 @@
                                        Height="24"
                                        FontSize="12" />
                         </StackPanel>
-                        
                     </StackPanel>
                 </Grid>
             </Grid>

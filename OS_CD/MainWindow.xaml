@@ -133,6 +133,7 @@
             <RowDefinition Height="18" />
         </Grid.RowDefinitions>
         <Frame x:Name="MainFrame"
+               Grid.Row="0"
                Style="{DynamicResource SimpleFrame}" />
         <Grid x:Name="StateBar" Grid.Row="1">
             <Grid.ColumnDefinitions>

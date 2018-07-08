@@ -21,9 +21,9 @@
         <Grid x:Name="ContentArea"
               Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MinWidth="160"/>
+                <ColumnDefinition MinWidth="160" />
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" MinWidth="240"/>
+                <ColumnDefinition MinWidth="0" />
             </Grid.ColumnDefinitions>
             <Rectangle Style="{StaticResource H_Seperoator}"
                        Fill="{StaticResource DiskPage_FG}"
@@ -33,21 +33,84 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition MaxHeight="120" />
                 </Grid.RowDefinitions>
                 <TreeView x:Name="FileTree"
                           ItemsSource="{Binding FileDictionary}"
                           Style="{StaticResource FileTreeView}" />
-                <GridSplitter Grid.Row="1"
-                              Style="{StaticResource DefaultSplitter_V}" />
-
-                <Grid x:Name="FileProperty"
-                      Grid.Row="1">
-                    
+                <Rectangle Style="{StaticResource H_Seperoator}"
+                           Fill="{StaticResource FilePage_FG}"
+                           Grid.Row="1"
+                           Margin="0,0,2,0" />
+                <ScrollViewer Background="Transparent"
+                              Style="{StaticResource SC_ScrollViewer}"
+                              HorizontalScrollBarVisibility="Visible"
+                              Grid.Row="2"
+                              Margin="0,8,0,0">
+                    <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="360" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36" />
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="24" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="详情"
+                               Style="{StaticResource DiskPageLabel}"
+                               FontWeight="Normal"
+                               FontSize="14" />
+                    <TextBlock Text="名称"
+                               Grid.Row="1"
+                               Style="{StaticResource DiskPageLabel}"
+                               FontSize="12" />
+                    <TextBlock  Text="{Binding }"
+                                Style="{StaticResource DiskPageLabel}"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontSize="12" />
+                    <TextBlock Text="父目录"
+                               Style="{StaticResource DiskPageLabel}"
+                               Grid.Row="2"
+                               FontSize="12" />
+                    <TextBlock  Text="{Binding }"
+                                Style="{StaticResource DiskPageLabel}"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                FontSize="12" />
+                    <TextBlock Text="权限"
+                               Style="{StaticResource DiskPageLabel}"
+                               Grid.Row="3"
+                               FontSize="12" />
+                    <TextBlock Text="{Binding }"
+                               Style="{StaticResource DiskPageLabel}"
+                               Grid.Row="3"
+                               Grid.Column="1"
+                               FontSize="12" />
+                    <TextBlock Text="磁盘占用"
+                               Style="{StaticResource DiskPageLabel}"
+                               Grid.Row="4"
+                               FontSize="12" />
+                    <TextBlock Text="{Binding }"
+                               Style="{StaticResource DiskPageLabel}"
+                               Grid.Row="4"
+                               Grid.Column="1"
+                               FontSize="12" />
                 </Grid>
+                </ScrollViewer>
+                
             </Grid>
-            <GridSplitter Grid.Column="1" Style="{StaticResource DefaultSplitter_H}"/>
-            <Grid x:Name="FileInfo">
+            <GridSplitter Grid.Column="1"
+                          Style="{StaticResource DefaultSplitter_H}" />
+            <Grid x:Name="FileContent"
+                  Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
             </Grid>
         </Grid>

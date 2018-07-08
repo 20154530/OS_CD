@@ -115,7 +115,7 @@
         <Setter Property="VerticalAlignment"
                 Value="Center" />
         <Setter Property="Margin"
-                Value="0,1,4,1" />
+                Value="4,0,4,0" />
     </Style>
 
 
@@ -370,7 +370,6 @@
                 Value="Left" />
         <Setter Property="VerticalAlignment"
                 Value="Bottom" />
-
     </Style>
 
 

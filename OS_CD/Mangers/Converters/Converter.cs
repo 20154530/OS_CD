@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using OS_CD.Models;
+using System.Windows.Media;
 
 namespace OS_CD {
     /// <summary>
@@ -40,10 +42,10 @@ namespace OS_CD {
     /// </summary>
     public class HideNoVisual : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if(((Visibility)value).Equals(Visibility.Collapsed))
+            if (((Visibility)value).Equals(Visibility.Collapsed))
                 return new GridLength(0, GridUnitType.Star);
             else
-                return new GridLength(1,GridUnitType.Star);
+                return new GridLength(1, GridUnitType.Star);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
@@ -54,7 +56,21 @@ namespace OS_CD {
 
     public class FileTreeIconSelector : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            return null;   
+            if (parameter is null)
+            {
+                if (((TFileNode)value).Contains.Count == 0)
+                    return "\uE8A5";
+                else
+                    return "\uED41";
+            }
+            else
+            {
+                if (((TFileNode)value).Contains.Count == 0)
+                    return "\uE8A5";
+                else
+                    return "\uED43";
+            }
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
@@ -65,7 +81,10 @@ namespace OS_CD {
 
     public class FileTreeToolTipSelector : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            throw new NotImplementedException();
+            if (((TFileNode)value).Contains.Count == 0)
+                return Visibility.Collapsed;
+            else
+                return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
