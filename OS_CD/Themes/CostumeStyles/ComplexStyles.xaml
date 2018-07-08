@@ -135,6 +135,39 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ScrollBarThumbHorizontal"
+           TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle"
+                Value="true" />
+        <Setter Property="IsTabStop"
+                Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Rectangle x:Name="rectangle"
+                               Fill="{StaticResource Default_Thumb_N}"
+                               Height="{TemplateBinding Height}"
+                               SnapsToDevicePixels="True"
+                               Width="{TemplateBinding Width}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter Property="Fill"
+                                    TargetName="rectangle"
+                                    Value="{StaticResource Default_Thumb_R}" />
+                        </Trigger>
+                        <Trigger Property="IsDragging"
+                                 Value="true">
+                            <Setter Property="Fill"
+                                    TargetName="rectangle"
+                                    Value="{StaticResource Default_Thumb_P}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="SC_Scrollbar"
            TargetType="{x:Type ScrollBar}">
         <Setter Property="HorizontalAlignment"
@@ -177,69 +210,53 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="Orientation"
-                     Value="Horizontal">
-                <Setter Property="VerticalAlignment"
-                        Value="Bottom" />
-                <Setter Property="OverridesDefaultStyle"
-                        Value="True" />
-                <Setter Property="Width"
-                        Value="Auto" />
-                <Setter Property="MinWidth"
-                        Value="0" />
-                <Setter Property="Height"
-                        Value="2" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ScrollBar">
-                            <Grid SnapsToDevicePixels="True">
-                                <!--<Track x:Name="PART_Track"
-                                       VerticalAlignment="Center"
-                                       Margin="0"
-                                       Height="{TemplateBinding Height}"
-                                       Maximum="{TemplateBinding Maximum}"
-                                       Minimum="{TemplateBinding Minimum}"
-                                       Value="{TemplateBinding Value}">
-                                    <Track.DecreaseRepeatButton>
-                                        <RepeatButton x:Name="HorizontalLargeDecrease"
-                                                      Style="{StaticResource SC_PageButton}"
-                                                      Command="{x:Static ScrollBar.PageLeftCommand}"
-                                                      IsTabStop="False"
-                                                      Interval="50" />
-                                    </Track.DecreaseRepeatButton>
-                                    <Track.Thumb>
-                                        <Thumb Style="{StaticResource SC_Thumb}" />
-                                    </Track.Thumb>
-                                    <Track.IncreaseRepeatButton>
-                                        <RepeatButton x:Name="HorizontalLargeIncrease"
-                                                      Style="{StaticResource SC_PageButton}"
-                                                      Command="{x:Static ScrollBar.PageRightCommand}"
-                                                      IsTabStop="False"
-                                                      Interval="50" />
-                                    </Track.IncreaseRepeatButton>
-                                </Track>-->
-                                <Track x:Name="PART_Track"
-                                       Grid.Column="1"
-                                       IsEnabled="{TemplateBinding IsMouseOver}">
-                                    <Track.DecreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}"
-                                                      Style="{StaticResource SC_PageButton}" />
-                                    </Track.DecreaseRepeatButton>
-                                    <Track.IncreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}"
-                                                      Style="{StaticResource SC_PageButton}" />
-                                    </Track.IncreaseRepeatButton>
-                                    <Track.Thumb>
-                                        <Thumb Style="{StaticResource SC_Thumb}" />
-                                    </Track.Thumb>
-                                </Track>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="SC_Scrollbar_H"
+           TargetType="{x:Type ScrollBar}">
+        <Setter Property="Orientation"
+                Value="Horizontal" />
+        <Setter Property="Width"
+                Value="Auto" />
+        <Setter Property="MinWidth"
+                Value="0" />
+        <Setter Property="Height"
+                Value="2" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid SnapsToDevicePixels="True">
+                        <Track x:Name="PART_Track"
+                               VerticalAlignment="Bottom"
+                               Margin="0"
+                               Height="{TemplateBinding Height}"
+                               Maximum="{TemplateBinding Maximum}"
+                               Minimum="{TemplateBinding Minimum}"
+                               Value="{TemplateBinding Value}">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton x:Name="HorizontalLargeDecrease"
+                                              Style="{StaticResource SC_PageButton}"
+                                              Command="{x:Static ScrollBar.PageLeftCommand}"
+                                              IsTabStop="False"
+                                              Interval="50" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource SC_Thumb}" />
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton x:Name="HorizontalLargeIncrease"
+                                              Style="{StaticResource SC_PageButton}"
+                                              Command="{x:Static ScrollBar.PageRightCommand}"
+                                              IsTabStop="False"
+                                              Interval="50" />
+                            </Track.IncreaseRepeatButton>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="SC_ScrollViewer"
@@ -276,7 +293,6 @@
                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                                 CanContentScroll="{TemplateBinding CanContentScroll}" />
                         <Grid Grid.Column="1"
-                              Grid.Row="0"
                               Background="{TemplateBinding Background}">
                             <ScrollBar x:Name="PART_VerticalScrollBar"
                                        AutomationProperties.AutomationId="VerticalScrollBar"
@@ -313,29 +329,18 @@
                             </Grid.Triggers>
                         </Grid>
                         <Grid Grid.Row="1"
-                              Grid.Column="0"
                               Background="{TemplateBinding Background}">
                             <ScrollBar x:Name="PART_HorizontalScrollBar"
-                                       Orientation="Horizontal"
-                                       Style="{StaticResource SC_Scrollbar}"
-                                       AutomationProperties.AutomationId="HorizontalScrollBar"
-                                       Cursor="Arrow"
-                                       Maximum="{TemplateBinding ScrollableWidth}"
-                                       Minimum="0"
-                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
-                                       Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                       ViewportSize="{TemplateBinding ViewportWidth}" />
-                            <!--<ScrollBar x:Name="PART_HorizontalScrollBar"
                                        AutomationProperties.AutomationId="HorizontalScrollBar"
                                        Maximum="{TemplateBinding ScrollableWidth}"
                                        Minimum="0"
-                                       Opacity="1"
-                                       Style="{StaticResource SC_Scrollbar}"
+                                       Opacity="0"
+                                       Style="{StaticResource SC_Scrollbar_H}"
                                        Orientation="Horizontal"
                                        ViewportSize="{TemplateBinding ViewportWidth}"
                                        Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />-->
-                            <!--<Grid.Triggers>
+                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                            <Grid.Triggers>
                                 <EventTrigger RoutedEvent="MouseEnter">
                                     <BeginStoryboard>
                                         <Storyboard FillBehavior="HoldEnd">
@@ -357,7 +362,7 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                            </Grid.Triggers>-->
+                            </Grid.Triggers>
                         </Grid>
                         <Grid.Triggers>
                             <EventTrigger RoutedEvent="MouseEnter">
@@ -367,10 +372,10 @@
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1"
                                                          Duration="0:0:0.5" />
-                                        <!--<DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
+                                        <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1"
-                                                         Duration="0:0:0.5" />-->
+                                                         Duration="0:0:0.5" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -381,10 +386,10 @@
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0"
                                                          Duration="0:0:0.5" />
-                                        <!--<DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
+                                        <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0"
-                                                         Duration="0:0:0.5" />-->
+                                                         Duration="0:0:0.5" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

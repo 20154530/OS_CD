@@ -17,12 +17,23 @@ namespace OS_CD {
     public class OpenFileRecord
     {
         private FileNodeId fileNodeId;
-        public DateTime createTime { get; }
+        public FileNodeId FileNodeId {
+            get => fileNodeId;
+            set {
+                fileNodeId = value;
+            }
+        }
+
+        private DateTime createTime;
+        public DateTime CreateTime {
+            get => createTime;
+            set { createTime = value; }
+        }
 
         public OpenFileRecord(FileNodeId fileNodeId)
         {
-            this.fileNodeId = fileNodeId;
-            this.createTime = DateTime.Now;
+            FileNodeId = fileNodeId;
+            createTime = DateTime.Now;
         }
     }
 

@@ -37,7 +37,13 @@ namespace OS_CD
         }
 
         //FCB文件控制块 List
-        private Dictionary<FileNodeId, FileNode> FCBList = new Dictionary<int, FileNode>();
+        private Dictionary<FileNodeId, FileNode> fCBList = new Dictionary<int, FileNode>();
+        public Dictionary<FileNodeId, FileNode> FCBList {
+            get => fCBList;
+            set {
+                fCBList = value;
+            }
+        }
 
         //根目录
         private FileNodeId rootFolderId = -1;
@@ -46,10 +52,15 @@ namespace OS_CD
         private FileNodeId currentFolderId = -1;
 
         //UCb用户控制块 List
-        private Dictionary<UserId, User> UCBList = new Dictionary<UserId, User>();
+        private Dictionary<UserId, User> uCBList = new Dictionary<UserId, User>();
+
+        public Dictionary<UserId, User> UCBList {
+
+        }
 
         //超级用户
         private UserId rootUserId = -1;
+
         //当前用户
         private UserId currentUserId = -1;
 
@@ -215,7 +226,7 @@ namespace OS_CD
             currentFolderId = fileNodeId;
         }
 
-        private FileNode GetFileNodeById(FileNodeId fileNodeId)
+        public FileNode GetFileNodeById(FileNodeId fileNodeId)
         {
             //通过FileNodeId得到当前系统中存放的对应文件节点的对象
             return FCBList[fileNodeId];
@@ -360,7 +371,7 @@ namespace OS_CD
             if (userOpenFileRecord.fileEvent == FileEvent.Write)
             {
 
-                if (userOpenFileRecord.createTime < file.eventInfo.GetLastEventTime(FileEvent.Write).Value &&
+                if (userOpenFileRecord.CreateTime < file.eventInfo.GetLastEventTime(FileEvent.Write).Value &&
                         file.eventInfo.GetLastEventTime(FileEvent.Write).Key != userId)
                 {
                     //从打开到递交修改的这段时间,其他的用户对其进行过修改

@@ -6,21 +6,33 @@
       xmlns:local="clr-namespace:OS_CD"
       mc:Ignorable="d"
       Title="LoginPage">
-    <Border x:Name="RootBorder"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center">
+    <Border x:Name="RootBorder" Padding="8,0,8,0">
         <Grid x:Name="RootGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="TitleLabel"
+                       FontSize="32"
+                       HorizontalAlignment="Left"
+                       Margin="0,4,0,4"
+                       Style="{StaticResource DiskPageLabel}"
+                       Text="登  录" />
+            <Rectangle Style="{StaticResource H_Seperoator}"
+                       Fill="{StaticResource DiskPage_FG}"
+                       VerticalAlignment="Bottom" />
+            <Grid x:Name="LoginForm" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="48" />
-                <RowDefinition Height="48" />
-                <RowDefinition Height="48" />
-            </Grid.RowDefinitions>
-            <TextBlock x:Name="AccountLabel"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48" />
+                    <RowDefinition Height="48" />
+                    <RowDefinition Height="48" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="AccountLabel"
                        Text="用户名"
                        Style="{StaticResource LoginPage_Label}" />
             <TextBox x:Name="Account"
@@ -64,6 +76,8 @@
                                      Style="{StaticResource LoginPage_SubmitButton}" />
             </Border>
         </Grid>
+        </Grid>
+  
     </Border>
 
 </Page>

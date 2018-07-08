@@ -16,7 +16,7 @@ namespace OS_CD {
     /// </summary>
     public class ColorSelector : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            return ConfigTable.Instance.ColorTable[System.Convert.ToInt32(value)];
+            return ConfigTable.Instance.ColorTable[System.Convert.ToInt32(value) % 30];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

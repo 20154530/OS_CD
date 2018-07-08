@@ -9,9 +9,8 @@
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       Background="Transparent"
-                     Style="{StaticResource SC_ScrollViewer}">
-            <Grid Width="1200"
-                  Height="1200"></Grid>
+                      Style="{StaticResource SC_ScrollViewer}">
+            
         </ScrollViewer>
     </Grid>
 

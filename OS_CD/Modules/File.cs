@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
+using System.Text;
 
 namespace OS_CD {
     #region 别名
@@ -15,9 +16,8 @@ namespace OS_CD {
     #endregion
     public class FileNode
     {
-
-        public int ID;
-        public string name;
+        public int ID { get; set; }
+        public string name { get; set; }
         //权限表 string为权限 使用rwx 分别表示读写执行.User为对应
         private Dictionary<UserId, string> powerList;
         //所属父文件节点
@@ -73,6 +73,7 @@ namespace OS_CD {
     public class FileBody
     {
         private string content;
+       
         public FileBody()
         {
             content = "";

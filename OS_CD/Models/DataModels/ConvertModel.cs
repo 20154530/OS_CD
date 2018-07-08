@@ -23,6 +23,7 @@ namespace OS_CD.Models {
         public void AddFileNode(TFileNode f) {
             Contains.Add(f);
         }
+
         public TFileNode(int id, int pid = 0, string name = "") {
             Contains = new List<TFileNode>();
             PID = pid;
@@ -30,20 +31,14 @@ namespace OS_CD.Models {
         }
 
         private TFileNode FromFileNode(FileNode f) {
-            return new TFileNode(f.ID, f.PID, f.name);
+            return new TFileNode(f.ID, f.fatherFileNodeId, f.name);
         }
 
         public TFileNode(FileNode f) {
+            Contains = new List<TFileNode>();
             Name = f.name;
             ID = f.ID;
-            PID = f.PID;
-            if (f is Folder)
-            {
-                foreach (int i in ((Folder)f).subFileNodeIdList)
-                {
-                    //Contains.Add(FromFileNode());
-                }
-            }
+            PID = f.fatherFileNodeId;
         }
     }
 }

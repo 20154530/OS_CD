@@ -15,15 +15,19 @@ namespace OS_CD {
     #endregion
     public class User
     {
-        public int ID;
-        public string name;
+        public int ID { get; set; }
+
+        public string Name { get; set; }
+
+        public string Password { get; set; }
+
         //用户打开文件表
         public Dictionary<FileNodeId, UserOpenFileRecord> openFileRecordList = new Dictionary<int, UserOpenFileRecord>();
 
         public User(int id, string name)
         {
-            this.ID = id;
-            this.name = name;
+            ID = id;
+            Name = name;
         }
 
 
