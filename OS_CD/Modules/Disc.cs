@@ -11,7 +11,7 @@ namespace OS_CD {
         public static Disc Instance = new Disc();
         //记录空闲的块数
         private int freeAmount = 0;
-        public void Init(int GroupMaxAmount,int DiscMaxAmount)
+        public void Init(int GroupMaxAmount, int DiscMaxAmount)
         {
             DiscBlockGroup.TopBlockGroup.Init(GroupMaxAmount);
 
@@ -19,10 +19,10 @@ namespace OS_CD {
             {
                 AddBlockToGroup(i);
             }
-            
+
             Debug.Print("Disc init finish\n");
         }
-        
+
         public void AddBlockToGroup(int blockId)
         {
             freeAmount++;
@@ -32,7 +32,7 @@ namespace OS_CD {
         public int GetBlockFromGroup()
         {
             int i = DiscBlockGroup.GetDiscBlock();
-            Debug.Print("get a freeblock :"+i+"\n");
+            Debug.Print("get a freeblock :" + i + "\n");
             if (i != -1) freeAmount--;
             return i;
         }
@@ -48,9 +48,9 @@ namespace OS_CD {
         //单例,保存最上层的组
         public static DiscBlockGroup TopBlockGroup = new DiscBlockGroup(0);
 
-        private  int maxAmount = 0;
+        private int maxAmount = 0;
 
-        public  void Init(int maxAmount)
+        public void Init(int maxAmount)
         {
             this.maxAmount = maxAmount;
         }
@@ -60,21 +60,21 @@ namespace OS_CD {
             this.maxAmount = maxAmount;
         }
         //具体组中的内容的容器
-        private List<FreeBlock> blockGroups=new List<FreeBlock>();
+        private List<FreeBlock> blockGroups = new List<FreeBlock>();
         //往容器中添加空闲块块号
         //返回的是最上层的DiscBlockGroup对象
         public static bool AddDiscBlock(int blockId)
         {
             if (TopBlockGroup.blockGroups.Count == 0)
             {
-                TopBlockGroup.blockGroups.Add(new FreeBlock(blockId,new DiscBlockGroup(TopBlockGroup.maxAmount)));
-                Debug.Print("add a freeblock:"+blockId+"\n");
+                TopBlockGroup.blockGroups.Add(new FreeBlock(blockId, new DiscBlockGroup(TopBlockGroup.maxAmount)));
+                Debug.Print("add a freeblock:" + blockId + "\n");
                 return true;
             }
             else if (TopBlockGroup.blockGroups.Count < TopBlockGroup.maxAmount)
             {
-                TopBlockGroup.blockGroups.Add(new FreeBlock(blockId,null));
-                Debug.Print("add a freeblock:"+blockId+"\n");
+                TopBlockGroup.blockGroups.Add(new FreeBlock(blockId, null));
+                Debug.Print("add a freeblock:" + blockId + "\n");
                 return true;
             }
             else if (TopBlockGroup.blockGroups.Count == TopBlockGroup.maxAmount)
@@ -107,7 +107,7 @@ namespace OS_CD {
             {
                 var freeBlockId = TopBlockGroup.blockGroups[0].BlockId;
                 DiscBlockGroup.TopBlockGroup = DiscBlockGroup.TopBlockGroup.GetLowerBlockGroup();
-                
+
                 return freeBlockId;
             }
             else if (TopBlockGroup.blockGroups.Count <= TopBlockGroup.maxAmount)
@@ -128,20 +128,21 @@ namespace OS_CD {
         {
             return this.blockGroups.Count != 0 ? this.blockGroups[0].LowerBlockGroup : null;
         }
-        
+
     }
 
     internal class FreeBlock
     {
-        public int BlockId { get;}
+        public int BlockId { get; }
         public DiscBlockGroup LowerBlockGroup { get; set; }
 
-        public FreeBlock(int blockId,DiscBlockGroup lowerBlockGroup)
+        public FreeBlock(int blockId, DiscBlockGroup lowerBlockGroup)
         {
             this.BlockId = blockId;
             this.LowerBlockGroup = lowerBlockGroup;
         }
     }
-    
-    
+
+
+
 }

@@ -12,21 +12,13 @@ namespace OS_CD {
     
     using FileNodeId = Int32;
     using UserId = Int32;
-    
+
     #endregion
-    public enum FileState
-    {
-        WithoutChange,
-        BeWrite,
-        //BeRead,
-        BeDestory,
-    }
-    
     public class OpenFileRecord
     {
         private FileNodeId fileNodeId;
-        public DateTime createTime {get;}
-        
+        public DateTime createTime { get; }
+
         public OpenFileRecord(FileNodeId fileNodeId)
         {
             this.fileNodeId = fileNodeId;
@@ -34,11 +26,11 @@ namespace OS_CD {
         }
     }
 
-    public class SystemOpenFileRecord:OpenFileRecord
+    public class SystemOpenFileRecord : OpenFileRecord
     {
         //共享计数
-        private int counter;
-        
+        public int counter { get; private set; }
+
         public SystemOpenFileRecord(int fileNodeId) : base(fileNodeId)
         {
             counter = 0;
@@ -53,8 +45,23 @@ namespace OS_CD {
         {
             counter--;
         }
-        
-        
+
+
     }
-    
+
+    public class UserOpenFileRecord : OpenFileRecord
+    {
+        //打开文件的缓存
+        public FileBody buff = new FileBody();
+        public FileEvent fileEvent = FileEvent.Empty;
+        public UserOpenFileRecord(int fileNodeId, FileBody fileBody) : base(fileNodeId)
+        {
+            this.buff.Copy(fileBody);
+            this.buff.fileBodyChangeEvent += this.FileBodyChangeEvent;
+        }
+        public void FileBodyChangeEvent()
+        {
+            fileEvent = FileEvent.Write;
+        }
+    }
 }
