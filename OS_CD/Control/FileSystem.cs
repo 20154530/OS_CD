@@ -13,8 +13,6 @@ namespace OS_CD
 
     #endregion
 
-    
-
     public enum FileEvent
     {
         Write,
@@ -55,7 +53,8 @@ namespace OS_CD
         private Dictionary<UserId, User> uCBList = new Dictionary<UserId, User>();
 
         public Dictionary<UserId, User> UCBList {
-
+            get => uCBList;
+            set { uCBList = value; }
         }
 
         //超级用户
