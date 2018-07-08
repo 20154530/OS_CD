@@ -100,7 +100,7 @@ namespace OS_CD
             if (Disc.Instance.IsFreeBlockEnough(blockAmount))
                 for (int i = blockAmount; i > 0; i--)
                 {
-                    newFile.blockIdList.Add(Disc.Instance.GetBlockFromGroup());
+                    newFile.blockIdList.Add(Disc.Instance.GetBlockFromFreeGroup(newFile.ID));
                 }
             else return GetErrorID();
 
@@ -194,7 +194,7 @@ namespace OS_CD
                 //内存回收文件
                 foreach (var blockId in ((File)fileNode).blockIdList)
                 {
-                    Disc.Instance.AddBlockToGroup(blockId);
+                    Disc.Instance.AddBlockToFreeGroup(blockId);
                 }
                 //目录重构
                 fatherFileNode.subFileNodeIdList.Remove(fileNodeId);
@@ -380,7 +380,7 @@ namespace OS_CD
                     //将分配的内存块号添加到源文件中
                     foreach (var index in Enumerable.Range(0, needFreeBlockAmount))
                     {
-                        file.blockIdList.Add(Disc.Instance.GetBlockFromGroup());
+                        file.blockIdList.Add(Disc.Instance.GetBlockFromFreeGroup(file.ID));
                     }
                     //更新文件事件的记录
                     file.eventInfo.AddEventTime(FileEvent.Write, userId, DateTime.Now);

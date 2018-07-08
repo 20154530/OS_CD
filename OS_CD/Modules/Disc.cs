@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
@@ -6,35 +7,55 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace OS_CD {
+
+
+    #region 别名
+
+    using FileNodeId = Int32;
+    using UserId = Int32;
+    using DiscBlockId = Int32;
+
+    #endregion
+
     public class Disc
     {
         public static Disc Instance = new Disc();
         //记录空闲的块数
         private int freeAmount = 0;
+
+        //已经占用的块以及文件id
+        public Dictionary<DiscBlockId, FileNodeId> usageBlockList = new Dictionary<int, int>();
+
         public void Init(int GroupMaxAmount, int DiscMaxAmount)
         {
             DiscBlockGroup.TopBlockGroup.Init(GroupMaxAmount);
 
             for (int i = DiscMaxAmount; i >= 0; i--)
             {
-                AddBlockToGroup(i);
+                AddBlockToFreeGroup(i);
             }
 
             Debug.Print("Disc init finish\n");
         }
 
-        public void AddBlockToGroup(int blockId)
+        public void AddBlockToFreeGroup(int blockId)
         {
             freeAmount++;
             DiscBlockGroup.AddDiscBlock(blockId);
+
+            usageBlockList.Remove(blockId);
         }
 
-        public int GetBlockFromGroup()
+        public int GetBlockFromFreeGroup(FileNodeId fileNodeId)
         {
-            int i = DiscBlockGroup.GetDiscBlock();
-            Debug.Print("get a freeblock :" + i + "\n");
-            if (i != -1) freeAmount--;
-            return i;
+            int freeBlockId = DiscBlockGroup.GetDiscBlock();
+            Debug.Print("get a freeblock :" + freeBlockId + "\n");
+            if (freeBlockId != -1)
+            {
+                freeAmount--;
+                usageBlockList.Add(freeBlockId, fileNodeId);
+            }
+            return freeBlockId;
         }
 
         public bool IsFreeBlockEnough(int amount)
