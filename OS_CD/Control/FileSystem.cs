@@ -69,7 +69,7 @@ namespace OS_CD
         public void Init()
         {
             //rootUserId 为0
-            var rootUser = new User(GetNextUserfulUserID(), "rootUser");
+            var rootUser = new User(GetNextUserfulUserID(), "Admin", "Admin");
             UCBList.Add(rootUser.ID, rootUser);
             this.rootUserId = rootUser.ID;
             //rootFolderId 为0
@@ -238,10 +238,10 @@ namespace OS_CD
             currentUserId = userId;
         }
 
-        public FileNodeId CreateUser(string userName)
+        public FileNodeId CreateUser(string userName,string password)
         {
             //创建用户，保存到系统记录中
-            User newUser = new User(GetNextUserfulUserID(), userName);
+            User newUser = new User(GetNextUserfulUserID(), userName,password);
             RegisterUser(newUser);
             Debug.Print("make a user ,id is :" + newUser.ID + "\n");
             return newUser.ID;

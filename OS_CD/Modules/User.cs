@@ -24,10 +24,11 @@ namespace OS_CD {
         //用户打开文件表
         public Dictionary<FileNodeId, UserOpenFileRecord> openFileRecordList = new Dictionary<int, UserOpenFileRecord>();
 
-        public User(int id, string name)
+        public User(int id, string name,string password)
         {
             ID = id;
             Name = name;
+            Password = password;
         }
 
 
