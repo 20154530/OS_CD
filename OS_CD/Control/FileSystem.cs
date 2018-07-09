@@ -89,7 +89,7 @@ namespace OS_CD {
             var rootFolder = new Folder(GetNextUserfulFileNodeId(), "rootFolder");
             FCBList.Add(rootFolder.ID, rootFolder);
             this.rootFolderId = rootFolder.ID;
-
+            rootFolder.fatherFileNodeId = -1;
         }
 
         //作为分配的ID
