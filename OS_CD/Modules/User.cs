@@ -13,6 +13,9 @@ namespace OS_CD {
     using UserId = Int32;
 
     #endregion
+
+
+    [Serializable]
     public class User
     {
         public int ID { get; set; }
