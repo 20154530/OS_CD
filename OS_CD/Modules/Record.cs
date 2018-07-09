@@ -14,6 +14,8 @@ namespace OS_CD {
     using UserId = Int32;
 
     #endregion
+
+    [Serializable]
     public class OpenFileRecord
     {
         private FileNodeId fileNodeId;
@@ -37,6 +39,7 @@ namespace OS_CD {
         }
     }
 
+    [Serializable]
     public class SystemOpenFileRecord : OpenFileRecord
     {
         //共享计数
@@ -60,6 +63,7 @@ namespace OS_CD {
 
     }
 
+    [Serializable]
     public class UserOpenFileRecord : OpenFileRecord
     {
         //打开文件的缓存

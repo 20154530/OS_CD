@@ -16,10 +16,9 @@ namespace OS_CD {
     using DiscBlockId = Int32;
 
     #endregion
-
+    [Serializable]
     public class Disc
     {
-        public static Disc Instance = new Disc();
         //记录空闲的块数
         private int freeAmount = 0;
 
@@ -64,6 +63,7 @@ namespace OS_CD {
         }
     }
     //成组
+    [Serializable]
     internal class DiscBlockGroup
     {
         //单例,保存最上层的组
@@ -152,6 +152,7 @@ namespace OS_CD {
 
     }
 
+    [Serializable]
     internal class FreeBlock
     {
         public int BlockId { get; }

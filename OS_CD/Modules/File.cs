@@ -14,6 +14,8 @@ namespace OS_CD {
     using UserId = Int32;
 
     #endregion
+    
+    [Serializable]
     public class FileNode
     {
         public int ID { get; set; }
@@ -58,6 +60,7 @@ namespace OS_CD {
 
     }
 
+    [Serializable]
     public class File : FileNode
     {
         public List<int> blockIdList = new List<int>();
@@ -75,6 +78,7 @@ namespace OS_CD {
         }
     }
 
+    [Serializable]
     public class FileBody
     {
         private string content;
@@ -111,7 +115,7 @@ namespace OS_CD {
         public int GetSize()
         {
             byte[] bytes = Encoding.Default.GetBytes(content);
-            return bytes.Length;
+            return bytes.Length/2;
         }
 
         public delegate void FileBodyChangeHandler();
@@ -120,6 +124,7 @@ namespace OS_CD {
 
     }
 
+    [Serializable]
     public class Folder : FileNode
     {
         public List<int> subFileNodeIdList = new List<int>();
@@ -145,6 +150,7 @@ namespace OS_CD {
         }
     }
 
+    [Serializable]
     public class EventInfo
     {
         private Dictionary<FileEvent, Dictionary<UserId, List<DateTime>>> allEventTimeList
