@@ -70,5 +70,29 @@ namespace OS_CD.Properties {
                 this["FilePageGridWidth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int BlockUsed {
+            get {
+                return ((int)(this["BlockUsed"]));
+            }
+            set {
+                this["BlockUsed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int BlockRemain {
+            get {
+                return ((int)(this["BlockRemain"]));
+            }
+            set {
+                this["BlockRemain"] = value;
+            }
+        }
     }
 }

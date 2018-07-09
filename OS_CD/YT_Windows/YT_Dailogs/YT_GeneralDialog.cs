@@ -11,7 +11,7 @@ namespace OS_CD {
     /// 窗口关闭对话框
     /// 一般用于提醒保存操作或进行一些选择
     /// </summary>
-    public sealed class YT_GeneralDialog : YT_DialogBase {
+    public class YT_GeneralDialog : YT_DialogBase {
 
         #region Properties
         public string ContentText {

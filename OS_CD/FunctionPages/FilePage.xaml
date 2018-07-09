@@ -26,7 +26,7 @@
               Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="160"
-                                  Width="{Binding FilePageGridWidth, Source={x:Static local:Properties.Settings.Default},Converter={StaticResource DoubleToGrid},Mode=TwoWay}" />
+                                  Width="{Binding FilePageGridWidth, Source={x:Static local:Properties.Settings.Default},Converter={StaticResource DoubleToGrid},Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition MinWidth="0" />
             </Grid.ColumnDefinitions>
@@ -37,15 +37,18 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition MaxHeight="140" />
                 </Grid.RowDefinitions>
-                <Grid x:Name="FileOperation" Margin="4,6,0,4">
+                <Grid x:Name="FileOperation"
+                      Margin="4,6,0,4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                         Command="{Binding AddFile}"
                                          ForeToolTip="添加文件/夹"
                                          Content="&#xE948;" />
                     <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                         Command="{Binding RemoveFile}"
                                          ForeToolTip="删除文件/夹"
                                          Grid.Column="1"
                                          Content="&#xE949;" />
@@ -57,7 +60,8 @@
                            Margin="0,0,2,0" />
                 <TreeView x:Name="FileTree"
                           Grid.Row="1"
-                          ItemsSource="{Binding FileDictionary}"
+                          SelectedItemChanged="FileTree_SelectedItemChanged"
+                          ItemsSource="{Binding FileDictionary,Source={x:Static local:Systeminfo.Instence}}"
                           Style="{StaticResource FileTreeView}" />
                 <Rectangle Style="{StaticResource H_Seperoator}"
                            Fill="{StaticResource FilePage_FG}"
@@ -68,59 +72,63 @@
                               HorizontalScrollBarVisibility="Visible"
                               Grid.Row="3"
                               Margin="0,8,0,4">
-                    <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="120" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="36" />
-                        <RowDefinition Height="24" />
-                        <RowDefinition Height="24" />
-                        <RowDefinition Height="24" />
-                        <RowDefinition Height="24" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="详情"
-                               Style="{StaticResource DiskPageLabel}"
-                               FontWeight="Normal"
-                               FontSize="14" />
-                    <TextBlock Text="名称"
-                               Grid.Row="1"
-                               Style="{StaticResource DiskPageLabel}"
-                               FontSize="12" />
-                    <TextBlock  Text="{Binding }"
-                                Style="{StaticResource DiskPageLabel}"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                FontSize="12" />
-                    <TextBlock Text="父目录"
-                               Style="{StaticResource DiskPageLabel}"
-                               Grid.Row="2"
-                               FontSize="12" />
-                    <TextBlock  Text="{Binding }"
-                                Style="{StaticResource DiskPageLabel}"
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                FontSize="12" />
-                    <TextBlock Text="权限"
-                               Style="{StaticResource DiskPageLabel}"
-                               Grid.Row="3"
-                               FontSize="12" />
-                    <TextBlock Text="{Binding }"
-                               Style="{StaticResource DiskPageLabel}"
-                               Grid.Row="3"
-                               Grid.Column="1"
-                               FontSize="12" />
-                    <TextBlock Text="磁盘占用"
-                               Style="{StaticResource DiskPageLabel}"
-                               Grid.Row="4"
-                               FontSize="12" />
-                    <TextBlock Text="{Binding }"
-                               Style="{StaticResource DiskPageLabel}"
-                               Grid.Row="4"
-                               Grid.Column="1"
-                               FontSize="12" />
-                </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="36" />
+                            <RowDefinition Height="24" />
+                            <RowDefinition Height="24" />
+                            <RowDefinition Height="24" />
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="详情"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   FontWeight="Normal"
+                                   FontSize="14" />
+                        <TextBlock Text="名称"
+                                   Grid.Row="1"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   FontSize="12" />
+                        <TextBlock  Text="{Binding Filenow.Name,Source={x:Static local:Systeminfo.Instence}}"
+                                    Style="{StaticResource DiskPageLabel}"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="12" />
+                        <TextBlock Text="父目录"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Grid.Row="2"
+                                   FontSize="12" />
+                        <TextBlock  Text="{Binding Filenow.PID,Source={x:Static local:Systeminfo.Instence}}"
+                                    Style="{StaticResource DiskPageLabel}"
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontSize="12" />
+                        <TextBlock Text="权限"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Grid.Row="3"
+                                   FontSize="12" />
+                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetPowerList}}"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Grid.Row="3"
+                                   Grid.Column="1"
+                                   FontSize="12" />
+                        <TextBlock Text="磁盘占用"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Grid.Row="4"
+                                   FontSize="12" />
+                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence}}"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Grid.Row="4"
+                                   Grid.Column="1"
+                                   FontSize="12" />
+                    </Grid>
                 </ScrollViewer>
             </Grid>
             <GridSplitter Grid.Column="1"
@@ -131,7 +139,12 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
+                <ListView x:Name="OpenFileLabel"
+                          SelectionChanged="OpenFileLabel_SelectionChanged"
+                          Style="{StaticResource FileLabelButtonView}" />
+                <TextBox x:Name="FileCon"
+                         Background="Transparent"
+                         Grid.Row="1" />
             </Grid>
         </Grid>
     </Grid>

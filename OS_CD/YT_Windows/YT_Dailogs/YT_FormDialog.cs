@@ -43,6 +43,7 @@ namespace OS_CD {
             WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
         }
+
         static YT_FormDialog() {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(YT_FormDialog), new FrameworkPropertyMetadata(typeof(YT_FormDialog)));
         }

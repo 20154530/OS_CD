@@ -16,6 +16,9 @@
     <Convert:DoubleToGrid x:Key="DoubleToGrid" />
     <Convert:VisToTF x:Key="VisToTF" />
     <Convert:HideFitValue x:Key="HideFitValue" />
+    <Convert:GetPDock x:Key="GetPDock" />
+    <Convert:GetPowerList x:Key="GetPowerList" />
+    <Convert:HideNotFile x:Key="HideNotPara" />
 
 
 </ResourceDictionary>

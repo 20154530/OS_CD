@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using OS_CD.Models;
-using System.Windows.Media;
+using static OS_CD.Models.TFileNode;
 
 namespace OS_CD.Mangers.ValueConverters {
     /// <summary>
@@ -29,7 +29,7 @@ namespace OS_CD.Mangers.ValueConverters {
     /// </summary>
     public class JudgeNone : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            return System.Convert.ToInt32(value) == 0 ? "空闲" : "占用";
+            return System.Convert.ToInt32(value) == -1 ? "空闲" : "占用";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
@@ -60,14 +60,14 @@ namespace OS_CD.Mangers.ValueConverters {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (parameter is null)
             {
-                if (((TFileNode)value).Contains.Count == 0)
+                if (((TFileNode)value).FileMode.Equals(Mode.File))
                     return "\uE8A5";
                 else
                     return "\uED41";
             }
             else
             {
-                if (((TFileNode)value).Contains.Count == 0)
+                if (((TFileNode)value).FileMode.Equals(Mode.File))
                     return "\uE8A5";
                 else
                     return "\uED43";
@@ -85,7 +85,7 @@ namespace OS_CD.Mangers.ValueConverters {
     /// </summary>
     public class FileTreeToolTipSelector : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (((TFileNode)value).Contains.Count == 0)
+            if (((TFileNode)value).FileMode.Equals(Mode.File))
                 return Visibility.Collapsed;
             else
                 return Visibility.Visible;
@@ -152,6 +152,49 @@ namespace OS_CD.Mangers.ValueConverters {
                 return "";
             else
                 return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 获得文件父目录的名称
+    /// </summary>
+    public class GetPDock : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            return (FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value)) as Folder).name;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 获得当前用户权限
+    /// </summary>
+    public class GetPowerList : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            File f = (FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value)) as File);
+            if (f != null)
+                return f.PowerList[Systeminfo.Instence.UserNow.ID];
+            else
+                return "未知";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class HideNotFile : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            if (((TFileNode)value).Contains.Count == 0)
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace OS_CD.Models {
-    public enum FileType {
-        File,
-        Folder
-    }
+
     /// <summary>
     /// 用于显示树状图的转换模型
     /// </summary>
     public class TFileNode {
+        public enum Mode {
+            File,
+            Folder
+        }
+        public Mode FileMode { get; set; }
         public string Name { get; set; }
         public int ID { get; set; }
 
@@ -24,10 +26,11 @@ namespace OS_CD.Models {
             Contains.Add(f);
         }
 
-        public TFileNode(int id, int pid = 0, string name = "") {
+        public TFileNode(int id, int pid = 0, string name = "",Mode mode = Mode.File) {
             Contains = new List<TFileNode>();
             PID = pid;
             Name = name;
+            FileMode = mode;
         }
 
         private TFileNode FromFileNode(FileNode f) {
@@ -39,6 +42,7 @@ namespace OS_CD.Models {
             Name = f.name;
             ID = f.ID;
             PID = f.fatherFileNodeId;
+            FileMode = f is Folder ? Mode.Folder : Mode.File;
         }
     }
 }

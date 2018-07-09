@@ -397,6 +397,37 @@
                 Value="0,0,16,0" />
     </Style>
 
+    <!--FilePage_CloseButton-->
+    <Style x:Key="FilePage_CloseButton"
+           TargetType="local:YT_IconButton">
+        <Setter Property="IconN"
+                Value="{StaticResource FileTreeButton_Icon_BG_N}" />
+        <Setter Property="IconR"
+                Value="#606060" />
+        <Setter Property="IconP"
+                Value="{StaticResource FileTreeButton_Icon_BG_P}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource FileTreeButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource FileTreeButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource FileTreeButton_IconMask_BG_P}" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Content"
+                Value="&#xE711;" />
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="ForeToolTip"
+                Value="关闭文件" />
+        <Setter Property="ToolTipVisiblity"
+                Value="Visible" />
+        <Setter Property="Margin"
+                Value="0,0,0,0" />
+    </Style>
+
 
 
     <!--Seperoators-->

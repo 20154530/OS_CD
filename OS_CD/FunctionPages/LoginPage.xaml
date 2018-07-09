@@ -47,10 +47,12 @@
                 <TextBlock x:Name="PasswordLabel"
                            Grid.Row="1"
                            Text="密码"
+                           Visibility="{Binding LoginState, Source={x:Static local:Systeminfo.Instence},Converter={StaticResource ConVisual}}"
                            Style="{StaticResource LoginPage_Label}" />
                 <PasswordBox x:Name="Password"
                              Grid.Column="1"
                              Grid.Row="1"
+                             Visibility="{Binding LoginState, Source={x:Static local:Systeminfo.Instence},Converter={StaticResource ConVisual}}"
                              IsEnabled="{Binding LoginState, Source={x:Static local:Systeminfo.Instence},Converter={StaticResource VisToTF},ConverterParameter=0}"
                              Style="{StaticResource LoginPage_PassWord}" />
                 <TextBlock x:Name="Title"

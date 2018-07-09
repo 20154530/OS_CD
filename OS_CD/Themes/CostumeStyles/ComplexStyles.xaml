@@ -400,6 +400,144 @@
         </Setter>
     </Style>
 
+
+    <!--LoginPage-->
+
+    <!--TextBox-->
+    <Style x:Key="LoginPage_TextBox"
+           TargetType="TextBox">
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Height"
+                Value="24" />
+        <Setter Property="MinWidth"
+                Value="200" />
+        <Setter Property="MaxWidth"
+                Value="320" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainWindow_FG}" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="SelectionBrush"
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_N}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="0,2,0,0" />
+                            <Rectangle x:Name="EnableId"
+                                       Grid.Row="1"
+                                       Fill="{StaticResource MainWindow_Border_Normal}"
+                                       Height="1"
+                                       SnapsToDevicePixels="True"
+                                       HorizontalAlignment="Stretch" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter TargetName="EnableId"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="True">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--PasswordBox-->
+    <Style x:Key="LoginPage_PassWord"
+           TargetType="PasswordBox">
+        <Setter Property="Height"
+                Value="24" />
+        <Setter Property="MinWidth"
+                Value="200" />
+        <Setter Property="MaxWidth"
+                Value="320" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainWindow_FG}" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="FontSize"
+                Value="{StaticResource Default_Textbox_Text_Size}" />
+        <Setter Property="SelectionBrush"
+                Value="{StaticResource DefaultToggleButton_IconMask_BG_N}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="0,0,0,0" />
+                            <Rectangle x:Name="EnableID"
+                                       Grid.Row="1"
+                                       Fill="{StaticResource MainWindow_Border_Normal}"
+                                       Height="1"
+                                       SnapsToDevicePixels="True"
+                                       HorizontalAlignment="Stretch" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter TargetName="EnableID"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="True">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    
     <!--ListView-->
 
     <Style x:Key="DiskBlockView"
@@ -568,29 +706,124 @@
             <Setter.Value>
                 <DataTemplate DataType="{x:Type local:User}">
                     <Grid x:Name="UserItem"
-                          UseLayoutRounding="True">
+                          Background="Transparent"
+                          UseLayoutRounding="True"
+                          Height="24">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="24" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding ID}"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Center"
+                                   Background="{StaticResource MainWindow_Border_Normal}"
+                                   Foreground="{StaticResource MainWindow_BG}"
                                    Style="{StaticResource LoginPage_Label}" />
                         <TextBlock Text="{Binding Name}"
                                    Grid.Column="1"
+                                   HorizontalAlignment="Right"
                                    Style="{StaticResource LoginPage_Label}" />
-                        <Rectangle x:Name="CellItem" 
-                                   Height="1"
-                                   Grid.ColumnSpan="2"
-                                   VerticalAlignment="Bottom"
-                                   Visibility="Collapsed"
-                                   Fill="{StaticResource FilePage_FG}" />
                     </Grid>
                     <DataTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
-                            <Setter TargetName="CellItem"
-                                    Property="Visibility"
-                                    Value="Visible" />
+                            <Setter TargetName="UserItem"
+                                    Property="Background"
+                                    Value="{StaticResource DarkMask_D}" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border x:Name="Bd"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FileLabelButtonView"
+           TargetType="ListView">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="SelectionMode"
+                Value="Single" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="RootBorder">
+                                    <Grid x:Name="RootGrid"
+                                          Margin="0,4,0,4">
+                                        <ContentPresenter x:Name="Content"
+                                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                          Margin="0" />
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="{x:Type local:User}">
+                    <Grid x:Name="ListItem"
+                          Background="Transparent"
+                          UseLayoutRounding="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="FileName"
+                                   Tag="{Binding ID}"
+                                   Text="{Binding Name}"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Center"
+                                   Background="{StaticResource MainWindow_Border_Normal}"
+                                   Foreground="{StaticResource MainWindow_BG}"
+                                   Style="{StaticResource LoginPage_Label}" />
+                        <local:YT_IconButton x:Name="CloseButton"
+                                             DataContext="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListView}}"
+                                             Command="{Binding CloseFile}"
+                                             CommandParameter="{Binding ElementName=FileName,Path=Tag}"
+                                             Style="{StaticResource FilePage_CloseButton}"/>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="FileName"
+                                    Property="Foreground"
+                                    Value="{StaticResource MainWindow_BG}" />
+                            <Setter TargetName="ListItem"
+                                    Property="Background"
+                                    Value="{StaticResource MainWindow_FG}" />
                         </Trigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
@@ -614,7 +847,7 @@
     <!--TreeView-->
 
     <Style x:Key="FileTreeView"
-           TargetType="{x:Type TreeView}">
+           TargetType="TreeView">
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="BorderThickness"
@@ -664,7 +897,7 @@
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Background="{TemplateBinding Background}"
                                             VerticalAlignment="Bottom"
-                                            Margin="8,2,0,2"
+                                            Margin="8,2,0,1"
                                             SnapsToDevicePixels="true">
                                         <ContentPresenter x:Name="PART_Header"
                                                           ContentSource="Header"
@@ -703,17 +936,18 @@
                 <HierarchicalDataTemplate DataType="{x:Type Models:TFileNode}"
                                           ItemsSource="{Binding Contains}">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="FileName"
-                                   Style="{StaticResource FileTreeLabel}"
-                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TreeViewItem}}"
-                                   Text="{Binding Name}" />
+                        <local:YT_TextBox x:Name="FileName"
+                                          OriNoable="True"
+                                          Height="16"
+                                          Foreground="{Binding Foreground,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TreeViewItem}}"
+                                          Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TreeView}">
+                <ControlTemplate TargetType="TreeView">
                     <Border x:Name="Bd"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -791,140 +1025,6 @@
     <!--MenuItems-->
 
 
-
-    <!--LoginPage-->
-
-    <!--TextBox-->
-    <Style x:Key="LoginPage_TextBox"
-           TargetType="TextBox">
-        <Setter Property="TextWrapping"
-                Value="Wrap" />
-        <Setter Property="Height"
-                Value="24" />
-        <Setter Property="MinWidth"
-                Value="200" />
-        <Setter Property="MaxWidth"
-                Value="320" />
-        <Setter Property="HorizontalAlignment"
-                Value="Stretch" />
-        <Setter Property="VerticalAlignment"
-                Value="Center" />
-        <Setter Property="Background"
-                Value="Transparent" />
-        <Setter Property="FontSize"
-                Value="16" />
-        <Setter Property="Foreground"
-                Value="{StaticResource MainWindow_FG}" />
-        <Setter Property="BorderThickness"
-                Value="0" />
-        <Setter Property="SelectionBrush"
-                Value="{StaticResource DefaultToggleButton_IconMask_BG_N}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border x:Name="border"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Focusable="False"
-                                          HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden"
-                                          Margin="0,2,0,0" />
-                            <Rectangle x:Name="EnableId"
-                                       Grid.Row="1"
-                                       Fill="{StaticResource MainWindow_Border_Normal}"
-                                       Height="1"
-                                       SnapsToDevicePixels="True"
-                                       HorizontalAlignment="Stretch" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled"
-                                 Value="False">
-                            <Setter TargetName="EnableId"
-                                    Property="Visibility"
-                                    Value="Collapsed" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver"
-                                 Value="True">
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused"
-                                 Value="True">
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!--PasswordBox-->
-    <Style x:Key="LoginPage_PassWord"
-           TargetType="PasswordBox">
-        <Setter Property="Height"
-                Value="24" />
-        <Setter Property="MinWidth"
-                Value="200" />
-        <Setter Property="MaxWidth"
-                Value="320" />
-        <Setter Property="HorizontalAlignment"
-                Value="Stretch" />
-        <Setter Property="Background"
-                Value="Transparent" />
-        <Setter Property="Foreground"
-                Value="{StaticResource MainWindow_FG}" />
-        <Setter Property="BorderThickness"
-                Value="0" />
-        <Setter Property="FontSize"
-                Value="{StaticResource Default_Textbox_Text_Size}" />
-        <Setter Property="SelectionBrush"
-                Value="{StaticResource DefaultToggleButton_IconMask_BG_N}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type PasswordBox}">
-                    <Border x:Name="border"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Focusable="False"
-                                          HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden"
-                                          Margin="0,0,0,0" />
-                            <Rectangle x:Name="EnableID"
-                                       Grid.Row="1"
-                                       Fill="{StaticResource MainWindow_Border_Normal}"
-                                       Height="1"
-                                       SnapsToDevicePixels="True"
-                                       HorizontalAlignment="Stretch" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled"
-                                 Value="False">
-                            <Setter TargetName="EnableID"
-                                    Property="Visibility"
-                                    Value="Collapsed" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver"
-                                 Value="True">
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused"
-                                 Value="True">
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
 
 </ResourceDictionary>

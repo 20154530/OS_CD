@@ -9,36 +9,61 @@ using System.Threading.Tasks;
 namespace OS_CD {
     internal class FilePageViewModel : ViewModelBase {
 
-        private List<TFileNode> fileDictionary { get; set; }
-        public List<TFileNode> FileDictionary {
-            get => fileDictionary;
-            set {
-                fileDictionary = value;
-                OnPropertyChanged("FileDictionary");
-            }
+        #region Commands
+        public CommandBase AddFile { get; set; }
+
+        public CommandBase RemoveFile { get; set; }
+
+        public CommandBase CloseFile { get; set; }
+
+        public CommandBase OpenFile { get; set; }
+        #endregion
+
+        #region Events
+        public event EventHandler OnFileRemoved;
+
+        public event EventHandler OnFileAdded;
+        #endregion
+
+
+        #region Actions
+        private void OpenFile_Commandaction(object para) {
+            
         }
 
+        private void CloseFile_Commandaction(object para) {
+            
+        }
+
+        private void AddFile_Commandaction(object para) {
+            OnFileAdded?.Invoke(this,EventArgs.Empty);
+
+        }
+
+        private void RemoveFile_Commandaction(object para) {
+            OnFileRemoved?.Invoke(this, EventArgs.Empty);
+
+
+        }
+        #endregion
+
+
+        #region Method
+        private void InitCommands() {
+            AddFile = new CommandBase();
+            AddFile.Commandaction += AddFile_Commandaction; ; ;
+            RemoveFile = new CommandBase();
+            RemoveFile.Commandaction += RemoveFile_Commandaction; ; ;
+            CloseFile = new CommandBase();
+            CloseFile.Commandaction += CloseFile_Commandaction; ; ;
+            OpenFile = new CommandBase();
+            OpenFile.Commandaction += OpenFile_Commandaction; ; ;
+        }
+
+        #endregion
 
         public FilePageViewModel() {
-            FileDictionary = new List<TFileNode>();
-            FileDictionary = GetDictioniary();
-        }
 
-        private List<TFileNode> GetDictioniary() {
-            List<TFileNode> dic = new List<TFileNode>();
-            foreach (var pair in FileSystem.Instance.FCBList)
-                dic.Add(new TFileNode(pair.Value));
-            return getTrees(0,dic);
-        }
-
-        private List<TFileNode> getTrees(int parentid, List<TFileNode> nodes) {
-            List<TFileNode> mainNodes = nodes.Where(x => x.PID == parentid).ToList<TFileNode>();
-            List<TFileNode> otherNodes = nodes.Where(x => x.PID != parentid).ToList<TFileNode>();
-            foreach (TFileNode dpt in mainNodes)
-            {
-                dpt.Contains = getTrees(dpt.ID, otherNodes);
-            }
-            return mainNodes;
         }
     }
 }

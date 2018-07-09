@@ -35,6 +35,10 @@ namespace OS_CD.FunctionPages {
         }
 
         private void DeleteUser(object obj) {
+            if ((UserList.SelectedItem as User).ID == 0) {
+                MessageBoxServices.ShowSimpleStringDialog("不能删除管理员用户！", false, false);
+                return;
+            }
             FileSystem.Instance.DestoryUser((UserList.SelectedItem as User).ID);
         }
     }

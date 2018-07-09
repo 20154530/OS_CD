@@ -14,5 +14,11 @@
     <Setting Name="FilePageGridWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">160</Value>
     </Setting>
+    <Setting Name="BlockUsed" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="BlockRemain" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
