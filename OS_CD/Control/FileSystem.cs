@@ -23,18 +23,21 @@ namespace OS_CD {
 
     }
 
-
-    [Serializable]
     public class FileSystem {
         //单例
-        public static FileSystem Instance;
-        //盘块
-        public Disc disc = new Disc();
-        public FileSystem() {
-            //盘块初始化
-            int GroupMaxAmount = 20;
-            int DiscMaxAmount =512;
-            disc.Init(GroupMaxAmount,DiscMaxAmount);
+        private static FileSystem instance;
+
+        public static FileSystem Instance {
+            get {
+                if (instance is null)
+                {
+                    instance = new FileSystem();
+                }
+                return instance;
+            }
+        }
+
+        private FileSystem() {
             Init();
         }
 
@@ -55,7 +58,6 @@ namespace OS_CD {
 
 
         //UCb用户控制块 List
-        [field:NonSerialized]
         public event EventHandler UCBListChanged;
         private Dictionary<UserId, User> uCBList = new Dictionary<UserId, User>();
         public Dictionary<UserId, User> UCBList {
@@ -111,10 +113,10 @@ namespace OS_CD {
             File newFile = new File(GetNextUserfulFileNodeId(), name);
             var blockAmount = newFile.GetFileSize();
             //分配内存空间
-            if (this.disc.IsFreeBlockEnough(blockAmount))
+            if (Disc.Instance.IsFreeBlockEnough(blockAmount))
                 for (int i = blockAmount; i > 0; i--)
                 {
-                    newFile.blockIdList.Add(this.disc.GetBlockFromFreeGroup(newFile.ID));
+                    newFile.blockIdList.Add(Disc.Instance.GetBlockFromFreeGroup(newFile.ID));
                 }
             else return GetErrorID();
 
@@ -203,7 +205,7 @@ namespace OS_CD {
                 //内存回收文件
                 foreach (var blockId in ((File)fileNode).blockIdList)
                 {
-                    this.disc.AddBlockToFreeGroup(blockId);
+                    Disc.Instance.AddBlockToFreeGroup(blockId);
                 }
                 //目录重构
                 fatherFileNode.subFileNodeIdList.Remove(fileNodeId);
@@ -363,7 +365,7 @@ namespace OS_CD {
                     Debug.Print("before you change the file,there have been something change in this file,please check out the change.\n");
                     return false;
                 }
-                else if (!this.disc.IsFreeBlockEnough(needFreeBlockAmount))
+                else if (!Disc.Instance.IsFreeBlockEnough(needFreeBlockAmount))
                 {
                     //存储容量不足够
                     Debug.Print("file change failure,there is no such big memory to save it\n");
@@ -379,7 +381,7 @@ namespace OS_CD {
                     //将分配的内存块号添加到源文件中
                     foreach (var index in Enumerable.Range(0, needFreeBlockAmount))
                     {
-                        file.blockIdList.Add(this.disc.GetBlockFromFreeGroup(file.ID));
+                        file.blockIdList.Add(Disc.Instance.GetBlockFromFreeGroup(file.ID));
                     }
                     //更新文件事件的记录
                     file.eventInfo.AddEventTime(FileEvent.Write, userId, DateTime.Now);
@@ -449,6 +451,4 @@ namespace OS_CD {
             user.openFileRecordList[fileNodeId].buff.Copy(fileBody);
         }
     }
-
-   
 }
