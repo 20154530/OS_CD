@@ -25,7 +25,17 @@ namespace OS_CD {
 
     public class FileSystem {
         //单例
-        public static FileSystem Instance = new FileSystem();
+        private static FileSystem instance;
+
+        public static FileSystem Instance {
+            get {
+                if (instance is null)
+                {
+                    instance = new FileSystem();
+                }
+                return instance;
+            }
+        }
 
         private FileSystem() {
             Init();

@@ -134,12 +134,19 @@ namespace OS_CD {
             systime_timer.Enabled = true;
         }
 
+        #region Disk
         private void InitDisk() {
             Blockcell = new int[512];
             for (int i = 0; i < 512; i++)
                 blockcell[i] = -1;
         }
 
+        private void LoadDisk() {
+            
+        }
+        #endregion
+
+        #region User
         private void InitUser() {
             UserNow = noUser;
             Users = new ObservableCollection<User>();
@@ -154,20 +161,24 @@ namespace OS_CD {
         private void LoadUsers() {
             Users.Clear();
             if (FileSystem.Instance.UCBList.Count > 0)
-                foreach (var pair in FileSystem.Instance.UCBList) {
+                foreach (var pair in FileSystem.Instance.UCBList)
+                {
                     Users.Add(pair.Value);
                 }
         }
+        #endregion
 
-        private void LoadDisk() {
+        #region File
 
-        }
+        #endregion
+
+
         #endregion
 
 
         #region EventActions
-    
-        
+
+
         #endregion
 
         #region Constructors

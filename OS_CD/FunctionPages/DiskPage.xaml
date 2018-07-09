@@ -132,7 +132,7 @@
                     <Rectangle Width="24"
                                Height="24"
                                StrokeThickness="1"
-                               Stroke="#080808"
+                               Stroke="{StaticResource MainWindow_Border_Normal}"
                                 VerticalAlignment="Top"
                                HorizontalAlignment="Left"
                                Fill="{Binding SelectedFile.ID,Converter={StaticResource ColorSelector}}" />
