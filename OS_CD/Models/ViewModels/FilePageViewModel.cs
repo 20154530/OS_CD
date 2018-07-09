@@ -17,12 +17,16 @@ namespace OS_CD {
         public CommandBase CloseFile { get; set; }
 
         public CommandBase OpenFile { get; set; }
+
+        public CommandBase Rename { get; set; }
         #endregion
 
         #region Events
         public event EventHandler OnFileRemoved;
 
         public event EventHandler OnFileAdded;
+
+        public event EventHandler OnFileRename;
         #endregion
 
 
@@ -43,7 +47,11 @@ namespace OS_CD {
         private void RemoveFile_Commandaction(object para) {
             OnFileRemoved?.Invoke(this, EventArgs.Empty);
 
+        }
 
+        private void Rename_Commandaction(object para) {
+            OnFileRename?.Invoke(this, EventArgs.Empty);
+            
         }
         #endregion
 
@@ -51,19 +59,21 @@ namespace OS_CD {
         #region Method
         private void InitCommands() {
             AddFile = new CommandBase();
-            AddFile.Commandaction += AddFile_Commandaction; ; ;
+            AddFile.Commandaction += AddFile_Commandaction;
             RemoveFile = new CommandBase();
-            RemoveFile.Commandaction += RemoveFile_Commandaction; ; ;
+            RemoveFile.Commandaction += RemoveFile_Commandaction;
             CloseFile = new CommandBase();
-            CloseFile.Commandaction += CloseFile_Commandaction; ; ;
+            CloseFile.Commandaction += CloseFile_Commandaction;
             OpenFile = new CommandBase();
-            OpenFile.Commandaction += OpenFile_Commandaction; ; ;
+            OpenFile.Commandaction += OpenFile_Commandaction;
+            Rename = new CommandBase();
+            Rename.Commandaction += Rename_Commandaction;
         }
 
         #endregion
 
         public FilePageViewModel() {
-
+            InitCommands();
         }
     }
 }

@@ -8,10 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using OS_CD.Models;
 
 namespace OS_CD.FunctionPages {
     /// <summary>
@@ -23,11 +20,36 @@ namespace OS_CD.FunctionPages {
             DataContext = viewModel;
             viewModel.OnFileRemoved += ViewModel_OnFileRemove;
             viewModel.OnFileAdded += ViewModel_OnFileAdded;
+            viewModel.OnFileRename += ViewModel_OnFileRename;
             InitializeComponent();
         }
 
-        private void ViewModel_OnFileAdded(object sender, EventArgs e) {
+        public override void EndInit() {
+            base.EndInit();
+            FileTree.MouseDoubleClick += FileTree_MouseDoubleClick;
+        }
 
+        private void ViewModel_OnFileRename(object sender, EventArgs e) {
+            TFileNode sf = FileTree.SelectedItem as TFileNode;
+            sf.Rename = true;
+            sf.NameChanged.Commandaction += NameChanged_Commandaction;
+        }
+
+        private void NameChanged_Commandaction(object para) {
+            TFileNode tf = para as TFileNode;
+            FileSystem.Instance.GetFileNodeById(tf.ID).name = tf.Name;
+        }
+
+        private void FileTree_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            
+        }
+
+        private void ViewModel_OnFileAdded(object sender, EventArgs e) {
+            TFileNode sf = FileTree.SelectedItem as TFileNode;
+            if (sf.FileMode.Equals(TFileNode.Mode.Folder)) {
+                Folder fl = FileSystem.Instance.GetFileNodeById(sf.ID) as Folder;
+                fl.subFileNodeIdList.Add(FileSystem.Instance.CreateFile("", sf.ID,));
+            }
         }
 
         private void ViewModel_OnFileRemove(object sender, EventArgs e) {
@@ -40,9 +62,7 @@ namespace OS_CD.FunctionPages {
         }
 
         private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
-            Console.WriteLine("Value" + FileTree.SelectedValue.GetType());
-            Console.WriteLine("Path" + FileTree.SelectedValuePath.GetType());
-            Console.WriteLine("Item" + FileTree.SelectedItem.GetType());
+            
         }
     }
 }

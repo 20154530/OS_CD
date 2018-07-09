@@ -78,8 +78,9 @@ namespace OS_CD {
         private void YT_TextBox_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e) {
             if (!(bool)e.NewValue)
             {
+                
                 BindingExpression binding = GetBindingExpression(TextBox.TextProperty);
-                binding.UpdateSource();
+                binding?.UpdateSource();
                 RoutedCommand rcmd = DisableCommand as RoutedCommand;
                 if (rcmd != null)
                 {

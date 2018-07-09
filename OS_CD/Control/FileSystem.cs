@@ -37,7 +37,7 @@ namespace OS_CD {
             }
         }
 
-        private FileSystem() {
+        public FileSystem() {
             int GroupMaxAmount = 20;
             int DiscMaxAmount = 512;
             disc.Init(20, 512);

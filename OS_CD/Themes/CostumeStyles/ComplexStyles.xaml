@@ -536,8 +536,8 @@
         </Setter>
     </Style>
 
-    
-    
+
+
     <!--ListView-->
 
     <Style x:Key="DiskBlockView"
@@ -666,7 +666,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel/>
+                    <StackPanel />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -677,7 +677,8 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border x:Name="RootBorder">
-                                    <Grid x:Name="RootGrid" Margin="0,4,0,4">
+                                    <Grid x:Name="RootGrid"
+                                          Margin="0,4,0,4">
                                         <ContentPresenter x:Name="Content"
                                                           VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
@@ -765,7 +766,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -813,7 +814,7 @@
                                              DataContext="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListView}}"
                                              Command="{Binding CloseFile}"
                                              CommandParameter="{Binding ElementName=FileName,Path=Tag}"
-                                             Style="{StaticResource FilePage_CloseButton}"/>
+                                             Style="{StaticResource FilePage_CloseButton}" />
                     </Grid>
                     <DataTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
@@ -937,8 +938,10 @@
                                           ItemsSource="{Binding Contains}">
                     <StackPanel Orientation="Horizontal">
                         <local:YT_TextBox x:Name="FileName"
-                                          OriNoable="True"
                                           Height="16"
+                                          DisableCommand="{Binding NameChanged}"
+                                          CommandParameter="{Binding DataContext,RelativeSource={RelativeSource Mode=Self}}"
+                                          IsEnabled="{Binding Rename,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                           Foreground="{Binding Foreground,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TreeViewItem}}"
                                           Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
                     </StackPanel>

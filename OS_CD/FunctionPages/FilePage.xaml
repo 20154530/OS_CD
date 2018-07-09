@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:OS_CD"
+      xmlns:Properties="clr-namespace:OS_CD.Properties"
       mc:Ignorable="d"
       Title="FilePage">
     <Grid x:Name="RootGrid"
@@ -26,7 +27,7 @@
               Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="160"
-                                  Width="{Binding FilePageGridWidth, Source={x:Static local:Properties.Settings.Default},Converter={StaticResource DoubleToGrid},Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
+                                  Width="{Binding FilePageGridWidth, Source={x:Static Properties:Settings.Default},Converter={StaticResource DoubleToGrid},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition MinWidth="0" />
             </Grid.ColumnDefinitions>
@@ -42,6 +43,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
                                          Command="{Binding AddFile}"
@@ -52,6 +55,11 @@
                                          ForeToolTip="删除文件/夹"
                                          Grid.Column="1"
                                          Content="&#xE949;" />
+                    <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                         Command="{Binding Rename}"
+                                         ForeToolTip="重命名"
+                                         Grid.Column="3"
+                                         Content="&#xE70F;" />
                 </Grid>
                 <Rectangle Style="{StaticResource H_Seperoator}"
                            Fill="{StaticResource FilePage_FG}"
