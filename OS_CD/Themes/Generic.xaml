@@ -134,8 +134,112 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 
+    <!--YT_ContextMenu-->
+    <Style TargetType="local:YT_ContextMenu">
+        <Setter Property="Background"
+                Value="{StaticResource MainWindow_BG}" />
+        <Setter Property="Padding"
+                Value="-1" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:YT_ContextMenu">
+                    <Border x:Name="RootBorder"
+                            BorderThickness="2"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Margin="{TemplateBinding Padding}">
+                        <StackPanel Background="{TemplateBinding Background}">
+                            <ItemsPresenter x:Name="ItemsPresenter"
+                                            KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+    <!--YT_MenuItem-->
+    <Style TargetType="local:YT_MenuItem">
+        <Setter Property="FontWeight"
+                Value="Light" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainWindow_FG}" />
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:YT_MenuItem">
+                    <Grid x:Name="RootGrid"
+                          Height="{TemplateBinding Height}"
+                          Background="{TemplateBinding Background}"
+                          MinWidth="{TemplateBinding MinWidth}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="Mask"
+                                   Margin="2"
+                                   Grid.ColumnSpan="2"
+                                   Fill="{TemplateBinding IconMaskN}" />
+                        <TextBlock x:Name="Icon"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{TemplateBinding HeadIcon}"
+                                   Foreground="{TemplateBinding IconN}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   Style="{DynamicResource IconTextBlock}"
+                                   Visibility="{TemplateBinding IconVisiblity}"/>
+                        <TextBlock x:Name="Content"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{TemplateBinding ContentText}"
+                                   Foreground="{TemplateBinding IconN}"
+                                   FontSize="{TemplateBinding ContentTextFontSize}"
+                                   FontWeight="{TemplateBinding FontWeight}" 
+                                   Visibility="{TemplateBinding ContentTextVisiblity}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ContentTextVisiblity"
+                                 Value="Collapsed">
+                            <Setter TargetName="Icon"
+                                    Property="Grid.Column"
+                                    Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter TargetName="Mask"
+                                    Property="Fill"
+                                    Value="{Binding IconMaskR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="Icon"
+                                    Property="Foreground"
+                                    Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="Content"
+                                    Property="Foreground"
+                                    Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true">
+                            <Setter TargetName="Mask"
+                                    Property="Fill"
+                                    Value="{Binding IconMaskP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="Icon"
+                                    Property="Foreground"
+                                    Value="{Binding IconP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="Content"
+                                    Property="Foreground"
+                                    Value="{Binding IconP, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 
     <!--IconButtons-->
 
@@ -194,14 +298,15 @@
                             </TextBlock>
                             <TextBlock x:Name="ContentTexts"
                                        Grid.Column="1"
+                                       HorizontalAlignment="{TemplateBinding ContentHorizontalAlignment}"
+                                       VerticalAlignment="{TemplateBinding ContentVerticalAlignment}"
+                                       TextAlignment="{TemplateBinding ContentTextAlignment}"
                                        Margin="{TemplateBinding LabelPadding}"
                                        Text="{TemplateBinding ContentText}"
                                        Foreground="{TemplateBinding IconN}"
                                        FontSize="{TemplateBinding ContentTextFontSize}"
                                        FontWeight="{TemplateBinding FontWeight}"
-                                       Visibility="{TemplateBinding ContentTextVisiblity}"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center" />
+                                       Visibility="{TemplateBinding ContentTextVisiblity}" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -349,8 +454,9 @@
                                        RenderTransformOrigin=".5 .5"
                                        RenderTransform="{TemplateBinding IconRotate}" />
                             <TextBlock x:Name="Label"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
+                                       HorizontalAlignment="{TemplateBinding ContentHorizontalAlignment}"
+                                       VerticalAlignment="{TemplateBinding ContentVerticalAlignment}"
+                                       TextAlignment="{TemplateBinding ContentTextAlignment}"
                                        Margin="{TemplateBinding LabelPadding}"
                                        Text="{TemplateBinding Content}"
                                        FontSize="{TemplateBinding LabelFontSize}"
@@ -470,8 +576,9 @@
                                        Visibility="{TemplateBinding IconVisiblity}"
                                        SnapsToDevicePixels="True" />
                             <TextBlock x:Name="Label"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
+                                       HorizontalAlignment="{TemplateBinding ContentHorizontalAlignment}"
+                                       VerticalAlignment="{TemplateBinding ContentVerticalAlignment}"
+                                       TextAlignment="{TemplateBinding ContentTextAlignment}"
                                        Margin="{TemplateBinding LabelPadding}"
                                        Text="{TemplateBinding Content}"
                                        FontSize="{TemplateBinding LabelFontSize}"
@@ -562,82 +669,7 @@
     </Style>
 
 
-
-    <!--MenuItem-->
-    <Style TargetType="local:CustomeMenuItem">
-        <Setter Property="FontWeight"
-                Value="Light" />
-        <Setter Property="HorizontalContentAlignment"
-                Value="Left" />
-        <Setter Property="VerticalContentAlignment"
-                Value="Center" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:CustomeMenuItem">
-                    <Grid x:Name="RootGrid"
-                          Height="{StaticResource NotifyContextmenuItemHeight}"
-                          Background="{TemplateBinding IconMaskN}"
-                          MinWidth="120">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="32" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="ContentIcon"
-                                   Text="{TemplateBinding HeadIcon}"
-                                   FontFamily="{DynamicResource Segoe}"
-                                   Foreground="{TemplateBinding IconN}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   FontWeight="{TemplateBinding FontWeight}"
-                                   Visibility="{TemplateBinding IconVisiblity}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                        <TextBlock x:Name="ContentTexts"
-                                   Grid.Column="1"
-                                   Margin="{TemplateBinding LabelPadding}"
-                                   Text="{TemplateBinding ContentText}"
-                                   Foreground="{TemplateBinding IconN}"
-                                   FontSize="{TemplateBinding ContentTextFontSize}"
-                                   FontWeight="{TemplateBinding FontWeight}"
-                                   Visibility="{TemplateBinding ContentTextVisiblity}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver"
-                                 Value="true">
-                            <Setter TargetName="ContentIcon"
-                                    Property="Foreground"
-                                    Value="{Binding IconR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="ContentTexts"
-                                    Property="Foreground"
-                                    Value="{Binding TextR, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        </Trigger>
-                        <Trigger Property="IsPressed"
-                                 Value="True">
-                            <Setter TargetName="ContentIcon"
-                                    Property="Foreground"
-                                    Value="{Binding IconP,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="ContentTexts"
-                                    Property="Foreground"
-                                    Value="{Binding IconP,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                            <Setter TargetName="RootGrid"
-                                    Property="Background"
-                                    Value="{Binding IconMaskP,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        </Trigger>
-                        <Trigger Property="Textloc"
-                                 Value="True">
-                            <Setter TargetName="ContentTexts"
-                                    Property="Grid.Column"
-                                    Value="0" />
-                            <Setter TargetName="ContentIcon"
-                                    Property="Grid.Column"
-                                    Value="1" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    
 
 
     <!--Dialogs-->

@@ -995,35 +995,6 @@
 
     <!--ContextMenu-->
 
-    <!--UserMenu-->
-    <Style x:Key="UserSelectMenuStyle"
-           TargetType="ContextMenu">
-        <Setter Property="Background"
-                Value="{StaticResource DefaultButton_Icon_BG}" />
-        <Setter Property="Padding"
-                Value="-1" />
-        <Setter Property="BorderThickness"
-                Value="0" />
-        <Setter Property="MaxHeight"
-                Value="600" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContextMenu">
-                    <Border x:Name="RootBorder"
-                            BorderThickness="2"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            Margin="{TemplateBinding Padding}">
-                        <ScrollViewer Style="{StaticResource SC_ScrollViewer}">
-                            <ItemsPresenter x:Name="ItemsPresenter"
-                                            KeyboardNavigation.DirectionalNavigation="Cycle" />
-
-                        </ScrollViewer>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <!--MenuItems-->
 

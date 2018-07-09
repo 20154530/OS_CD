@@ -46,10 +46,42 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
-                                         Command="{Binding AddFile}"
+                    <local:YT_IconButton x:Name="AddFileBtn"
+                                         Style="{StaticResource FilePage_ARButton}"
                                          ForeToolTip="添加文件/夹"
+                                         Click="AddFileButton_Click"
                                          Content="&#xE948;" />
+                    <local:YT_Popup x:Name="AddFilePopup"
+                                    PlacementTarget="{Binding ElementName=AddFileBtn}"
+                                    RelativeRect="-4,4"
+                                    Placement="Custom"
+                                    AllowsTransparency="True">
+                        <Border Background="{StaticResource MainWindow_BG}"
+                                BorderBrush="{StaticResource MainWindow_Border_Normal}"
+                                BorderThickness="1">
+                            <StackPanel>
+                                <local:YT_IconButton Style="{StaticResource  DialogTextButtonStyle}"
+                                                     Command="{Binding AddFile}"
+                                                     Click="YT_IconButton_Click"
+                                                     Width="96"
+                                                     FontSize="12"
+                                                     Margin="8,2,0,2"
+                                                     ContentHorizontalAlignment="Left"
+                                                     ContentTextAlignment="Left"
+                                                     ContentText="添加文件" />
+                                <local:YT_IconButton Style="{StaticResource  DialogTextButtonStyle}"
+                                                     Command="{Binding AddFile}"
+                                                     Click="YT_IconButton_Click"
+                                                     CommandParameter="0"
+                                                     Width="96"
+                                                     FontSize="12"
+                                                     Margin="8,2,0,2"
+                                                     ContentHorizontalAlignment="Left"
+                                                     ContentTextAlignment="Left"
+                                                     ContentText="添加文件夹" />
+                            </StackPanel>
+                        </Border>
+                    </local:YT_Popup>
                     <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
                                          Command="{Binding RemoveFile}"
                                          ForeToolTip="删除文件/夹"

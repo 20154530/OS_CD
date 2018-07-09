@@ -39,7 +39,7 @@ namespace OS_CD {
 
         public FileSystem() {
             int GroupMaxAmount = 20;
-            int DiscMaxAmount = 512;
+            int DiscMaxAmount = 511;
             disc.Init(20, 512);
             Init();
         }
@@ -134,7 +134,7 @@ namespace OS_CD {
             //更新文件的事件信息
             UpdateFileEvent(newFile.ID, ownerUserId, FileEvent.Create, DateTime.Now);
 
-            Debug.Print("make a file ,id is :" + newFile.ID + "\n");
+           // Debug.Print("make a file ,id is :" + newFile.ID + "\n");
             return newFile.ID;
         }
 

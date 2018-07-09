@@ -107,6 +107,36 @@ namespace OS_CD {
                 new PropertyMetadata(""));
         #endregion
 
+        #region ContentTextAlignment
+        public TextAlignment ContentTextAlignment {
+            get { return (TextAlignment)GetValue(ContentTextAlignmentProperty); }
+            set { SetValue(ContentTextAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentTextAlignmentProperty =
+            DependencyProperty.Register("ContentTextAlignment", typeof(TextAlignment), typeof(YT_IconButton),
+                new PropertyMetadata(TextAlignment.Center));
+        #endregion
+
+        #region ContentHorizontalAlignment
+        public HorizontalAlignment ContentHorizontalAlignment {
+            get { return (HorizontalAlignment)GetValue(ContentHorizontalAlignmentProperty); }
+            set { SetValue(ContentHorizontalAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentHorizontalAlignmentProperty =
+            DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(YT_IconButton),
+                new PropertyMetadata(HorizontalAlignment.Center));
+        #endregion
+
+        #region ContentVerticalAlignment
+        public VerticalAlignment ContentVerticalAlignment {
+            get { return (VerticalAlignment)GetValue(ContentVerticalAlignmentProperty); }
+            set { SetValue(ContentVerticalAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentVerticalAlignmentProperty =
+            DependencyProperty.Register("ContentVerticalAlignment", typeof(VerticalAlignment), typeof(YT_IconButton),
+                new PropertyMetadata(VerticalAlignment.Center));
+        #endregion
+
         #region ContentTextFontWeight
         public double ContentTextFontSize {
             get { return (double)GetValue(ContentTextFontSizeProperty); }
@@ -319,6 +349,36 @@ namespace OS_CD {
                 new PropertyMetadata(""));
         #endregion
 
+        #region ContentTextAlignment
+        public TextAlignment ContentTextAlignment {
+            get { return (TextAlignment)GetValue(ContentTextAlignmentProperty); }
+            set { SetValue(ContentTextAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentTextAlignmentProperty =
+            DependencyProperty.Register("ContentTextAlignment", typeof(TextAlignment), typeof(YT_IconToggelButton),
+                new PropertyMetadata(TextAlignment.Center));
+        #endregion
+
+        #region ContentHorizontalAlignment
+        public HorizontalAlignment ContentHorizontalAlignment {
+            get { return (HorizontalAlignment)GetValue(ContentHorizontalAlignmentProperty); }
+            set { SetValue(ContentHorizontalAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentHorizontalAlignmentProperty =
+            DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(YT_IconToggelButton),
+                new PropertyMetadata(HorizontalAlignment.Center));
+        #endregion
+
+        #region ContentVerticalAlignment
+        public VerticalAlignment ContentVerticalAlignment {
+            get { return (VerticalAlignment)GetValue(ContentVerticalAlignmentProperty); }
+            set { SetValue(ContentVerticalAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentVerticalAlignmentProperty =
+            DependencyProperty.Register("ContentVerticalAlignment", typeof(VerticalAlignment), typeof(YT_IconToggelButton),
+                new PropertyMetadata(VerticalAlignment.Center));
+        #endregion
+
         #region ForeIcon
         public string ForeIcon {
             get { return (string)GetValue(ForeIconProperty); }
@@ -525,6 +585,36 @@ namespace OS_CD {
         public static readonly DependencyProperty BackTextProperty =
             DependencyProperty.Register("BackText", typeof(string), typeof(YT_IconRadioButton),
                 new PropertyMetadata(""));
+        #endregion
+
+        #region ContentTextAlignment
+        public TextAlignment ContentTextAlignment {
+            get { return (TextAlignment)GetValue(ContentTextAlignmentProperty); }
+            set { SetValue(ContentTextAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentTextAlignmentProperty =
+            DependencyProperty.Register("ContentTextAlignment", typeof(TextAlignment), typeof(YT_IconRadioButton),
+                new PropertyMetadata(TextAlignment.Center));
+        #endregion
+
+        #region ContentHorizontalAlignment
+        public HorizontalAlignment ContentHorizontalAlignment {
+            get { return (HorizontalAlignment)GetValue(ContentHorizontalAlignmentProperty); }
+            set { SetValue(ContentHorizontalAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentHorizontalAlignmentProperty =
+            DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(YT_IconRadioButton),
+                new PropertyMetadata(HorizontalAlignment.Center));
+        #endregion
+
+        #region ContentVerticalAlignment
+        public VerticalAlignment ContentVerticalAlignment {
+            get { return (VerticalAlignment)GetValue(ContentVerticalAlignmentProperty); }
+            set { SetValue(ContentVerticalAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty ContentVerticalAlignmentProperty =
+            DependencyProperty.Register("ContentVerticalAlignment", typeof(VerticalAlignment), typeof(YT_IconRadioButton),
+                new PropertyMetadata(VerticalAlignment.Center));
         #endregion
 
         #region AllowShadow

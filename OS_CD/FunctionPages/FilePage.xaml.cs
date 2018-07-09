@@ -27,6 +27,7 @@ namespace OS_CD.FunctionPages {
         public override void EndInit() {
             base.EndInit();
             FileTree.MouseDoubleClick += FileTree_MouseDoubleClick;
+            AddFilePopup.PlacementTarget = AddFileBtn;
         }
 
         private void ViewModel_OnFileRename(object sender, EventArgs e) {
@@ -41,14 +42,22 @@ namespace OS_CD.FunctionPages {
         }
 
         private void FileTree_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-            
+
         }
 
         private void ViewModel_OnFileAdded(object sender, EventArgs e) {
             TFileNode sf = FileTree.SelectedItem as TFileNode;
-            if (sf.FileMode.Equals(TFileNode.Mode.Folder)) {
-                Folder fl = FileSystem.Instance.GetFileNodeById(sf.ID) as Folder;
-                fl.subFileNodeIdList.Add(FileSystem.Instance.CreateFile("", sf.ID,));
+            if (sf.FileMode.Equals(TFileNode.Mode.Folder))
+            {
+                if (((PropertyChangeArgs)e).NewValue is null)
+                {
+                    FileSystem.Instance.CreateFile("新建文件", sf.ID, Systeminfo.Instence.UserNow.ID);
+                    Systeminfo.Instence.UpdateFileTree();
+                }
+                else
+                {
+
+                }
             }
         }
 
@@ -62,7 +71,15 @@ namespace OS_CD.FunctionPages {
         }
 
         private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
-            
+
+        }
+
+        private void AddFileButton_Click(object sender, RoutedEventArgs e) {
+            AddFilePopup.IsOpen = true;
+        }
+
+        private void YT_IconButton_Click(object sender, RoutedEventArgs e) {
+            AddFilePopup.IsOpen = false;
         }
     }
 }

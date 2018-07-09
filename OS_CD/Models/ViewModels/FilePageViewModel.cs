@@ -5,11 +5,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace OS_CD {
     internal class FilePageViewModel : ViewModelBase {
 
         #region Commands
+        private Visibility addFileButtonVisibility = Visibility.Collapsed;
+        public Visibility AddFileButtonVisibility {
+            get => addFileButtonVisibility;
+            set {
+                addFileButtonVisibility = value;
+                OnPropertyChanged("AddFileButtonVisibility");
+            }
+        }
+
         public CommandBase AddFile { get; set; }
 
         public CommandBase RemoveFile { get; set; }
@@ -32,15 +42,15 @@ namespace OS_CD {
 
         #region Actions
         private void OpenFile_Commandaction(object para) {
-            
+
         }
 
         private void CloseFile_Commandaction(object para) {
-            
+
         }
 
         private void AddFile_Commandaction(object para) {
-            OnFileAdded?.Invoke(this,EventArgs.Empty);
+            OnFileAdded?.Invoke(this, new PropertyChangeArgs(para, para));
 
         }
 
@@ -51,7 +61,7 @@ namespace OS_CD {
 
         private void Rename_Commandaction(object para) {
             OnFileRename?.Invoke(this, EventArgs.Empty);
-            
+
         }
         #endregion
 

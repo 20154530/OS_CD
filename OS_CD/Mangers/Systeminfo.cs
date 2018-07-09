@@ -152,7 +152,6 @@ namespace OS_CD {
                     }
                 }
             }
-
             Usage = String.Format("{0:F1} %", BlockUsed / 51.2);
         }
 
@@ -200,6 +199,14 @@ namespace OS_CD {
         #endregion
 
         #region File
+        private Dictionary<int, int> idtonode;
+        public Dictionary<int, int> IDtoNode {
+            get => idtonode;
+            set {
+                idtonode = value;
+            }
+        }
+
         private List<TFileNode> fileDictionary { get; set; }
         public List<TFileNode> FileDictionary {
             get => fileDictionary;
@@ -218,10 +225,20 @@ namespace OS_CD {
             }
         }
 
+        private void Systeminfo_FileTreeChanged(object sender, EventArgs e) {
+           // fileDictionary = GetFileTreeByRoot();
+        }
+
+        public void UpdateFileTree() {
+            fileDictionary = GetDictioniary();
+        }
+
         private List<TFileNode> GetDictioniary() {
             List<TFileNode> dic = new List<TFileNode>();
             foreach (var pair in FileSystem.Instance.FCBList)
+            {
                 dic.Add(new TFileNode(pair.Value));
+            }
             return getTrees(0, dic);
         }
 
@@ -237,6 +254,8 @@ namespace OS_CD {
 
         private void InitFile() {
             fileDictionary = GetDictioniary();
+            //for (int i= 0;i< fileDictionary.Count;i++) 
+            //    IDtoNode.Add(fileDictionary[i].ID, i);
             Filenow = new TFileNode(-1, -1, "无文件");
         }
         #endregion

@@ -427,6 +427,29 @@
         <Setter Property="Margin"
                 Value="0,0,0,0" />
     </Style>
+    
+    <!--AddFileMenuItem-->
+    <Style x:Key="AddFileMenuItem"
+           TargetType="local:YT_MenuItem">
+        <Setter Property="IconN"
+                Value="{StaticResource FileTreeButton_Icon_BG_N}" />
+        <Setter Property="IconR"
+                Value="#606060" />
+        <Setter Property="IconP"
+                Value="{StaticResource FileTreeButton_Icon_BG_P}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource FileTreeButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource FileTreeButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource FileTreeButton_IconMask_BG_P}" />
+        <Setter Property="IconVisiblity"
+                Value="Collapsed" />
+        <Setter Property="ContentTextFontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Light" />
+    </Style>
 
 
 

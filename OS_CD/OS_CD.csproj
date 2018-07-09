@@ -95,7 +95,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Control\FileSystem.cs" />
-    <Compile Include="CustomeControls\CustomeMenuItem.cs" />
     <Compile Include="FunctionPages\DiskPage.xaml.cs">
       <DependentUpon>DiskPage.xaml</DependentUpon>
     </Compile>
@@ -134,7 +133,9 @@
     <Compile Include="Modules\Record.cs" />
     <Compile Include="Modules\User.cs" />
     <Compile Include="Tools\Serialize.cs" />
+    <Compile Include="YT_Controls\YT_ContextMenu.cs" />
     <Compile Include="YT_Controls\YT_IconButton.cs" />
+    <Compile Include="YT_Controls\YT_Popup.cs" />
     <Compile Include="YT_Controls\YT_TextBox.cs" />
     <Compile Include="YT_Panels\CellPanel.cs" />
     <Compile Include="YT_Windows\YT_AreaIcon.cs" />
@@ -208,6 +209,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CustomeControls\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
