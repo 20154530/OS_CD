@@ -86,7 +86,7 @@ namespace OS_CD {
             UCBList.Add(rootUser.ID, rootUser);
             this.rootUserId = rootUser.ID;
             //rootFolderId 为0
-            var rootFolder = new Folder(GetNextUserfulFileNodeId(), "rootFolder");
+            var rootFolder = new Folder(GetNextUserfulFileNodeId(), "rootFolder",rootUserId);
             FCBList.Add(rootFolder.ID, rootFolder);
             this.rootFolderId = rootFolder.ID;
             rootFolder.fatherFileNodeId = -1;
@@ -116,7 +116,7 @@ namespace OS_CD {
                 return GetErrorID();
             }
             //创建新文件
-            File newFile = new File(GetNextUserfulFileNodeId(), name);
+            File newFile = new File(GetNextUserfulFileNodeId(), name,ownerUserId);
             var blockAmount = newFile.GetFileSize();
             //分配内存空间
             if (this.disc.IsFreeBlockEnough(blockAmount))
@@ -147,7 +147,7 @@ namespace OS_CD {
                 return GetErrorID();
             }
             //创建文件夹
-            Folder newFile = new Folder(GetNextUserfulFileNodeId(), name);
+            Folder newFile = new Folder(GetNextUserfulFileNodeId(), name,ownerUserId);
             //将文件的索引以及文件控制块保存到系统列表中
             //并构建目录
             RegisterFileNode(newFile);

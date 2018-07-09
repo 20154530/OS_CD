@@ -27,15 +27,19 @@ namespace OS_CD {
             get => powerList;
             set { powerList = value; }
         }
+        //创建者
+        private UserId creatorUserId;
         //所属父文件节点
         public FileNodeId fatherFileNodeId { get; set; }
         //文件事件记录
         public EventInfo eventInfo = new EventInfo();
 
-        public FileNode(int ID, string name)
+        public FileNode(int ID, string name,UserId creatorUserId)
         {
             this.ID = ID;
             this.name = name;
+            this.creatorUserId = creatorUserId;
+            SetPower(creatorUserId, true, true, true);
         }
 
         public virtual void SetPower(UserId userId, bool read, bool writer, bool execute)
@@ -66,7 +70,7 @@ namespace OS_CD {
         public List<int> blockIdList = new List<int>();
         public FileBody fileBody { get; }
 
-        public File(int ID, string name) : base(ID, name)
+        public File(int ID, string name,UserId creatorUserId) : base(ID, name,creatorUserId)
         {
             fileBody = new FileBody();
         }
@@ -106,6 +110,10 @@ namespace OS_CD {
             //
             fileBodyChangeEvent?.Invoke();
         }
+        public string GetContent()
+        {
+            return content;
+        }
 
         public void AddContetnt(string content)
         {    //追加
@@ -139,7 +147,7 @@ namespace OS_CD {
             else return false;
         }
 
-        public Folder(int ID, string name) : base(ID, name)
+        public Folder(int ID, string name,UserId creatorUserId) : base(ID, name,creatorUserId)
         {
 
         }
