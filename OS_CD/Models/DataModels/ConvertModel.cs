@@ -60,5 +60,8 @@ namespace OS_CD.Models {
             FileMode = f is Folder ? Mode.Folder : Mode.File;
         }
 
+        public override string ToString() {
+            return String.Format(" < ID :{0}   PID : {1}  FileMode : {2}  >", ID, PID, FileMode.ToString());
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using OS_CD.Models;
+using OS_CD.Mangers.Serverces;
 
 namespace OS_CD.FunctionPages {
     /// <summary>
@@ -47,6 +48,11 @@ namespace OS_CD.FunctionPages {
 
         private void ViewModel_OnFileAdded(object sender, EventArgs e) {
             TFileNode sf = FileTree.SelectedItem as TFileNode;
+            if (sf is null)
+            {
+                MessageBoxServices.ShowSimpleStringDialog("请选择一个文件夹来添加文件", false, false);
+                return;
+            }
             if (sf.FileMode.Equals(TFileNode.Mode.Folder))
             {
                 if (((PropertyChangeArgs)e).NewValue is null)
@@ -56,21 +62,19 @@ namespace OS_CD.FunctionPages {
                 }
                 else
                 {
-
+                    FileSystem.Instance.CreateFolder("新建文件夹", sf.ID, Systeminfo.Instence.UserNow.ID);
+                    Systeminfo.Instence.UpdateFileTree();
                 }
             }
         }
 
         private void ViewModel_OnFileRemove(object sender, EventArgs e) {
-
+            //if()
+            FileSystem.Instance.DestoryFileNode((FileTree.SelectedItem as TFileNode).ID);
+            Systeminfo.Instence.UpdateFileTree();
         }
-
 
         private void OpenFileLabel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
-        }
-
-        private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
 
         }
 
@@ -80,6 +84,10 @@ namespace OS_CD.FunctionPages {
 
         private void YT_IconButton_Click(object sender, RoutedEventArgs e) {
             AddFilePopup.IsOpen = false;
+        }
+
+        private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+            Console.WriteLine(e.NewValue.GetType());
         }
     }
 }

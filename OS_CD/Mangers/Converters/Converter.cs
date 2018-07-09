@@ -59,20 +59,24 @@ namespace OS_CD.Mangers.ValueConverters {
     /// </summary>
     public class FileTreeIconSelector : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (parameter is null)
-            {
-                if (((TFileNode)value).FileMode.Equals(Mode.File))
-                    return "\uE8A5";
+            TFileNode tf = value as TFileNode;
+            if (!(tf is null))
+                if (parameter is null)
+                {
+                    if (tf.FileMode.Equals(Mode.File))
+                        return "\uE8A5";
+                    else
+                        return "\uED41";
+                }
                 else
-                    return "\uED41";
-            }
+                {
+                    if (tf.FileMode.Equals(Mode.File))
+                        return "\uE8A5";
+                    else
+                        return "\uED43";
+                }
             else
-            {
-                if (((TFileNode)value).FileMode.Equals(Mode.File))
-                    return "\uE8A5";
-                else
-                    return "\uED43";
-            }
+                return "";
 
         }
 
@@ -86,10 +90,16 @@ namespace OS_CD.Mangers.ValueConverters {
     /// </summary>
     public class FileTreeToolTipSelector : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (((TFileNode)value).FileMode.Equals(Mode.File))
-                return Visibility.Collapsed;
+            TFileNode tf = value as TFileNode;
+            if (!(tf is null))
+            {
+                if (tf.FileMode.Equals(Mode.File))
+                    return Visibility.Collapsed;
+                else
+                    return Visibility.Visible;
+            }
             else
-                return Visibility.Visible;
+                return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

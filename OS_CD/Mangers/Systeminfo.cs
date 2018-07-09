@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
+using System.Windows.Documents;
 using OS_CD.Models;
 
 namespace OS_CD {
@@ -230,7 +231,7 @@ namespace OS_CD {
         }
 
         public void UpdateFileTree() {
-            fileDictionary = GetDictioniary();
+            FileDictionary = GetDictioniary();
         }
 
         private List<TFileNode> GetDictioniary() {
@@ -238,6 +239,9 @@ namespace OS_CD {
             foreach (var pair in FileSystem.Instance.FCBList)
             {
                 dic.Add(new TFileNode(pair.Value));
+            }
+            foreach (TFileNode tf in dic) {
+                Console.WriteLine(tf.ToString());
             }
             return getTrees(0, dic);
         }
