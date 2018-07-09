@@ -143,19 +143,20 @@ namespace OS_CD {
         }
 
         private void UpdataBlockInfo() {
-            foreach (var pair in FileSystem.Instance.FCBList)
-            {
-                if (pair.Value is File)
-                {
-                    File tf = (File)pair.Value;
-                    foreach (int i in tf.blockIdList)
-                    {
-                        Blockcell[i] = tf.ID;
-                        BlockUsed++;
-                    }
-                }
-            }
-            Usage = String.Format("{0:F1} %", BlockUsed / 51.2);
+            
+            //foreach (var pair in FileSystem.Instance.FCBList)
+            //{
+            //    if (pair.Value is File)
+            //    {
+            //        File tf = (File)pair.Value;
+            //        foreach (int i in tf.blockIdList)
+            //        {
+            //            Blockcell[i] = tf.ID;
+            //            BlockUsed++;
+            //        }
+            //    }
+            //}
+            //Usage = String.Format("{0:F1} %", BlockUsed / 51.2);
         }
 
         private void InitDisk() {
@@ -168,6 +169,7 @@ namespace OS_CD {
         }
 
         private void LoadDisk() {
+
 
         }
         #endregion
@@ -202,8 +204,8 @@ namespace OS_CD {
         #endregion
 
         #region File
-        private List<int> openedfile;
-        public List<int> OpenedFile {
+        private List<TFileNode> openedfile;
+        public List<TFileNode> OpenedFile {
             get => openedfile;
             set {
                 openedfile = value;
@@ -252,11 +254,11 @@ namespace OS_CD {
             return mainNodes;
         }
 
-        private List<int> GetOpenFileList() {
-            List<int> op = new List<int>();
+        private List<TFileNode> GetOpenFileList() {
+            List<TFileNode> op = new List<TFileNode>();
             foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList)
             {
-                op.Add(pairs.Key);
+                op.Add(new TFileNode(FileSystem.Instance.GetFileNodeById(pairs.Key)));
             }
             return op;
         }
@@ -273,7 +275,6 @@ namespace OS_CD {
         }
 
         #endregion
-
 
         #endregion
 

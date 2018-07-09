@@ -46,6 +46,7 @@ namespace OS_CD.Models {
             Name = name;
             FileMode = mode;
             NameChanged = new CommandBase();
+            CloseFile = new CommandBase();
         }
 
         private TFileNode FromFileNode(FileNode f) {
@@ -54,6 +55,7 @@ namespace OS_CD.Models {
 
         public TFileNode(FileNode f) {
             NameChanged = new CommandBase();
+            CloseFile = new CommandBase();
             Contains = new List<TFileNode>();
             Rename = false;
             Name = f.name;

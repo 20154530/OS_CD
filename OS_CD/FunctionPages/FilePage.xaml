@@ -176,7 +176,7 @@
             <Grid x:Name="FileContent"
                   Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="48" />
+                    <RowDefinition Height="27" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <ListView x:Name="OpenFileLabel"
@@ -185,10 +185,10 @@
                           Style="{StaticResource FileLabelButtonView}" />
                 <Rectangle Style="{StaticResource H_Seperoator}"
                            Fill="{StaticResource FilePage_FG}"
-                           Grid.Row="1"
                            VerticalAlignment="Bottom"
                            Margin="2,0,0,0" />
                 <TextBox x:Name="FileCon"
+                         Margin="4,8,0,0"
                          Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFContent}}"
                          Background="Transparent"
                          BorderThickness="0"
