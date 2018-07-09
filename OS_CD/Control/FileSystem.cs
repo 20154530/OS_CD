@@ -12,8 +12,7 @@ namespace OS_CD {
 
     #endregion
 
-    public enum FileEvent
-    {
+    public enum FileEvent {
         Write,
         Open,
         Close,
@@ -24,12 +23,11 @@ namespace OS_CD {
 
     }
 
-    public class FileSystem
-    {
+    public class FileSystem {
         //单例
         public static FileSystem Instance = new FileSystem();
 
-        private FileSystem(){
+        private FileSystem() {
             Init();
         }
 
@@ -66,8 +64,7 @@ namespace OS_CD {
         //系统打开文件表
         private Dictionary<FileNodeId, SystemOpenFileRecord> systemOpenFileRecordList = new Dictionary<int, SystemOpenFileRecord>();
 
-        public void Init()
-        {
+        public void Init() {
             //rootUserId 为0
             var rootUser = new User(GetNextUserfulUserID(), "Admin", "Admin");
             UCBList.Add(rootUser.ID, rootUser);
@@ -81,24 +78,20 @@ namespace OS_CD {
 
         //作为分配的ID
         private static int UserIdTimeLine = 0;
-        private UserId GetNextUserfulUserID()
-        {
+        private UserId GetNextUserfulUserID() {
             return UserIdTimeLine++;
         }
         private static int FileNodeIdTimeLine = 0;
-        private FileNodeId GetNextUserfulFileNodeId()
-        {
+        private FileNodeId GetNextUserfulFileNodeId() {
             return FileNodeIdTimeLine++;
         }
-        public FileNodeId GetErrorID()
-        {
+        public FileNodeId GetErrorID() {
             return -1;
         }
 
         //----------------文件操作
 
-        public FileNodeId CreateFile(string name, FileNodeId ownerFileNodeId, UserId ownerUserId)
-        {
+        public FileNodeId CreateFile(string name, FileNodeId ownerFileNodeId, UserId ownerUserId) {
             //所属文件节点
             var ownerFileNode = FCBList[ownerFileNodeId];
             if (ownerFileNode.GetType() != typeof(Folder))
@@ -129,8 +122,7 @@ namespace OS_CD {
             return newFile.ID;
         }
 
-        public FileNodeId CreateFolder(string name, FileNodeId ownerFileNodeId, UserId ownerUserId)
-        {
+        public FileNodeId CreateFolder(string name, FileNodeId ownerFileNodeId, UserId ownerUserId) {
             //所属节点
             var ownerFileNode = FCBList[ownerFileNodeId];
             if (ownerFileNode.GetType() != typeof(Folder))
@@ -153,20 +145,17 @@ namespace OS_CD {
         }
 
 
-        public void RegisterFileNode(FileNode fileNode)
-        {
+        public void RegisterFileNode(FileNode fileNode) {
             //将文件节点出移入系统的记录
             FCBList.Add(fileNode.ID, fileNode);
         }
 
-        public void LogOffFileNode(FileNodeId fileNodeId)
-        {
+        public void LogOffFileNode(FileNodeId fileNodeId) {
             //将文件节点移出系统的记录
             FCBList.Remove(fileNodeId);
         }
 
-        public bool MoveFileNode(FileNodeId fileNodeId, Folder to, UserId userId)
-        {
+        public bool MoveFileNode(FileNodeId fileNodeId, Folder to, UserId userId) {
             var fileNode = GetFileNodeById(fileNodeId);
             var from = (Folder)GetFileNodeById(fileNode.fatherFileNodeId);
 
@@ -185,8 +174,7 @@ namespace OS_CD {
             }
         }
 
-        public bool DestoryFileNode(FileNodeId fileNodeId)
-        {
+        public bool DestoryFileNode(FileNodeId fileNodeId) {
             //文件节点
             var fileNode = GetFileNodeById(fileNodeId);
             var fatherFileNode = (Folder)GetFileNodeById(fileNode.fatherFileNodeId);
@@ -219,36 +207,32 @@ namespace OS_CD {
             return true;
         }
 
-        public void SwitchCurrentFolder(FileNodeId fileNodeId)
-        {
+        public void SwitchCurrentFolder(FileNodeId fileNodeId) {
             //切换当前的文件夹
             currentFolderId = fileNodeId;
         }
 
-        public FileNode GetFileNodeById(FileNodeId fileNodeId)
-        {
+        public FileNode GetFileNodeById(FileNodeId fileNodeId) {
             //通过FileNodeId得到当前系统中存放的对应文件节点的对象
             return FCBList[fileNodeId];
         }
         //-----------------用户操作
 
-        public void SwitchCurrentUser(UserId userId)
-        {
+        public void SwitchCurrentUser(UserId userId) {
             //切换当前用户
             currentUserId = userId;
         }
 
-        public FileNodeId CreateUser(string userName,string password)
-        {
+        public FileNodeId CreateUser(string userName, string password) {
             //创建用户，保存到系统记录中
-            User newUser = new User(GetNextUserfulUserID(), userName,password);
+            User newUser = new User(GetNextUserfulUserID(), userName, password);
             RegisterUser(newUser);
-            Debug.Print("make a user ,id is :" + newUser.ID + "\n");
+            //    Debug.Print("make a user ,id is :" + newUser.ID + "\n");
+            UCBListChanged?.Invoke(this, EventArgs.Empty);
             return newUser.ID;
         }
 
-        public bool DestoryUser(UserId userId)
-        {
+        public bool DestoryUser(UserId userId) {
             //销毁用户,并删除其所属文件
 
             /*
@@ -262,30 +246,26 @@ namespace OS_CD {
                  }
              }
              */
-            UCBListChanged?.Invoke(this, EventArgs.Empty);
             LogOffUser(userId);
-           // Debug.Print("Remove a user ,id is:" + userId + "\n");
+            UCBListChanged?.Invoke(this, EventArgs.Empty);
+            // Debug.Print("Remove a user ,id is:" + userId + "\n");
             return true;
         }
 
-        public void RegisterUser(User user)
-        {
+        public void RegisterUser(User user) {
             UCBList.Add(user.ID, user);
         }
 
-        public void LogOffUser(UserId userId)
-        {
+        public void LogOffUser(UserId userId) {
             UCBList.Remove(userId);
         }
 
-        public User GetUserById(UserId userId)
-        {
+        public User GetUserById(UserId userId) {
             return UCBList[userId];
         }
 
         //-----------------文件功能
-        public bool OpenFileNode(FileNodeId fileNodeId, UserId userId)
-        {
+        public bool OpenFileNode(FileNodeId fileNodeId, UserId userId) {
             //文件节点和用户
             var user = GetUserById(userId);
             var fileNode = GetFileNodeById(fileNodeId);
@@ -316,8 +296,7 @@ namespace OS_CD {
             return true;
         }
 
-        public bool CloseFile(FileNodeId fileNodeId, UserId userId, UserOpenFileRecord userOpenFileRecord)
-        {
+        public bool CloseFile(FileNodeId fileNodeId, UserId userId, UserOpenFileRecord userOpenFileRecord) {
 
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() == typeof(Folder))
@@ -352,8 +331,7 @@ namespace OS_CD {
         }
 
         //将用户对文件的修改更新到文件中
-        public bool updateFile(FileNodeId fileNodeId, UserId userId, UserOpenFileRecord userOpenFileRecord)
-        {
+        public bool updateFile(FileNodeId fileNodeId, UserId userId, UserOpenFileRecord userOpenFileRecord) {
 
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() != typeof(File))
@@ -416,15 +394,13 @@ namespace OS_CD {
             }
         }
 
-        private void UpdateFileEvent(FileNodeId fileNodeId, UserId userId, FileEvent fileEvent, DateTime time)
-        {
+        private void UpdateFileEvent(FileNodeId fileNodeId, UserId userId, FileEvent fileEvent, DateTime time) {
             var file = GetFileNodeById(fileNodeId);
             var user = GetUserById(userId);
             file.eventInfo.AddEventTime(fileEvent, userId, time);
         }
         //-----------------系统打开文件表
-        private void CreateSystemOpenFileRecord(FileNodeId fileNodeId)
-        {
+        private void CreateSystemOpenFileRecord(FileNodeId fileNodeId) {
             if (!systemOpenFileRecordList.ContainsKey(fileNodeId))
             {
                 systemOpenFileRecordList.Add(fileNodeId, new SystemOpenFileRecord(fileNodeId));
@@ -434,13 +410,11 @@ namespace OS_CD {
 
         }
 
-        private SystemOpenFileRecord GetSystemOpenFileRecordById(FileNodeId fileNodeId)
-        {
+        private SystemOpenFileRecord GetSystemOpenFileRecordById(FileNodeId fileNodeId) {
             return systemOpenFileRecordList[fileNodeId];
         }
 
-        private bool DestorySystemOpenFileRecord(FileNodeId fileNodeId)
-        {
+        private bool DestorySystemOpenFileRecord(FileNodeId fileNodeId) {
 
             if (systemOpenFileRecordList[fileNodeId].counter > 1)
             {
@@ -462,8 +436,7 @@ namespace OS_CD {
             }
         }
         //-----------------缓冲区操作
-        public void WriterBuff(UserId userId, FileNodeId fileNodeId, FileBody fileBody)
-        {
+        public void WriterBuff(UserId userId, FileNodeId fileNodeId, FileBody fileBody) {
             var user = GetUserById(userId);
             user.openFileRecordList[fileNodeId].buff.Copy(fileBody);
         }

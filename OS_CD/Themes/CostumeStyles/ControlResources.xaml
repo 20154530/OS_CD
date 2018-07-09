@@ -41,7 +41,7 @@
                  MaxWidth="180"
                  VerticalAlignment="Bottom"
                  HorizontalAlignment="Left"
-                 Text="{Binding FormItems[0]}"
+                 Text="{Binding FormItems[0],Mode=TwoWay}"
                  Style="{StaticResource LoginPage_TextBox}" />
         <TextBlock x:Name="PasswordLabel"
                    Grid.Row="1"
@@ -56,7 +56,7 @@
                  MaxWidth="180"
                  VerticalAlignment="Bottom"
                  HorizontalAlignment="Left"
-                 Text="{Binding FormItems[1]}"
+                 Text="{Binding FormItems[1],Mode=TwoWay}"
                  Style="{StaticResource LoginPage_TextBox}" />
     </Grid>
 

@@ -36,14 +36,15 @@ namespace OS_CD {
         }
 
         private void AddUser_Commandaction(object para) {
-            MessageBoxServices.ShowFormDialog("FormContent",true,true,true, AddUserAction);
+            MessageBoxServices.ShowFormDialog("FormContent", 2, true, true, true, AddUserAction);
         }
 
         #endregion
 
         #region CallBacks
         private void AddUserAction(object obj) {
-            
+            YT_FormDialog YFD = (YT_FormDialog)obj;
+            FileSystem.Instance.CreateUser(YFD.FormItems[0], YFD.FormItems[1]);
         }
         #endregion
 

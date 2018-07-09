@@ -15,18 +15,19 @@ namespace OS_CD {
         }
         public static readonly DependencyProperty FormItemsProperty =
             DependencyProperty.Register("FormItems", typeof(string[]),
-                typeof(YT_FormDialog), new PropertyMetadata(new string[] {""}));
+                typeof(YT_FormDialog), new PropertyMetadata(null));
 
         public int FormItemCounts {
             get { return (int)GetValue(FormItemCountsProperty); }
-            set { SetValue(FormItemCountsProperty, value); }
+            set { SetValue(FormItemCountsProperty, value);
+                FormItems = new string[value];
+            }
         }
         public static readonly DependencyProperty FormItemCountsProperty =
             DependencyProperty.Register("FormItemCounts", typeof(int), 
                 typeof(YT_FormDialog), new PropertyMetadata(2,new PropertyChangedCallback(OnCountChanged)));
         private static void OnCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
-            YT_FormDialog fd = (YT_FormDialog)d;
-            fd.FormItems = new string[(int)e.NewValue];
+        
         }
 
         #endregion
