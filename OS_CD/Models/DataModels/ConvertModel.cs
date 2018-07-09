@@ -16,6 +16,8 @@ namespace OS_CD.Models {
         }
         public CommandBase NameChanged { get; set; }
 
+        public CommandBase CloseFile { get; set; }
+
         public Mode FileMode { get; set; }
 
         public string Name { get; set; }

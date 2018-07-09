@@ -62,6 +62,7 @@ namespace OS_CD {
             return amount <= freeAmount ? true : false;
         }
     }
+
     //成组
     [Serializable]
     internal class DiscBlockGroup

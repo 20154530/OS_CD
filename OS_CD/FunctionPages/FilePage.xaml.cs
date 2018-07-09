@@ -50,7 +50,11 @@ namespace OS_CD.FunctionPages {
             TFileNode sf = FileTree.SelectedItem as TFileNode;
             if (sf is null)
             {
-                MessageBoxServices.ShowSimpleStringDialog("请选择一个文件夹来添加文件", false, false);
+                MessageBoxServices.ShowSimpleStringDialog("请选择一个文件夹来添加文件!", false, false);
+                return;
+            }
+            else if (sf.FileMode.Equals(TFileNode.Mode.File)) {
+                MessageBoxServices.ShowSimpleStringDialog("不能在文件下继续创建结构!", false, false);
                 return;
             }
             if (sf.FileMode.Equals(TFileNode.Mode.Folder))
@@ -69,8 +73,13 @@ namespace OS_CD.FunctionPages {
         }
 
         private void ViewModel_OnFileRemove(object sender, EventArgs e) {
-            //if()
-            FileSystem.Instance.DestoryFileNode((FileTree.SelectedItem as TFileNode).ID);
+            int id = (FileTree.SelectedItem as TFileNode).ID;
+            if (id == 0)
+            {
+                MessageBoxServices.ShowSimpleStringDialog("不能删除根目录!!!", false, false);
+                return;
+            }
+            FileSystem.Instance.DestoryFileNode(id);
             Systeminfo.Instence.UpdateFileTree();
         }
 
@@ -87,7 +96,7 @@ namespace OS_CD.FunctionPages {
         }
 
         private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
-            Console.WriteLine(e.NewValue.GetType());
+            Systeminfo.Instence.Filenow = e.NewValue as TFileNode;
         }
     }
 }

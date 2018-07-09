@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -176,6 +175,25 @@ namespace OS_CD.Mangers.ValueConverters {
     public class GetPDock : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             return (FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value)) as Folder).name;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 获得文件内容目录的名称
+    /// </summary>
+    public class GetFContent : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            File f = FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value)) as File;
+            if (f is null)
+            {
+                return "";
+            }
+            else
+                return f.fileBody.GetContent();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

@@ -58,9 +58,9 @@ namespace OS_CD {
         public User UserNow {
             get => userNow;
             set {
-                LoginStateChanged?.Invoke(this, new PropertyChangeArgs(userNow, value));
                 userNow = value;
                 OnPropertyChanged("UserNow");
+                LoginStateChanged?.Invoke(this, new PropertyChangeArgs(userNow, value));
             }
         }
 
@@ -143,11 +143,13 @@ namespace OS_CD {
         }
 
         private void UpdataBlockInfo() {
-            foreach (var pair in FileSystem.Instance.FCBList) {
-                if(pair.Value is File)
+            foreach (var pair in FileSystem.Instance.FCBList)
+            {
+                if (pair.Value is File)
                 {
                     File tf = (File)pair.Value;
-                    foreach (int i in tf.blockIdList) {
+                    foreach (int i in tf.blockIdList)
+                    {
                         Blockcell[i] = tf.ID;
                         BlockUsed++;
                     }
@@ -200,11 +202,12 @@ namespace OS_CD {
         #endregion
 
         #region File
-        private Dictionary<int, int> idtonode;
-        public Dictionary<int, int> IDtoNode {
-            get => idtonode;
+        private List<int> openedfile;
+        public List<int> OpenedFile {
+            get => openedfile;
             set {
-                idtonode = value;
+                openedfile = value;
+                OnPropertyChanged("OpenedFile");
             }
         }
 
@@ -226,10 +229,6 @@ namespace OS_CD {
             }
         }
 
-        private void Systeminfo_FileTreeChanged(object sender, EventArgs e) {
-           // fileDictionary = GetFileTreeByRoot();
-        }
-
         public void UpdateFileTree() {
             FileDictionary = GetDictioniary();
         }
@@ -240,10 +239,7 @@ namespace OS_CD {
             {
                 dic.Add(new TFileNode(pair.Value));
             }
-            foreach (TFileNode tf in dic) {
-                Console.WriteLine(tf.ToString());
-            }
-            return getTrees(0, dic);
+            return getTrees(-1, dic);
         }
 
         private List<TFileNode> getTrees(int parentid, List<TFileNode> nodes) {
@@ -256,12 +252,26 @@ namespace OS_CD {
             return mainNodes;
         }
 
+        private List<int> GetOpenFileList() {
+            List<int> op = new List<int>();
+            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList)
+            {
+                op.Add(pairs.Key);
+            }
+            return op;
+        }
+
         private void InitFile() {
+            LoginStateChanged += Systeminfo_LoginStateChanged;
+
+        }
+
+        private void Systeminfo_LoginStateChanged(object sender, EventArgs e) {
             fileDictionary = GetDictioniary();
-            //for (int i= 0;i< fileDictionary.Count;i++) 
-            //    IDtoNode.Add(fileDictionary[i].ID, i);
+            OpenedFile = GetOpenFileList();
             Filenow = new TFileNode(-1, -1, "无文件");
         }
+
         #endregion
 
 

@@ -19,6 +19,7 @@
     <Convert:GetPDock x:Key="GetPDock" />
     <Convert:GetPowerList x:Key="GetPowerList" />
     <Convert:HideNotFile x:Key="HideNotPara" />
+    <Convert:GetFContent x:Key="GetFContent" />
 
 
 </ResourceDictionary>
