@@ -22,7 +22,7 @@ namespace OS_CD {
         public string name { get; set; }
 
         //权限表 string为权限 使用rwx 分别表示读写执行.User为对应
-        private Dictionary<UserId, string> powerList;
+        private Dictionary<UserId, string> powerList=new Dictionary<FileNodeId, string>();
         public Dictionary<UserId, string> PowerList {
             get => powerList;
             set { powerList = value; }
@@ -44,21 +44,28 @@ namespace OS_CD {
 
         public virtual void SetPower(UserId userId, bool read, bool writer, bool execute)
         {
+            if (!powerList.ContainsKey(userId)) powerList.Add(userId, null);
             powerList[userId] = (read ? "r" : "_") + (writer ? "w" : "_") + (execute ? "x" : "_");
         }
 
         public virtual bool CheckReadPower(UserId userId)
         {
+
+            if (!powerList.ContainsKey(userId)) return false;
             return powerList[userId][0] == 'r' ? true : false;
         }
 
         public virtual bool CheckWriterPower(UserId userId)
         {
+
+            if (!powerList.ContainsKey(userId)) return false;
             return powerList[userId][1] == 'w' ? true : false;
         }
 
         public virtual bool CheckExecutePower(UserId userId)
         {
+
+            if (!powerList.ContainsKey(userId)) return false;
             return powerList[userId][2] == 'x' ? true : false;
         }
 
