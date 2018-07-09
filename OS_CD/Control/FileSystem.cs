@@ -40,7 +40,7 @@ namespace OS_CD {
         public FileSystem() {
             int GroupMaxAmount = 20;
             int DiscMaxAmount = 511;
-            disc.Init(20, 512);
+            disc.Init(511);
             Init();
         }
         //盘块
