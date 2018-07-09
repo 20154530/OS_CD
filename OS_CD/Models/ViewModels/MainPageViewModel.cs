@@ -64,14 +64,14 @@ namespace OS_CD {
         }
 
         private void CloseCommand_Commandaction(object para) {
-            MessageBoxSeverces.ShowSimpleStringDialog("确认离开系统吗？", true, true, true, _ExitDialog_YesAction, _ExitDialog_NoAction);
+            MessageBoxServices.ShowSimpleStringDialog("确认离开系统吗？", true, true, true, _ExitDialog_YesAction, _ExitDialog_NoAction);
         }
 
-        private void _ExitDialog_NoAction() {
+        private void _ExitDialog_NoAction(object obj) {
 
         }
 
-        private void _ExitDialog_YesAction() {
+        private void _ExitDialog_YesAction(object obj) {
             App.Current.MainWindow.Close();
         }
 
@@ -82,7 +82,7 @@ namespace OS_CD {
 
         private void NavigateCommand_Commandaction(object para) {
             if (Systeminfo.Instence.LoginState.Equals(Visibility.Collapsed)) {
-                MessageBoxSeverces.ShowSimpleStringDialog("请先登录！");
+                MessageBoxServices.ShowSimpleStringDialog("请先登录！");
                 return;
             }
             OnNavigate.Invoke(this, new PropertyChangeArgs(para, para));

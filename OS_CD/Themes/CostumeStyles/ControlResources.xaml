@@ -5,27 +5,59 @@
     <!--ContextMenu-->
 
     <!--UserMenu-->
-    
-    
+
+
     <!--DialogContent-->
-    
-    <!--ExitDialogContent-->
-    <Grid x:Key="DefaultExitContent" Margin="5">
-        <TextBlock Style="{StaticResource DefaultToolTipText}"
-                   FontSize="{StaticResource Dialog_Content_Text_Size}"
-                   Width="300"
-                   TextWrapping="Wrap"
-                   Text="确认退出?" />
-    </Grid>
-    
+
     <!--LoginPageWarning-->
-    <Grid x:Key="WarningDialog" Margin="5" >
+    <Grid x:Key="WarningDialog"
+          Margin="5">
         <TextBlock Style="{StaticResource DefaultToolTipText}"
                    FontSize="{StaticResource Dialog_Content_Text_Size}"
                    Width="300"
                    TextWrapping="Wrap"
-                   Text="{Binding ContentText}"/>
-    </Grid> 
-    
+                   Text="{Binding ContentText}" />
+    </Grid>
+
+
+    <!--FormDialog-->
+    <Grid x:Key="FormContent" Margin="16,0,4,42">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="AccountLabel"
+                   Text="用户名"
+                   FontSize="14"
+                   VerticalAlignment="Bottom"
+                   Style="{StaticResource LoginPage_Label}" />
+        <TextBox x:Name="Account"
+                 Grid.Column="1"
+                 FontSize="14"
+                 MaxWidth="180"
+                 VerticalAlignment="Bottom"
+                 HorizontalAlignment="Left"
+                 Text="{Binding FormItems[0]}"
+                 Style="{StaticResource LoginPage_TextBox}" />
+        <TextBlock x:Name="PasswordLabel"
+                   Grid.Row="1"
+                   Text="密码"
+                   FontSize="14"
+                   VerticalAlignment="Bottom"
+                   Style="{StaticResource LoginPage_Label}" />
+        <TextBox x:Name="Password"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 FontSize="14"
+                 MaxWidth="180"
+                 VerticalAlignment="Bottom"
+                 HorizontalAlignment="Left"
+                 Text="{Binding FormItems[1]}"
+                 Style="{StaticResource LoginPage_TextBox}" />
+    </Grid>
 
 </ResourceDictionary>

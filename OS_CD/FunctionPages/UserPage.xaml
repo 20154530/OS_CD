@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:OS_CD"
       mc:Ignorable="d"
       Title="UserPage">
-    <Grid x:Name="RootGrid" Margin="8,0,8,0">
+    <Grid x:Name="RootGrid"
+          Margin="8,0,8,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
@@ -21,7 +22,8 @@
                    Fill="{StaticResource DiskPage_FG}"
                    Grid.ColumnSpan="3"
                    VerticalAlignment="Bottom" />
-        <Grid x:Name="FunctionArea" Grid.Row="1" >
+        <Grid x:Name="FunctionArea"
+              Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
@@ -33,16 +35,24 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
                 <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                     Command="{Binding AddUser}"
                                      ForeToolTip="添加用户"
                                      Content="&#xE948;" />
                 <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                     Command="{Binding RemoveUser}"
                                      ForeToolTip="删除用户"
                                      Grid.Column="1"
                                      Content="&#xE949;" />
             </Grid>
-            <ListView Style="{StaticResource UserView}" Grid.Row="1">
-                
-            </ListView>
+            <Rectangle Style="{StaticResource H_Seperoator}"
+                       Fill="{StaticResource DiskPage_FG}"
+                       Grid.ColumnSpan="2"
+                       VerticalAlignment="Bottom" />
+            <ListView x:Name="UserList"
+                      Margin="0,8,0,0"
+                      Style="{StaticResource UserView}"
+                      ItemsSource="{Binding Users,Source={x:Static local:Systeminfo.Instence}}"
+                      Grid.Row="1" />
         </Grid>
     </Grid>
 

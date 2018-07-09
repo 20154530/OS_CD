@@ -18,8 +18,13 @@ namespace OS_CD {
     {
         public int ID { get; set; }
         public string name { get; set; }
+
         //权限表 string为权限 使用rwx 分别表示读写执行.User为对应
         private Dictionary<UserId, string> powerList;
+        public Dictionary<UserId, string> PowerList {
+            get => powerList;
+            set { powerList = value; }
+        }
         //所属父文件节点
         public FileNodeId fatherFileNodeId { get; set; }
         //文件事件记录

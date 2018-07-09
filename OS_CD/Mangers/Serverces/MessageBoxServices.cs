@@ -8,11 +8,11 @@ using System.Windows.Controls;
 using static OS_CD.YT_DialogBase;
 
 namespace OS_CD.Mangers.Serverces {
-    internal class MessageBoxSeverces {
+    internal class MessageBoxServices {
 
         public static void ShowSimpleStringDialog(string content, bool yes = true, bool no = true, bool cancel = true, CommandAction ya = null, CommandAction na = null) {
             Grid cont = App.Current.FindResource("WarningDialog") as Grid;
-            YT_ExitDialog _ExitDialog = new YT_ExitDialog();
+            YT_GeneralDialog _ExitDialog = new YT_GeneralDialog();
             _ExitDialog.YseButtonVisibility = yes ? Visibility.Visible : Visibility.Collapsed;
             _ExitDialog.NoButtonVisibility = no ? Visibility.Visible : Visibility.Collapsed;
             _ExitDialog.CancelButtonVisibility = cancel ? Visibility.Visible : Visibility.Collapsed;
@@ -21,6 +21,23 @@ namespace OS_CD.Mangers.Serverces {
             _ExitDialog.Content = cont;
             cont.DataContext = _ExitDialog;
             _ExitDialog.ContentText = content;
+
+            _ExitDialog.YesAction += ya;
+            _ExitDialog.NoAction += na;
+
+            _ExitDialog.ShowDialog(App.Current.MainWindow);
+        }
+
+        public static void ShowFormDialog(string Content, bool yes = true, bool no = true, bool cancel = true, CommandAction ya = null,CommandAction na = null) {
+            Grid cont = App.Current.FindResource(Content) as Grid;
+            YT_FormDialog _ExitDialog = new YT_FormDialog();
+            _ExitDialog.YseButtonVisibility = yes ? Visibility.Visible : Visibility.Collapsed;
+            _ExitDialog.NoButtonVisibility = no ? Visibility.Visible : Visibility.Collapsed;
+            _ExitDialog.CancelButtonVisibility = cancel ? Visibility.Visible : Visibility.Collapsed;
+            _ExitDialog.ContentWidth = 320;
+            _ExitDialog.ContentHeight = 140;
+            _ExitDialog.Content = cont;
+            cont.DataContext = _ExitDialog;
 
             _ExitDialog.YesAction += ya;
             _ExitDialog.NoAction += na;

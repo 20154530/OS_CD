@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace OS_CD {
             }
         }
 
-        public User noUser = new User(-1,"未登录","");
+        public User noUser = new User(-1, "未登录", "");
 
         #region PropertiesNoVisual
         private Timer systime_timer;
@@ -30,6 +31,7 @@ namespace OS_CD {
 
 
         #region Properties
+        //General
         private string sysTime_HMS;
         public string SysTime_HMS {
             get => sysTime_HMS;
@@ -48,6 +50,7 @@ namespace OS_CD {
             }
         }
 
+        //LoginPage
         public event EventHandler LoginStateChanged;
         private User userNow;
         public User UserNow {
@@ -68,6 +71,7 @@ namespace OS_CD {
             }
         }
 
+        //DiskPage
         private int[] blockcell;
         public int[] Blockcell {
             get => blockcell;
@@ -76,6 +80,44 @@ namespace OS_CD {
                 OnPropertyChanged("Blockcell");
             }
         }
+
+        /// <summary>
+        /// 选中的文件
+        /// </summary>
+        private File selectedFile;
+        public File SelectedFile {
+            get => selectedFile;
+            set {
+                if (value != null)
+                    fileInfoVisibility = Visibility.Visible;
+                else
+                    fileInfoVisibility = Visibility.Collapsed;
+                selectedFile = value;
+                OnPropertyChanged("SelectedFile");
+            }
+        }
+
+        /// <summary>
+        /// 文件详细信息标识
+        /// </summary>
+        private Visibility fileInfoVisibility = Visibility.Collapsed;
+        public Visibility FileInfoVisibility {
+            get => fileInfoVisibility;
+            set {
+                fileInfoVisibility = value;
+                OnPropertyChanged("FileInfoVisibility");
+            }
+        }
+
+        //UserPage
+        private ObservableCollection<User> users;
+        public ObservableCollection<User> Users {
+            get => users;
+            set {
+                users = value;
+            }
+        }
+
         #endregion
 
         #region TimerMethod
@@ -97,13 +139,43 @@ namespace OS_CD {
             for (int i = 0; i < 512; i++)
                 blockcell[i] = -1;
         }
+
+        private void InitUser() {
+            UserNow = noUser;
+            Users = new ObservableCollection<User>();
+            LoadUsers();
+            FileSystem.Instance.UCBListChanged += Instance_UCBListChanged;
+        }
+
+        private void Instance_UCBListChanged(object sender, EventArgs e) {
+            LoadUsers();
+        }
+
+        private void LoadUsers() {
+            Users.Clear();
+            if (FileSystem.Instance.UCBList.Count > 0)
+                foreach (var pair in FileSystem.Instance.UCBList) {
+                    Users.Add(pair.Value);
+                }
+        }
+
+        private void LoadDisk() {
+
+        }
+        #endregion
+
+
+        #region EventActions
+    
+        
         #endregion
 
         #region Constructors
         public Systeminfo() {
             InitTiemr();
             InitDisk();
-            UserNow = noUser;
+            InitUser();
+
             //初始化属性
         }
         #endregion

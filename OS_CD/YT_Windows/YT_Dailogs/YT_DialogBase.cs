@@ -11,7 +11,7 @@ namespace OS_CD {
     /// 对话框基类
     /// </summary>
     public class YT_DialogBase : Window {
-        public delegate void CommandAction();
+        public delegate void CommandAction(object obj = null);
 
         #region Properties
         public double ContentWidth {
@@ -115,13 +115,13 @@ namespace OS_CD {
 
         protected virtual void NoCommand_Commandaction(object para) {
             DialogResult = false;
-            noAction?.Invoke();
+            noAction?.Invoke(this);
             Close();
         }
 
         protected virtual void YesCommand_Commandaction(object para) {
             DialogResult = true;
-            yesAction?.Invoke();
+            yesAction?.Invoke(this);
             Close();
         }
 

@@ -67,17 +67,17 @@ namespace OS_CD {
 
             switch (LoginS) {
                 case LoginState.PasswordError:
-                    MessageBoxSeverces.ShowSimpleStringDialog("密码错误！",false,false);
+                    MessageBoxServices.ShowSimpleStringDialog("密码错误！",false,false);
                     break;
                 case LoginState.OK:
-                    MessageBoxSeverces.ShowSimpleStringDialog("登录成功！", false, false);
+                    MessageBoxServices.ShowSimpleStringDialog("登录成功！", false, false);
                     Systeminfo.Instence.UserNow = FileSystem.Instance.GetUserById(id);
                     FileSystem.Instance.SwitchCurrentUser(id);
                     Systeminfo.Instence.LoginState = System.Windows.Visibility.Visible;
                     LoginAction?.Invoke(this,null);
                     break;
                 case LoginState.NoUser:
-                    MessageBoxSeverces.ShowSimpleStringDialog("用户不存在！", false, false);
+                    MessageBoxServices.ShowSimpleStringDialog("用户不存在！", false, false);
                     break;
             }
 

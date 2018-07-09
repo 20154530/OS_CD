@@ -110,7 +110,7 @@
     </Compile>
     <Compile Include="Mangers\Commands.cs" />
     <Compile Include="Mangers\Converters\Converter.cs" />
-    <Compile Include="Mangers\Serverces\MessageBoxSeverces.cs" />
+    <Compile Include="Mangers\Serverces\MessageBoxServices.cs" />
     <Compile Include="Mangers\Systeminfo.cs" />
     <Compile Include="Mangers\Tables.cs" />
     <Compile Include="Mangers\Win32Funcs.cs" />
@@ -133,8 +133,9 @@
     <Compile Include="YT_Controls\YT_IconButton.cs" />
     <Compile Include="YT_Panels\CellPanel.cs" />
     <Compile Include="YT_Windows\YT_AreaIcon.cs" />
+    <Compile Include="YT_Windows\YT_Dailogs\YT_FormDialog.cs" />
     <Compile Include="YT_Windows\YT_Dailogs\YT_DialogBase.cs" />
-    <Compile Include="YT_Windows\YT_Dailogs\YT_ExitDialog.cs" />
+    <Compile Include="YT_Windows\YT_Dailogs\YT_GeneralDialog.cs" />
     <Compile Include="YT_Windows\YT_SizeBorder.cs" />
     <Compile Include="YT_Windows\YT_TitleBar.cs" />
     <Compile Include="YT_Windows\YT_Window.cs" />

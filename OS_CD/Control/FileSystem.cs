@@ -50,10 +50,10 @@ namespace OS_CD {
 
 
         //UCb用户控制块 List
+        public event EventHandler UCBListChanged;
         private Dictionary<UserId, User> uCBList = new Dictionary<UserId, User>();
-
         public Dictionary<UserId, User> UCBList {
-            get => uCBList;
+            get { return uCBList; }
             set { uCBList = value; }
         }
 
@@ -262,9 +262,9 @@ namespace OS_CD {
                  }
              }
              */
-
+            UCBListChanged?.Invoke(this, EventArgs.Empty);
             LogOffUser(userId);
-            Debug.Print("Remove a user ,id is:" + userId + "\n");
+           // Debug.Print("Remove a user ,id is:" + userId + "\n");
             return true;
         }
 

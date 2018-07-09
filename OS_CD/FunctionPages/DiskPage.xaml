@@ -112,7 +112,7 @@
             </Grid>
             <Grid x:Name="FileInfo"
                   Grid.Row="3"
-                  Visibility="{Binding FileInfoVisibility}">
+                  Visibility="{Binding FileInfoVisibility,Source={x:Static local:Systeminfo.Instence}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="36" />
                     <RowDefinition Height="*" />
@@ -143,7 +143,7 @@
                                        Width="120"
                                        Style="{StaticResource DiskPageLabel}"
                                        FontSize="12" />
-                            <TextBlock  Text="{Binding }"
+                            <TextBlock  Text="{Binding SelectedFile.ID,Source={x:Static local:Systeminfo.Instence}}"
                                         Style="{StaticResource DiskPageLabel}"
                                         Height="24"
                                         FontSize="12" />
@@ -154,7 +154,7 @@
                                        Width="120"
                                        Height="24"
                                        FontSize="12" />
-                            <TextBlock  Text="{Binding }"
+                            <TextBlock  Text="{Binding SelectedFile.name,Source={x:Static local:Systeminfo.Instence}}"
                                         Style="{StaticResource DiskPageLabel}"
                                         Height="24"
                                         FontSize="12" />
@@ -165,7 +165,7 @@
                                        Width="120"
                                        Height="24"
                                        FontSize="12" />
-                            <TextBlock  Text="{Binding }"
+                            <TextBlock  Text="{Binding SelectedFile.fatherFileNodeId,Source={x:Static local:Systeminfo.Instence}}"
                                         Style="{StaticResource DiskPageLabel}"
                                         Height="24"
                                         FontSize="12" />
@@ -176,7 +176,7 @@
                                        Width="120"
                                        Height="24"
                                        FontSize="12" />
-                            <TextBlock Text="{Binding }"
+                            <TextBlock Text="{Binding SelectedFile.PowerList,Source={x:Static local:Systeminfo.Instence}}"
                                        Style="{StaticResource DiskPageLabel}"
                                        Height="24"
                                        FontSize="12" />
@@ -187,7 +187,7 @@
                                        Width="120"
                                        Height="24"
                                        FontSize="12" />
-                            <TextBlock Text="{Binding }"
+                            <TextBlock Text="{Binding SelectedFile.blockIdList,Source={x:Static local:Systeminfo.Instence}}"
                                        Style="{StaticResource DiskPageLabel}"
                                        Height="24"
                                        FontSize="12" />

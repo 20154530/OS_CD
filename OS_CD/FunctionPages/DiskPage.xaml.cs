@@ -19,16 +19,16 @@ namespace OS_CD.FunctionPages {
             int selected = (int)((ListView)sender).SelectedItem;
             try
             {
-                DiskVM.SelectedFile = FileSystem.Instance.FCBList[selected] as File;
+                Systeminfo.Instence.SelectedFile = FileSystem.Instance.FCBList[selected] as File;
             }
             catch (Exception s)
             {
                 s.GetType();
             }
             if (selected != -1)
-                DiskVM.FileInfoVisibility = Visibility.Visible;
+                Systeminfo.Instence.FileInfoVisibility = Visibility.Visible;
             else
-                DiskVM.FileInfoVisibility = Visibility.Collapsed;
+                Systeminfo.Instence.FileInfoVisibility = Visibility.Collapsed;
         }
     }
 }

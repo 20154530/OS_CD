@@ -539,7 +539,7 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border x:Name="RootBorder">
-                                    <Grid x:Name="RootGrid">
+                                    <Grid x:Name="RootGrid" Margin="0,4,0,4">
                                         <ContentPresenter x:Name="Content"
                                                           VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"

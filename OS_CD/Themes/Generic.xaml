@@ -584,8 +584,8 @@
 
     <!--Dialogs-->
 
-    <!--YT_ExitDialog-->
-    <Style TargetType="local:YT_ExitDialog">
+    <!--YT_GeneralDialog-->
+    <Style TargetType="local:YT_GeneralDialog">
         <Setter Property="ResizeMode"
                 Value="NoResize" />
         <Setter Property="SizeToContent"
@@ -600,7 +600,7 @@
                 Value="{StaticResource MainWindow_Border_Normal}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:YT_ExitDialog">
+                <ControlTemplate TargetType="local:YT_GeneralDialog">
                     <Border x:Name="RootBorder"
                             Width="{TemplateBinding ContentWidth}"
                             Height="{TemplateBinding ContentHeight}"
@@ -613,6 +613,72 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid x:Name="TitleArea" Height="{StaticResource Dialog_TileBar_Height}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:YT_IconButton x:Name="CancleButton"
+                                                     Grid.Column="1"
+                                                     Content="&#xE711;"
+                                                     Visibility="{TemplateBinding CancelButtonVisibility}"
+                                                     Command="{TemplateBinding CancelCommand}"
+                                                     Style="{StaticResource DialogButtonStyle}" />
+                            </Grid>
+                            <AdornerDecorator x:Name="Content"
+                                              Grid.Row="1">
+                                <ContentPresenter />
+                            </AdornerDecorator>
+                            <local:YT_IconButton x:Name="YesButton"
+                                                 Grid.Row="1"
+                                                 ContentText="是"
+                                                 Margin="0,0,68,8"
+                                                 Visibility="{TemplateBinding YseButtonVisibility}"
+                                                 Command="{TemplateBinding YesCommand}"
+                                                 Style="{StaticResource DialogTextButtonStyle}" />
+                            <local:YT_IconButton x:Name="NoButton"
+                                                 Grid.Row="1"
+                                                 ContentText="否"
+                                                 Margin="0,0,8,8"
+                                                 Visibility="{TemplateBinding NoButtonVisibility}"
+                                                 Command="{TemplateBinding NoCommand}"
+                                                 Style="{StaticResource DialogTextButtonStyle}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--YT_FormDialog-->
+    <Style TargetType="local:YT_FormDialog">
+        <Setter Property="ResizeMode"
+                Value="NoResize" />
+        <Setter Property="SizeToContent"
+                Value="WidthAndHeight" />
+        <Setter Property="ShowInTaskbar"
+                Value="False" />
+        <Setter Property="Background"
+                Value="{StaticResource MainWindow_BG}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource MainWindow_Border_Normal}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:YT_FormDialog">
+                    <Border x:Name="RootBorder"
+                            Width="{TemplateBinding ContentWidth}"
+                            Height="{TemplateBinding ContentHeight}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid x:Name="RootGrid"
+                              Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid x:Name="TitleArea"
+                                  Height="{StaticResource Dialog_TileBar_Height}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="auto" />

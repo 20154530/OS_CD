@@ -11,7 +11,7 @@ namespace OS_CD {
     /// 窗口关闭对话框
     /// 一般用于提醒保存操作或进行一些选择
     /// </summary>
-    public sealed class YT_ExitDialog : YT_DialogBase {
+    public sealed class YT_GeneralDialog : YT_DialogBase {
 
         #region Properties
         public string ContentText {
@@ -20,7 +20,7 @@ namespace OS_CD {
         }
         public static readonly DependencyProperty ContentTextProperty =
             DependencyProperty.Register("ContentText", typeof(string),
-                typeof(YT_ExitDialog), new PropertyMetadata(""));
+                typeof(YT_GeneralDialog), new PropertyMetadata(""));
         #endregion
 
         protected override void OnClosing(CancelEventArgs e) {
@@ -28,13 +28,13 @@ namespace OS_CD {
             base.OnClosing(e);
         }
 
-        public YT_ExitDialog() {
+        public YT_GeneralDialog() {
             this.WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
         }
 
-        static YT_ExitDialog() {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(YT_ExitDialog), new FrameworkPropertyMetadata(typeof(YT_ExitDialog)));
+        static YT_GeneralDialog() {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(YT_GeneralDialog), new FrameworkPropertyMetadata(typeof(YT_GeneralDialog)));
         }
     }
 }

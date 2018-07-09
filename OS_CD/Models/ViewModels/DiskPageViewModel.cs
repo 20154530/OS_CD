@@ -10,46 +10,6 @@ using System.Windows.Controls;
 namespace OS_CD {
     internal class DiskPageViewModel : ViewModelBase {
 
-        /// <summary>
-        /// 磁盘块 位示图
-        /// </summary>
-        private int[] blockcell;
-        public int[] Blockcell {
-            get => blockcell;
-            set {
-                blockcell = value;
-                OnPropertyChanged("Blockcell");
-            }
-        }
-
-        /// <summary>
-        /// 选中的文件
-        /// </summary>
-        private File selectedFile;
-        public File SelectedFile {
-            get => selectedFile;
-            set {
-                if (value != null)
-                    fileInfoVisibility = Visibility.Visible;
-                else
-                    fileInfoVisibility = Visibility.Collapsed;
-                selectedFile = value;
-                OnPropertyChanged("SelectedFile");
-            }
-        }
-
-        /// <summary>
-        /// 文件详细信息标识
-        /// </summary>
-        private Visibility fileInfoVisibility = Visibility.Collapsed;
-        public Visibility FileInfoVisibility {
-            get => fileInfoVisibility;
-            set {
-                fileInfoVisibility = value;
-                OnPropertyChanged("FileInfoVisibility");
-            }
-        }
-
         public DiskPageViewModel() {
 
         }
