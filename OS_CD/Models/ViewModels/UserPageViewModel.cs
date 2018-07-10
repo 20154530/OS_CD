@@ -45,6 +45,7 @@ namespace OS_CD {
         private void AddUserAction(object obj) {
             YT_FormDialog YFD = (YT_FormDialog)obj;
             FileSystem.Instance.CreateUser(YFD.FormItems[0], YFD.FormItems[1]);
+            
         }
         #endregion
 

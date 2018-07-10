@@ -293,6 +293,8 @@ namespace OS_CD.Mangers.ValueConverters {
             var tf = value as TFileNode;
             if (!(tf is null))
             {
+                if (tf.FileMode.Equals(TFileNode.Mode.Folder))
+                    return Visibility.Collapsed;
                 int id = tf.ID;
                 if (FileSystem.Instance.GetFileNodeById(id).CheckWriterPower(Systeminfo.Instence.UserNow.ID))
                     return Visibility.Visible;

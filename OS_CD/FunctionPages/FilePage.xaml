@@ -182,6 +182,7 @@
                                     Grid.Row="4"
                                     Grid.Column="1">
                             <ComboBox x:Name="SelectedUssers" 
+                                      SelectionChanged="SelectedUssers_SelectionChanged"
                                       Style="{StaticResource FilePageCombobox}" 
                                       ItemsSource="{Binding Users,Source={x:Static local:Systeminfo.Instence}}"/>
                             <local:YT_IconToggelButton x:Name="ReadR"

@@ -28,14 +28,19 @@ namespace OS_CD.FunctionPages {
             InitializeComponent();
         }
 
-        private void ViewModel_OnSetRights(object sender, EventArgs e) {
-            
-         
-        }
-
         public override void EndInit() {
             base.EndInit();
-            AddFilePopup.PlacementTarget = AddFileBtn;
+            Systeminfo.Instence.FileBodys.Clear();
+           AddFilePopup.PlacementTarget = AddFileBtn;
+            SelectedUssers.SelectedItem = Systeminfo.Instence.UserNow;
+        }
+
+        private void ViewModel_OnSetRights(object sender, EventArgs e) {
+            if (!((FileTree.SelectedItem as TFileNode) is null)) {
+                TFileNode tfn = FileTree.SelectedItem as TFileNode;
+                User urs = SelectedUssers.SelectedItem as User;
+                FileSystem.Instance.GetFileNodeById(tfn.ID).SetPower(urs.ID, (bool)ReadR.IsChecked, (bool)WriteR.IsChecked, false);
+            }
         }
 
         private void ViewModel_OnFileOpen(object sender, EventArgs e) {
@@ -91,7 +96,8 @@ namespace OS_CD.FunctionPages {
             }
             FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
             Systeminfo.Instence.UpdataOpenFileList();
-            Systeminfo.Instence.FileBodys.Remove(id);
+            if (Systeminfo.Instence.FileBodys.ContainsKey(id))
+                Systeminfo.Instence.FileBodys.Remove(id);
             Properties.Settings.Default.SelectedFile = 0;
             viewModel.FileBodyText = "";
         }
@@ -187,5 +193,13 @@ namespace OS_CD.FunctionPages {
             Systeminfo.Instence.Filenow = e.NewValue as TFileNode;
         }
 
+        private void SelectedUssers_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            TFileNode tfn = FileTree.SelectedItem as TFileNode;
+            User urs = SelectedUssers.SelectedItem as User;
+            if (tfn != null && urs != null) {
+                ReadR.IsChecked = FileSystem.Instance.GetFileNodeById(tfn.ID).CheckReadPower(urs.ID);
+                WriteR.IsChecked = FileSystem.Instance.GetFileNodeById(tfn.ID).CheckWriterPower(urs.ID);
+            }
+        }
     }
 }

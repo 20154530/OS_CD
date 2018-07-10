@@ -878,7 +878,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PowerListView"
+    <!--<Style x:Key="PowerListView"
            TargetType="ListView">
         <Setter Property="Background"
                 Value="Transparent" />
@@ -961,7 +961,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 
     <!--TreeView-->

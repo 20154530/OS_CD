@@ -172,8 +172,8 @@ namespace OS_CD {
 
         #region User
         //UserPage
-        private List<User> users;
-        public List<User> Users {
+        private ObservableCollection<User> users;
+        public ObservableCollection<User> Users {
             get => users;
             set {
                 users = value;
@@ -183,13 +183,15 @@ namespace OS_CD {
 
         private void InitUser() {
             UserNow = noUser;
-            Users = new List<User>();
+            Users = new ObservableCollection<User>();
             LoadUsers();
             FileSystem.Instance.UCBListChanged += Instance_UCBListChanged;
         }
 
         private void Instance_UCBListChanged(object sender, EventArgs e) {
+
             LoadUsers();
+
         }
 
         private void LoadUsers() {
