@@ -46,6 +46,7 @@ namespace OS_CD.FunctionPages {
                     MessageBoxServices.ShowSimpleStringDialog("选择文件而不是文件夹", false, false);
                 }
                 FileSystem.Instance.OpenFileNode(id, Systeminfo.Instence.UserNow.ID);
+                FileCon.Text = (FileSystem.Instance.GetFileNodeById(tfn.ID) as File).fileBody.GetContent();
                 Systeminfo.Instence.UpdataOpenFileList();
             }
         }

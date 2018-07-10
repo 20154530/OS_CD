@@ -197,6 +197,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <ListView x:Name="OpenFileLabel"
+                          Margin="4,0,0,0"
                           SelectionChanged="OpenFileLabel_SelectionChanged"
                           ItemsSource="{Binding OpenedFile,Source={x:Static local:Systeminfo.Instence}}"
                           Style="{StaticResource FileLabelButtonView}" />
