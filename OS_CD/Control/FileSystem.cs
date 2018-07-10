@@ -264,6 +264,8 @@ namespace OS_CD {
         }
 
         public FileNodeId CreateUser(string userName, string password) {
+            //判断是否重名
+            if (IsUserNameExits(userName)) return GetErrorID();
             //创建用户，保存到系统记录中
             User newUser = new User(GetNextUserfulUserID(), userName, password);
             RegisterUser(newUser);
@@ -308,6 +310,14 @@ namespace OS_CD {
             return UCBList[userId];
         }
 
+        public bool IsUserNameExits(string userName)
+        {
+            foreach(var user in UCBList)
+            {
+                if (userName == user.Value.Name) return true;
+            }
+            return false;
+        }
         //-----------------文件功能
         public bool OpenFileNode(FileNodeId fileNodeId, UserId userId) {
             //文件节点和用户
