@@ -778,7 +778,8 @@
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border x:Name="RootBorder">
                                     <Grid x:Name="RootGrid"
-                                          Margin="0,4,0,4">
+                                          Margin="0,2,0,2">
+                                        <Grid
                                         <ContentPresenter x:Name="Content"
                                                           VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
@@ -786,6 +787,14 @@
                                                           Margin="0" />
                                     </Grid>
                                 </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected"
+                                             Value="True">
+                                        <Setter TargetName="RootBorder"
+                                                Property="Background"
+                                                Value="#606060" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
@@ -812,6 +821,7 @@
                         <local:YT_IconButton x:Name="CloseButton"
                                              Width="16"
                                              Grid.Column="1"
+                                             Margin="4,0,0,0"
                                              DataContext="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListView}}"
                                              Command="{Binding CloseFile}"
                                              CommandParameter="{Binding ElementName=FileName,Path=Tag}"
@@ -820,17 +830,6 @@
                     <DataTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
-                            <Setter TargetName="FileName"
-                                    Property="Foreground"
-                                    Value="{StaticResource MainWindow_BG}" />
-                            <Setter TargetName="CloseButton"
-                                    Property="IconR"
-                                    Value="{StaticResource MainWindow_BG}" />
-                            <Setter TargetName="ListItem"
-                                    Property="Background"
-                                    Value="#606060" />
-                        </Trigger>
-                        <Trigger Property="ListBoxItem.IsSelected" Value="True">
                             <Setter TargetName="FileName"
                                     Property="Foreground"
                                     Value="{StaticResource MainWindow_BG}" />

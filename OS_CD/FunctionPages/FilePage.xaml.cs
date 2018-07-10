@@ -119,6 +119,9 @@ namespace OS_CD.FunctionPages {
 
         private void OpenFileLabel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             Systeminfo.Instence.OpenFilenow = FileTree.SelectedItem as TFileNode;
+            int id = Systeminfo.Instence.OpenFilenow.ID;
+            FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(FileCon.Text);
+
         }
 
         private void AddFileButton_Click(object sender, RoutedEventArgs e) {
