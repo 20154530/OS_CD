@@ -37,14 +37,19 @@ namespace OS_CD {
             }
         }
 
+        //盘块
+        Disc disc = new Disc();
+        public Disc Disc {
+            get => disc;
+            set { disc = value; }
+        }
+
         public FileSystem() {
             int GroupMaxAmount = 20;
             int DiscMaxAmount = 511;
             disc.Init(511);
             Init();
         }
-        //盘块
-        Disc disc = new Disc();
 
         //FCB文件控制块 List
         private Dictionary<FileNodeId, FileNode> fCBList = new Dictionary<int, FileNode>();

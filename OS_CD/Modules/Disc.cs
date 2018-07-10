@@ -24,6 +24,7 @@ namespace OS_CD {
 
         //已经占用的块以及文件id
         public Dictionary<DiscBlockId, FileNodeId> usageBlockList = new Dictionary<int, int>();
+
         //空闲块链表
         public List<DiscBlockId> freeBlockList = new List<FileNodeId>();
         public bool AddDiscBlock(int blockId)

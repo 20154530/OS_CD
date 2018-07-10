@@ -165,7 +165,7 @@
                                        Width="120"
                                        Height="24"
                                        FontSize="12" />
-                            <TextBlock  Text="{Binding SelectedFile.fatherFileNodeId,Source={x:Static local:Systeminfo.Instence}}"
+                            <TextBlock  Text="{Binding SelectedFile.fatherFileNodeId,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFName}}"
                                         Style="{StaticResource DiskPageLabel}"
                                         Height="24"
                                         FontSize="12" />
@@ -176,7 +176,7 @@
                                        Width="120"
                                        Height="24"
                                        FontSize="12" />
-                            <TextBlock Text="{Binding SelectedFile.PowerList,Source={x:Static local:Systeminfo.Instence}}"
+                            <TextBlock Text="{Binding SelectedFile.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetPowerList}}"
                                        Style="{StaticResource DiskPageLabel}"
                                        Height="24"
                                        FontSize="12" />
@@ -187,7 +187,7 @@
                                        Width="120"
                                        Height="24"
                                        FontSize="12" />
-                            <TextBlock Text="{Binding SelectedFile.blockIdList,Source={x:Static local:Systeminfo.Instence}}"
+                            <TextBlock Text="{Binding SelectedFile.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFBlockList}}"
                                        Style="{StaticResource DiskPageLabel}"
                                        Height="24"
                                        FontSize="12" />

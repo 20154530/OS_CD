@@ -162,7 +162,7 @@
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="4"
                                    FontSize="12" />
-                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence}}"
+                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFBlockList}}"
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="4"

@@ -22,12 +22,33 @@ namespace OS_CD.FunctionPages {
             viewModel.OnFileRemoved += ViewModel_OnFileRemove;
             viewModel.OnFileAdded += ViewModel_OnFileAdded;
             viewModel.OnFileRename += ViewModel_OnFileRename;
+            viewModel.OnFileClose += ViewModel_OnFileClose;
+            viewModel.OnFileOpen += ViewModel_OnFileOpen;
             InitializeComponent();
+        }
+
+        private void ViewModel_OnFileOpen(object sender, EventArgs e) {
+            TFileNode tfn = FileTree.SelectedItem as TFileNode;
+            if (tfn is null)
+            {
+                MessageBoxServices.ShowSimpleStringDialog("请选择节点以打开", false, false);
+            }
+            else
+            {
+                int id = (FileTree.SelectedItem as TFileNode).ID;
+                FileSystem.Instance.OpenFileNode(id,Systeminfo.Instence.UserNow.ID);
+            }
+        }
+
+        private void ViewModel_OnFileClose(object sender, EventArgs e) {
+            int id = Convert.ToInt32(((PropertyChangeArgs)e).NewValue);
+            Systeminfo.Instence.UserNow.openFileRecordList[id].buff.SetContent(FileCon.Text);
+         //   FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
+            Systeminfo.Instence.UpdataOpenFileList();
         }
 
         public override void EndInit() {
             base.EndInit();
-            FileTree.MouseDoubleClick += FileTree_MouseDoubleClick;
             AddFilePopup.PlacementTarget = AddFileBtn;
         }
 
@@ -40,10 +61,6 @@ namespace OS_CD.FunctionPages {
         private void NameChanged_Commandaction(object para) {
             TFileNode tf = para as TFileNode;
             FileSystem.Instance.GetFileNodeById(tf.ID).name = tf.Name;
-        }
-
-        private void FileTree_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-
         }
 
         private void ViewModel_OnFileAdded(object sender, EventArgs e) {
@@ -84,7 +101,7 @@ namespace OS_CD.FunctionPages {
         }
 
         private void OpenFileLabel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+            Systeminfo.Instence.Filenow = FileTree.SelectedItem as TFileNode;
         }
 
         private void AddFileButton_Click(object sender, RoutedEventArgs e) {
