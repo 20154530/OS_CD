@@ -959,7 +959,7 @@
                     <Setter Property="Foreground"
                             Value="{StaticResource FilePage_FG}" />
                     <Setter Property="ContextMenu"
-                            Value=""
+                            Value="{DynamicResource OpenFileMenu }" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TreeViewItem">
@@ -1028,14 +1028,15 @@
             <Setter.Value>
                 <HierarchicalDataTemplate DataType="{x:Type Models:TFileNode}"
                                           ItemsSource="{Binding Contains}">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Background="Transparent">
                         <local:YT_TextBox x:Name="FileName"
                                           Height="16"
                                           DisableCommand="{Binding NameChanged}"
                                           CommandParameter="{Binding DataContext,RelativeSource={RelativeSource Mode=Self}}"
                                           IsEnabled="{Binding Rename,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                           Foreground="{Binding Foreground,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TreeViewItem}}"
-                                          Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+                                          Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=Explicit}">
+                        </local:YT_TextBox>
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </Setter.Value>

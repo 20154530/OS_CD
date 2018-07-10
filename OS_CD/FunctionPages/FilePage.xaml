@@ -26,7 +26,7 @@
         <Grid x:Name="ContentArea"
               Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="160"
+                <ColumnDefinition MinWidth="180"
                                   Width="{Binding FilePageGridWidth, Source={x:Static Properties:Settings.Default},Converter={StaticResource DoubleToGrid},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition MinWidth="0" />
@@ -44,6 +44,7 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <local:YT_IconButton x:Name="AddFileBtn"
@@ -88,9 +89,14 @@
                                          Grid.Column="1"
                                          Content="&#xE949;" />
                     <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
+                                         Command="{Binding OpenFile}"
+                                         ForeToolTip="打开"
+                                         Grid.Column="3"
+                                         Content="&#xE8E5;" />
+                    <local:YT_IconButton Style="{StaticResource FilePage_ARButton}"
                                          Command="{Binding Rename}"
                                          ForeToolTip="重命名"
-                                         Grid.Column="3"
+                                         Grid.Column="4"
                                          Content="&#xE70F;" />
                 </Grid>
                 <Rectangle Style="{StaticResource H_Seperoator}"
@@ -189,7 +195,7 @@
                            Margin="2,0,0,0" />
                 <TextBox x:Name="FileCon"
                          Margin="4,8,0,0"
-                         Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFContent}}"
+                         Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Mode=OneWay,Converter={StaticResource GetFContent}}"
                          Background="Transparent"
                          BorderThickness="0"
                          Grid.Row="1" />

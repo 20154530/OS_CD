@@ -233,7 +233,7 @@ namespace OS_CD {
 
         public void UpdataOpenFileList() {
             List<TFileNode> dic = new List<TFileNode>();
-            foreach (var pairs in UserNow.openFileRecordList) {
+            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList) {
                 dic.Add(new TFileNode(FileSystem.Instance.GetFileNodeById(pairs.Key)));
             }
             OpenedFile = dic;
