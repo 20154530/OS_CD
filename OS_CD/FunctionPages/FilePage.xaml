@@ -165,14 +165,23 @@
                                    FontSize="12" />
                         <TextBlock Text="设置权限"
                                    Style="{StaticResource DiskPageLabel}"
-                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource  HideNoPower}}"
                                    Grid.Row="4"
                                    FontSize="12" />
                         <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNoPower}}"
                                     Grid.Row="4"
                                     Grid.Column="1">
-
+                            <local:YT_IconToggelButton Style="{StaticResource FilePage_PorwerButton}"
+                                                       Command="{Binding SetRights}"
+                                                       Content="读取"
+                                                       CommandParameter="R"
+                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower}}" />
+                            <local:YT_IconToggelButton Style="{StaticResource FilePage_PorwerButton}"
+                                                       Command="{Binding SetRights}"
+                                                       Content="写入"
+                                                       CommandParameter="W"
+                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},ConverterParameter=1}" />
                         </StackPanel>
                         <TextBlock Text="磁盘占用"
                                    Style="{StaticResource DiskPageLabel}"

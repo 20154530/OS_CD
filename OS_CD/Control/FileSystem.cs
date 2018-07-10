@@ -292,6 +292,10 @@ namespace OS_CD {
             UCBList.Add(user.ID, user);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
         public void LogOffUser(UserId userId) {
             UCBList.Remove(userId);
         }

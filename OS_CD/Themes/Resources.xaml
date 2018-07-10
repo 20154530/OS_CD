@@ -22,5 +22,7 @@
     <Convert:GetFContent x:Key="GetFContent" />
     <Convert:GetFBlockList x:Key="GetFBlockList" />
     <Convert:GetFName x:Key="GetFName" />
+    <Convert:HideNoPower x:Key="HideNoPower" />
+    <Convert:CheckPower x:Key="CheckPower" />
 
 </ResourceDictionary>

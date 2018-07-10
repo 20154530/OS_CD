@@ -197,7 +197,7 @@ namespace OS_CD.Mangers.ValueConverters {
                 StringBuilder builder = new StringBuilder();
                 builder.Append("");
                 foreach (int i in f.blockIdList)
-                    builder.AppendFormat(" {0} ",i);
+                    builder.AppendFormat(" {0} ", i);
                 return builder.ToString();
             }
         }
@@ -286,11 +286,45 @@ namespace OS_CD.Mangers.ValueConverters {
     }
 
     /// <summary>
-    /// 
+    /// 隐藏没有权限
     /// </summary>
     public class HideNoPower : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            var tf = value as TFileNode;
+            if (!(tf is null))
+            {
+                int id = tf.ID;
+                if (FileSystem.Instance.GetFileNodeById(id).CheckWriterPower(Systeminfo.Instence.UserNow.ID))
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+            }
+            else
+                return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
             throw new NotImplementedException();
+        }
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class CheckPower : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            var tf = value as TFileNode;
+            if (!(tf is null))
+            {
+                int id = tf.ID;
+                if (parameter is null)
+                    return FileSystem.Instance.GetFileNodeById(id).CheckReadPower(Systeminfo.Instence.UserNow.ID);
+                else
+                    return FileSystem.Instance.GetFileNodeById(id).CheckWriterPower(Systeminfo.Instence.UserNow.ID);
+            }
+            else
+                return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

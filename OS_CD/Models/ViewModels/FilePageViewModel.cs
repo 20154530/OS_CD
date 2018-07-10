@@ -21,6 +21,8 @@ namespace OS_CD {
                 OnPropertyChanged("FileBodyText");
             }
         }
+        public CommandBase SetRights { get; set; }
+
         public CommandBase AddFile { get; set; }
 
         public CommandBase RemoveFile { get; set; }
@@ -42,6 +44,7 @@ namespace OS_CD {
         public event EventHandler OnFileClose;
 
         public event EventHandler OnFileOpen;
+
         #endregion
 
 
@@ -69,6 +72,13 @@ namespace OS_CD {
             OnFileRename?.Invoke(this, EventArgs.Empty);
 
         }
+
+        private void SetRights_Commandaction(object para) {
+            switch (para.ToString()) {
+                case "R":break;
+                case "W":break;
+            }
+        }
         #endregion
 
 
@@ -84,6 +94,8 @@ namespace OS_CD {
             OpenFile.Commandaction += OpenFile_Commandaction;
             Rename = new CommandBase();
             Rename.Commandaction += Rename_Commandaction;
+            SetRights = new CommandBase();
+            SetRights.Commandaction += SetRights_Commandaction;
         }
 
         #endregion

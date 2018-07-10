@@ -428,6 +428,45 @@
                 Value="0,0,0,0" />
     </Style>
     
+    <!--FilePage_PorwerButton-->
+    <Style x:Key="FilePage_PorwerButton"
+           TargetType="local:YT_IconToggelButton">
+        <Setter Property="IconN"
+                Value="{StaticResource FileTreePowerButton_Icon_BG_N}" />
+        <Setter Property="IconR"
+                Value="{StaticResource FileTreePowerButton_Icon_BG_R}" />
+        <Setter Property="IconP"
+                Value="{StaticResource FileTreePowerButton_Icon_BG_P}" />
+        <Setter Property="IconS"
+                Value="{StaticResource FileTreePowerButton_Icon_BG_S}" />
+        <Setter Property="IconMaskN"
+                Value="{StaticResource FileTreePowerButton_IconMask_BG_N}" />
+        <Setter Property="IconMaskR"
+                Value="{StaticResource FileTreePowerButton_IconMask_BG_R}" />
+        <Setter Property="IconMaskP"
+                Value="{StaticResource FileTreePowerButton_IconMask_BG_P}" />
+        <Setter Property="IconMaskS"
+                Value="{StaticResource FileTreePowerButton_IconMask_BG_S}" />
+        <Setter Property="ToolTipVisiblity"
+                Value="Collapsed" />
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="LabelVisibility"
+                Value="Visible" />
+        <Setter Property="LabelFontSize"
+                Value="12" />
+        <Setter Property="ContentTextAlignment"
+                Value="Left" />
+        <Setter Property="ContentHorizontalAlignment"
+                Value="Left" />
+        <Setter Property="ContentVerticalAlignment"
+                Value="Center" />
+        <Setter Property="ForeIcon"
+                Value="&#xF16B;" />
+        <Setter Property="BackIcon"
+                Value="&#xF16C;" />
+    </Style>
+    
     <!--AddFileMenuItem-->
     <Style x:Key="AddFileMenuItem"
            TargetType="local:YT_MenuItem">

@@ -125,6 +125,24 @@
     <SolidColorBrush x:Key="FileTreeButton_IconMask_BG_S"
                      Color="Transparent" />
 
+
+    <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_N"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_R"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_P"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_S"
+                     Color="#080808" />
+    <SolidColorBrush x:Key="FileTreePowerButton_IconMask_BG_N"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="FileTreePowerButton_IconMask_BG_R"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="FileTreePowerButton_IconMask_BG_P"
+                     Color="Transparent" />
+    <SolidColorBrush x:Key="FileTreePowerButton_IconMask_BG_S"
+                     Color="Transparent" />
+
     <!--Thumb-->
     <SolidColorBrush x:Key="Default_Thumb_N"
                      Color="#606060" />
