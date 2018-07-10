@@ -85,6 +85,20 @@ namespace OS_CD {
         [field:NonSerialized]
         //系统打开文件表
         private Dictionary<FileNodeId, SystemOpenFileRecord> systemOpenFileRecordList = new Dictionary<int, SystemOpenFileRecord>();
+        [field: NonSerialized]
+        public Dictionary<FileNodeId, SystemOpenFileRecord> SystemOpenFileRecordList
+        {
+            get
+            {
+                if (systemOpenFileRecordList == null)
+                    systemOpenFileRecordList = new Dictionary<int, SystemOpenFileRecord>();
+                return systemOpenFileRecordList;
+            }
+            set
+            {
+                systemOpenFileRecordList = value;
+            }
+        }
 
         public void Init() {
             //rootUserId 为0
@@ -305,7 +319,7 @@ namespace OS_CD {
                 CreateSystemOpenFileRecord(fileNodeId);
                 //添加信息到用户打开文件表
                 //将文件内容放到用户打开文件表指向的缓冲区中
-                user.openFileRecordList.Add(fileNodeId, new UserOpenFileRecord(fileNodeId, file.fileBody));
+                user.OpenFileRecordList.Add(fileNodeId, new UserOpenFileRecord(fileNodeId, file.fileBody));
 
             }
             else
@@ -320,7 +334,7 @@ namespace OS_CD {
 
         public bool CloseFile(FileNodeId fileNodeId, UserId userId)
         {
-            if (!UCBList.ContainsKey(userId) || !UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
+            if (!UCBList.ContainsKey(userId) || !UCBList[userId].OpenFileRecordList.ContainsKey(fileNodeId)) return false;
             
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() == typeof(Folder))
@@ -339,7 +353,7 @@ namespace OS_CD {
                 updateFile(fileNodeId, userId);
 
                 //将记录从用户打开文件表中删除
-                user.openFileRecordList.Remove(fileNodeId);
+                user.OpenFileRecordList.Remove(fileNodeId);
                 //将记录从系统打开文件表中删除
                 DestorySystemOpenFileRecord(fileNodeId);
                 //添加文件事件的记录
@@ -357,9 +371,9 @@ namespace OS_CD {
         //将用户对文件的修改更新到文件中
         public bool updateFile(FileNodeId fileNodeId, UserId userId) {
 
-            if (!UCBList.ContainsKey(userId) ||!UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
+            if (!UCBList.ContainsKey(userId) ||!UCBList[userId].OpenFileRecordList.ContainsKey(fileNodeId)) return false;
 
-            UserOpenFileRecord userOpenFileRecord = GetUserById(userId).openFileRecordList[fileNodeId];
+            UserOpenFileRecord userOpenFileRecord = GetUserById(userId).OpenFileRecordList[fileNodeId];
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() != typeof(File))
             {
@@ -436,32 +450,32 @@ namespace OS_CD {
         }
         //-----------------系统打开文件表
         private void CreateSystemOpenFileRecord(FileNodeId fileNodeId) {
-            if (!systemOpenFileRecordList.ContainsKey(fileNodeId))
+            if (!SystemOpenFileRecordList.ContainsKey(fileNodeId))
             {
-                systemOpenFileRecordList.Add(fileNodeId, new SystemOpenFileRecord(fileNodeId));
+                SystemOpenFileRecordList.Add(fileNodeId, new SystemOpenFileRecord(fileNodeId));
             }
 
-            systemOpenFileRecordList[fileNodeId].CounterIncrease();
+            SystemOpenFileRecordList[fileNodeId].CounterIncrease();
 
         }
 
         private SystemOpenFileRecord GetSystemOpenFileRecordById(FileNodeId fileNodeId) {
-            return systemOpenFileRecordList[fileNodeId];
+            return SystemOpenFileRecordList[fileNodeId];
         }
 
         private bool DestorySystemOpenFileRecord(FileNodeId fileNodeId) {
 
-            if (systemOpenFileRecordList[fileNodeId].counter > 1)
+            if (SystemOpenFileRecordList[fileNodeId].counter > 1)
             {
                 //还有其他的用户或正在打开这个文件
                 Debug.Print("there still someone using it,you can`t destory it");
-                systemOpenFileRecordList[fileNodeId].CounterDecrease();
+                SystemOpenFileRecordList[fileNodeId].CounterDecrease();
                 return false;
             }
-            else if (systemOpenFileRecordList[fileNodeId].counter == 1)
+            else if (SystemOpenFileRecordList[fileNodeId].counter == 1)
             {
                 //只有一个用户正在打开文件
-                systemOpenFileRecordList.Remove(fileNodeId);
+                SystemOpenFileRecordList.Remove(fileNodeId);
                 return true;
             }
             else
@@ -473,7 +487,7 @@ namespace OS_CD {
         //-----------------缓冲区操作
         public void WriterBuff(UserId userId, FileNodeId fileNodeId, FileBody fileBody) {
             var user = GetUserById(userId);
-            user.openFileRecordList[fileNodeId].buff.Copy(fileBody);
+            user.OpenFileRecordList[fileNodeId].buff.Copy(fileBody);
         }
     }
 }
