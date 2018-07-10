@@ -251,13 +251,13 @@ namespace OS_CD.Mangers.ValueConverters {
     public class GetPowerList : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             File f = (FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value)) as File);
+
             if (f != null)
             {
-                string s = f.PowerList[Systeminfo.Instence.UserNow.ID];
-                if (s is null)
-                    return "此用户没有权限";
+                if (f.PowerList.ContainsKey(Systeminfo.Instence.UserNow.ID))
+                    return f.PowerList[Systeminfo.Instence.UserNow.ID];
                 else
-                    return s;
+                    return "此用户没有权限";
             }
             else
                 return "未知";
@@ -270,7 +270,7 @@ namespace OS_CD.Mangers.ValueConverters {
 
 
     /// <summary>
-    /// 
+    /// 隐藏非文件节点
     /// </summary>
     public class HideNotFile : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
@@ -285,5 +285,16 @@ namespace OS_CD.Mangers.ValueConverters {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public class HideNoPower : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
 
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
 }

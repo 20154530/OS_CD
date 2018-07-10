@@ -34,28 +34,56 @@ namespace OS_CD.FunctionPages {
 
         private void ViewModel_OnFileOpen(object sender, EventArgs e) {
             TFileNode tfn = FileTree.SelectedItem as TFileNode;
+            int id = tfn.ID;
             if (tfn is null)
             {
-                MessageBoxServices.ShowSimpleStringDialog("请选择节点以打开", false, false);
+                MessageBoxServices.ShowSimpleStringDialog("请选文件择以打开!", false, false);
+                return;
+            }
+            else if (Systeminfo.Instence.FileBodys.Count > 5)
+            {
+                MessageBoxServices.ShowSimpleStringDialog("打开文件超过数量!", false, false);
+                return;
+            }
+            else if (FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).OpenFileRecordList.ContainsKey(id))
+            {
+                MessageBoxServices.ShowSimpleStringDialog("文件已经打开!", false, false);
+                return;
+            }
+            else if (tfn.FileMode.Equals(TFileNode.Mode.Folder))
+            {
+                MessageBoxServices.ShowSimpleStringDialog("选择文件而不是文件夹", false, false);
+                return;
+            }
+            else if (!(FileSystem.Instance.GetFileNodeById(id).CheckReadPower(Systeminfo.Instence.UserNow.ID))) {
+                MessageBoxServices.ShowSimpleStringDialog("当前用户没有读取权限", false, false);
+                return;
             }
             else
             {
-                int id = (FileTree.SelectedItem as TFileNode).ID;
-                if(tfn.FileMode.Equals(TFileNode.Mode.Folder))
-                {
-                    MessageBoxServices.ShowSimpleStringDialog("选择文件而不是文件夹", false, false);
-                }
                 FileSystem.Instance.OpenFileNode(id, Systeminfo.Instence.UserNow.ID);
                 Systeminfo.Instence.UpdataOpenFileList();
-                viewModel.LastFileId = id;
+                Systeminfo.Instence.FileBodys.Add(id, (FileSystem.Instance.FCBList[id] as File).fileBody.GetContent());
+                Properties.Settings.Default.SelectedFile = id;
+                OpenFileLabel.SelectedIndex = Systeminfo.Instence.FileBodys.Count;
+                viewModel.FileBodyText = Systeminfo.Instence.FileBodys[id];
             }
         }
 
         private void ViewModel_OnFileClose(object sender, EventArgs e) {
             int id = Convert.ToInt32(((PropertyChangeArgs)e).NewValue);
-            FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(viewModel.FileBodyText);
+            if (!(FileSystem.Instance.GetFileNodeById(id).CheckWriterPower(Systeminfo.Instence.UserNow.ID)))
+            {
+                MessageBoxServices.ShowSimpleStringDialog("当前用户没有写入权限", false, false);
+            }
+            else
+            {
+                FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(Systeminfo.Instence.FileBodys[id]);
+            }
             FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
             Systeminfo.Instence.UpdataOpenFileList();
+            Systeminfo.Instence.FileBodys.Remove(id);
+            Properties.Settings.Default.SelectedFile = 0;
             viewModel.FileBodyText = "";
         }
 
@@ -118,12 +146,19 @@ namespace OS_CD.FunctionPages {
 
         private void OpenFileLabel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             Systeminfo.Instence.OpenFilenow = OpenFileLabel.SelectedItem as TFileNode;
-            int id = Systeminfo.Instence.OpenFilenow.ID;
-            if (Properties.Settings.Default.SelectedFile != 0)
-                FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[viewModel.LastFileId].buff.SetContent(viewModel.FileBodyText);
-            FileSystem.Instance.updateFile(viewModel.LastFileId, Systeminfo.Instence.UserNow.ID);
-            viewModel.FileBodyText = (FileSystem.Instance.GetFileNodeById(id) as File).fileBody.GetContent();
-            viewModel.LastFileId = id;
+            if (Systeminfo.Instence.OpenFilenow != null)
+            {
+                int id = Systeminfo.Instence.OpenFilenow.ID;
+                if (Properties.Settings.Default.SelectedFile != 0)
+                    Systeminfo.Instence.FileBodys[Properties.Settings.Default.SelectedFile] = viewModel.FileBodyText;
+                if (Systeminfo.Instence.FileBodys.ContainsKey(id))
+                    viewModel.FileBodyText = Systeminfo.Instence.FileBodys[id];
+                Properties.Settings.Default.SelectedFile = id;
+            }
+            else
+            {
+                viewModel.FileBodyText = "";
+            }
         }
 
         private void AddFileButton_Click(object sender, RoutedEventArgs e) {
@@ -138,8 +173,5 @@ namespace OS_CD.FunctionPages {
             Systeminfo.Instence.Filenow = e.NewValue as TFileNode;
         }
 
-        private void OpenFileLabel_Selected(object sender, RoutedEventArgs e) {
-
-        }
     }
 }

@@ -200,6 +200,15 @@ namespace OS_CD {
         #endregion
 
         #region File
+        private Dictionary<int, string> fileBodys;
+        public Dictionary<int, string> FileBodys {
+            get => fileBodys;
+            set {
+                fileBodys = value;
+            }
+        }
+
+
         private List<TFileNode> openedfile;
         public List<TFileNode> OpenedFile {
             get => openedfile;
@@ -283,7 +292,7 @@ namespace OS_CD {
 
         private void InitFile() {
             LoginStateChanged += Systeminfo_LoginStateChanged;
-
+            FileBodys = new Dictionary<int, string>();
         }
 
         private void Systeminfo_LoginStateChanged(object sender, EventArgs e) {
