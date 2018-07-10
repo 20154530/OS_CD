@@ -121,12 +121,14 @@ namespace OS_CD {
         {
             return content;
         }
-
         public void AddContetnt(string content)
         {    //追加
             SetContent(this.content + content);
         }
-
+        public static bool CompareContent(FileBody fileBody1,FileBody fileBody2)
+        {
+            return (fileBody1.content == fileBody2.content) ? true:false;
+        }
         public int GetSize()
         {
             byte[] bytes = Encoding.Default.GetBytes(content);

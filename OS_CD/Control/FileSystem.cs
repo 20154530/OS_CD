@@ -312,8 +312,10 @@ namespace OS_CD {
             return true;
         }
 
-        public bool CloseFile(FileNodeId fileNodeId, UserId userId, UserOpenFileRecord userOpenFileRecord) {
-
+        public bool CloseFile(FileNodeId fileNodeId, UserId userId)
+        {
+            if (UCBList.ContainsKey(userId) && UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
+            
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() == typeof(Folder))
             {
@@ -328,7 +330,7 @@ namespace OS_CD {
                 //将缓冲区内容填充到对应的区域
                 //将更新文件状态（是否产生更新）
                 //也可手动调用updateFileBody
-                updateFile(fileNodeId, userId, userOpenFileRecord);
+                updateFile(fileNodeId, userId);
 
                 //将记录从用户打开文件表中删除
                 user.openFileRecordList.Remove(fileNodeId);
@@ -347,8 +349,10 @@ namespace OS_CD {
         }
 
         //将用户对文件的修改更新到文件中
-        public bool updateFile(FileNodeId fileNodeId, UserId userId, UserOpenFileRecord userOpenFileRecord) {
+        public bool updateFile(FileNodeId fileNodeId, UserId userId) {
 
+            if (UCBList.ContainsKey(userId) && UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
+            UserOpenFileRecord userOpenFileRecord = GetUserById(userId).openFileRecordList[fileNodeId];
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() != typeof(File))
             {
@@ -381,17 +385,25 @@ namespace OS_CD {
                 {
                     //其他的情况都可以将修改更新到文件中
 
-                    //将缓冲修改内容添加到源文件
-                    file.fileBody.Copy(buff);
-                    userOpenFileRecord.fileEvent = FileEvent.Empty;
-                    //将分配的内存块号添加到源文件中
-                    foreach (var index in Enumerable.Range(0, needFreeBlockAmount))
+                    if(FileBody.CompareContent(file.fileBody,buff))
                     {
-                        file.blockIdList.Add(this.disc.GetBlockFromFreeGroup(file.ID));
+                        //内容相同,不需要内容更新
+                        return true;
                     }
-                    //更新文件事件的记录
-                    file.eventInfo.AddEventTime(FileEvent.Write, userId, DateTime.Now);
-                    return true;
+                    else
+                    {
+                        //将缓冲修改内容添加到源文件
+                        file.fileBody.Copy(buff);
+                        userOpenFileRecord.fileEvent = FileEvent.Empty;
+                        //将分配的内存块号添加到源文件中
+                        foreach (var index in Enumerable.Range(0, needFreeBlockAmount))
+                        {
+                            file.blockIdList.Add(this.disc.GetBlockFromFreeGroup(file.ID));
+                        }
+                        //更新文件事件的记录
+                        file.eventInfo.AddEventTime(FileEvent.Write, userId, DateTime.Now);
+                        return true;
+                    }
                 }
             }
             else if (userOpenFileRecord.fileEvent == FileEvent.Create)
