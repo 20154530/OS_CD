@@ -27,6 +27,11 @@ namespace OS_CD.FunctionPages {
             InitializeComponent();
         }
 
+        public override void EndInit() {
+            base.EndInit();
+            AddFilePopup.PlacementTarget = AddFileBtn;
+        }
+
         private void ViewModel_OnFileOpen(object sender, EventArgs e) {
             TFileNode tfn = FileTree.SelectedItem as TFileNode;
             if (tfn is null)
@@ -36,20 +41,20 @@ namespace OS_CD.FunctionPages {
             else
             {
                 int id = (FileTree.SelectedItem as TFileNode).ID;
-                FileSystem.Instance.OpenFileNode(id,Systeminfo.Instence.UserNow.ID);
+                if(!FileSystem.Instance.OpenFileNode(id, Systeminfo.Instence.UserNow.ID))
+                {
+                    MessageBoxServices.ShowSimpleStringDialog("选择文件而不是文件夹", false, false);
+                }
+                Systeminfo.Instence.UpdataOpenFileList();
             }
         }
 
         private void ViewModel_OnFileClose(object sender, EventArgs e) {
             int id = Convert.ToInt32(((PropertyChangeArgs)e).NewValue);
-            Systeminfo.Instence.UserNow.openFileRecordList[id].buff.SetContent(FileCon.Text);
-         //   FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
-            Systeminfo.Instence.UpdataOpenFileList();
-        }
+            FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(FileCon.Text);
+            FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
 
-        public override void EndInit() {
-            base.EndInit();
-            AddFilePopup.PlacementTarget = AddFileBtn;
+            Systeminfo.Instence.UpdataOpenFileList();
         }
 
         private void ViewModel_OnFileRename(object sender, EventArgs e) {
@@ -78,11 +83,20 @@ namespace OS_CD.FunctionPages {
             {
                 if (((PropertyChangeArgs)e).NewValue is null)
                 {
+                    if ((FileSystem.Instance.GetFileNodeById(sf.ID) as Folder).IsNameExist("新建文件")) {
+                        MessageBoxServices.ShowSimpleStringDialog("存在同名文件!", false, false);
+                        return;
+                    }
                     FileSystem.Instance.CreateFile("新建文件", sf.ID, Systeminfo.Instence.UserNow.ID);
                     Systeminfo.Instence.UpdateFileTree();
                 }
                 else
                 {
+                    if ((FileSystem.Instance.GetFileNodeById(sf.ID) as Folder).IsNameExist("新建文件夹"))
+                    {
+                        MessageBoxServices.ShowSimpleStringDialog("存在同名文件夹!", false, false);
+                        return;
+                    }
                     FileSystem.Instance.CreateFolder("新建文件夹", sf.ID, Systeminfo.Instence.UserNow.ID);
                     Systeminfo.Instence.UpdateFileTree();
                 }

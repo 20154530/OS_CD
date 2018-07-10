@@ -5,14 +5,46 @@
     <!--ContextMenu-->
 
     <!--UserMenu-->
-    <ContextMenu x:Key="FIleMenu"
-                 DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}">
-        
-    </ContextMenu>
-    
-    
-    
-    
+    <Style x:Key="DcontextMenu"
+           TargetType="local:YT_ContextMenu">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:YT_ContextMenu">
+                    <Border x:Name="RootBorder"
+                            BorderThickness="2"
+                            DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Margin="{TemplateBinding Padding}">
+                        <Border.Resources>
+                            <Style x:Key="MenuItem"
+                                   TargetType="local:YT_MenuItem">
+                                <Setter Property="IconN"
+                                        Value="#080808" />
+                                <Setter Property="IconR"
+                                        Value="#404040" />
+                                <Setter Property="IconMaskN"
+                                        Value="Transparent" />
+                                <Setter Property="IconMaskR"
+                                        Value="Transparent" />
+                                <Setter Property="IconMaskP"
+                                        Value="Transparent" />
+                            </Style>
+                        </Border.Resources>
+                        <StackPanel Background="{TemplateBinding Background}">
+                            <local:YT_MenuItem x:Name="M1"
+                                               ContentText="打开文件"
+                                               IconVisiblity="Collapsed"
+                                               Style="{StaticResource MenuItem}"
+                                               Command="{Binding OpenFile}" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
 
     <!--DialogContent-->
 
