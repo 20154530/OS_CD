@@ -41,10 +41,11 @@ namespace OS_CD.FunctionPages {
             else
             {
                 int id = (FileTree.SelectedItem as TFileNode).ID;
-                if(!FileSystem.Instance.OpenFileNode(id, Systeminfo.Instence.UserNow.ID))
+                if(tfn.FileMode.Equals(TFileNode.Mode.Folder))
                 {
                     MessageBoxServices.ShowSimpleStringDialog("选择文件而不是文件夹", false, false);
                 }
+                FileSystem.Instance.OpenFileNode(id, Systeminfo.Instence.UserNow.ID);
                 Systeminfo.Instence.UpdataOpenFileList();
             }
         }
@@ -55,6 +56,7 @@ namespace OS_CD.FunctionPages {
             FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
 
             Systeminfo.Instence.UpdataOpenFileList();
+            FileCon.Text = "";
         }
 
         private void ViewModel_OnFileRename(object sender, EventArgs e) {
@@ -115,7 +117,7 @@ namespace OS_CD.FunctionPages {
         }
 
         private void OpenFileLabel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            Systeminfo.Instence.Filenow = FileTree.SelectedItem as TFileNode;
+            Systeminfo.Instence.OpenFilenow = FileTree.SelectedItem as TFileNode;
         }
 
         private void AddFileButton_Click(object sender, RoutedEventArgs e) {

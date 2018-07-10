@@ -44,7 +44,6 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="UserName"
                                Text="{Binding Username}"
@@ -102,16 +101,16 @@
                                               Content="磁盘"
                                               ForeIcon="&#xEB05;"
                                               BackIcon="&#xEB05;" />
-                    <local:YT_IconRadioButton x:Name="Mem_Btn"
+                    <!--<local:YT_IconRadioButton x:Name="Mem_Btn"
                                               Grid.Column="4"
                                               Style="{DynamicResource FunctionRadioButton}"
                                               Command="{Binding NavigateCommand}"
                                               CommandParameter="MemoryPage.xaml"
                                               Content="内存"
                                               ForeIcon="&#xE020;"
-                                              BackIcon="&#xE020;" />
+                                              BackIcon="&#xE020;" />-->
                     <local:YT_IconButton x:Name="Exit_Btn"
-                                         Grid.Column="5"
+                                         Grid.Column="4"
                                          ContentText="退出"
                                          Content="&#xE7E8;"
                                          Style="{StaticResource ExitButtonStyle}"

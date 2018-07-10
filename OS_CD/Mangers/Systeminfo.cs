@@ -227,13 +227,25 @@ namespace OS_CD {
             }
         }
 
+
+        private TFileNode openfilenow;
+        public TFileNode OpenFilenow {
+            get => openfilenow;
+            set {
+                openfilenow = value;
+                OnPropertyChanged("Filenow");
+            }
+        }
+
         public void UpdateFileTree() {
             FileDictionary = GetDictioniary();
         }
 
         public void UpdataOpenFileList() {
             List<TFileNode> dic = new List<TFileNode>();
-            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList) {
+            var oplist = FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList;
+            if(oplist != null)
+            foreach (var pairs in oplist) {
                 dic.Add(new TFileNode(FileSystem.Instance.GetFileNodeById(pairs.Key)));
             }
             OpenedFile = dic;
@@ -260,7 +272,9 @@ namespace OS_CD {
 
         private List<TFileNode> GetOpenFileList() {
             List<TFileNode> op = new List<TFileNode>();
-            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList)
+            var OpenList = FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList;
+            if(OpenList != null)
+            foreach (var pairs in OpenList)
             {
                 op.Add(new TFileNode(FileSystem.Instance.GetFileNodeById(pairs.Key)));
             }

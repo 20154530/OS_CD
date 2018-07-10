@@ -83,7 +83,7 @@
     <Style x:Key="LoginPage_Label"
            TargetType="TextBlock">
         <Setter Property="FontSize"
-                Value="17" />
+                Value="16" />
         <Setter Property="Foreground"
                 Value="{StaticResource MainWindow_FG}" />
         <Setter Property="FontWeight"

@@ -805,12 +805,13 @@
                         <TextBlock x:Name="FileName"
                                    Tag="{Binding ID}"
                                    Text="{Binding Name}"
+                                   FontSize="12"
                                    HorizontalAlignment="Stretch"
                                    TextAlignment="Center"
-                                   Background="{StaticResource MainWindow_Border_Normal}"
-                                   Foreground="{StaticResource MainWindow_BG}"
                                    Style="{StaticResource LoginPage_Label}" />
                         <local:YT_IconButton x:Name="CloseButton"
+                                             Width="16"
+                                             Grid.Column="1"
                                              DataContext="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListView}}"
                                              Command="{Binding CloseFile}"
                                              CommandParameter="{Binding ElementName=FileName,Path=Tag}"
@@ -822,9 +823,23 @@
                             <Setter TargetName="FileName"
                                     Property="Foreground"
                                     Value="{StaticResource MainWindow_BG}" />
+                            <Setter TargetName="CloseButton"
+                                    Property="IconR"
+                                    Value="{StaticResource MainWindow_BG}" />
                             <Setter TargetName="ListItem"
                                     Property="Background"
-                                    Value="{StaticResource MainWindow_FG}" />
+                                    Value="#606060" />
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="True">
+                            <Setter TargetName="FileName"
+                                    Property="Foreground"
+                                    Value="{StaticResource MainWindow_BG}" />
+                            <Setter TargetName="CloseButton"
+                                    Property="IconR"
+                                    Value="{StaticResource MainWindow_BG}" />
+                            <Setter TargetName="ListItem"
+                                    Property="Background"
+                                    Value="#606060" />
                         </Trigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>

@@ -37,7 +37,7 @@ namespace OS_CD
             User_Btn.IsChecked = false;
             File_Btn.IsChecked = false;
             Disk_Btn.IsChecked = false;
-            Mem_Btn.IsChecked = false;
+           // Mem_Btn.IsChecked = false;
         }
         
         private void MainWindow_Loaded(object sender, RoutedEventArgs e) {

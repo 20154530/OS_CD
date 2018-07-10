@@ -36,7 +36,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition MaxHeight="140" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid x:Name="FileOperation"
                       Margin="4,6,0,4">
@@ -109,10 +109,9 @@
                           SelectedItemChanged="FileTree_SelectedItemChanged"
                           ItemsSource="{Binding FileDictionary,Source={x:Static local:Systeminfo.Instence}}"
                           Style="{StaticResource FileTreeView}" />
-                <Rectangle Style="{StaticResource H_Seperoator}"
-                           Fill="{StaticResource FilePage_FG}"
-                           Grid.Row="2"
-                           Margin="0,0,2,0" />
+                <GridSplitter Style="{StaticResource DefaultSplitter_V}"
+                              Grid.Row="2"
+                              Margin="0,0,2,0" />
                 <ScrollViewer Background="Transparent"
                               Style="{StaticResource SC_ScrollViewer}"
                               HorizontalScrollBarVisibility="Visible"
@@ -125,10 +124,11 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="36" />
-                            <RowDefinition Height="24" />
-                            <RowDefinition Height="24" />
-                            <RowDefinition Height="24" />
-                            <RowDefinition Height="24" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
                         <TextBlock Text="详情"
                                    Style="{StaticResource DiskPageLabel}"
@@ -163,15 +163,26 @@
                                    Grid.Row="3"
                                    Grid.Column="1"
                                    FontSize="12" />
-                        <TextBlock Text="磁盘占用"
+                        <TextBlock Text="设置权限"
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="4"
                                    FontSize="12" />
-                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFBlockList}}"
+                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetPowerList}}"
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="4"
+                                   Grid.Column="1"
+                                   FontSize="12" />
+                        <TextBlock Text="磁盘占用"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Grid.Row="5"
+                                   FontSize="12" />
+                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFBlockList}}"
+                                   Style="{StaticResource DiskPageLabel}"
+                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Grid.Row="5"
                                    Grid.Column="1"
                                    FontSize="12" />
                     </Grid>
@@ -195,7 +206,7 @@
                            Margin="2,0,0,0" />
                 <TextBox x:Name="FileCon"
                          Margin="4,8,0,0"
-                         Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Mode=OneWay,Converter={StaticResource GetFContent}}"
+                         Text="{Binding OpenFilenow.ID,Source={x:Static local:Systeminfo.Instence},Mode=OneWay,Converter={StaticResource GetFContent}}"
                          Background="Transparent"
                          BorderThickness="0"
                          Grid.Row="1" />
