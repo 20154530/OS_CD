@@ -24,6 +24,7 @@ namespace OS_CD {
 
         public string Password { get; set; }
 
+        [field:NonSerialized]
         //用户打开文件表
         public Dictionary<FileNodeId, UserOpenFileRecord> openFileRecordList = new Dictionary<int, UserOpenFileRecord>();
 

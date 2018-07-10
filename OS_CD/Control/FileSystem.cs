@@ -82,6 +82,7 @@ namespace OS_CD {
         //当前用户
         private UserId currentUserId = -1;
 
+        [field:NonSerialized]
         //系统打开文件表
         private Dictionary<FileNodeId, SystemOpenFileRecord> systemOpenFileRecordList = new Dictionary<int, SystemOpenFileRecord>();
 
