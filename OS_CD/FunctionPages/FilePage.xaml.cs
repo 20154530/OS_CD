@@ -78,7 +78,10 @@ namespace OS_CD.FunctionPages {
             }
             else
             {
-                FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(Systeminfo.Instence.FileBodys[id]);
+                if (Systeminfo.Instence.FileBodys.Count == 1)
+                    FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(viewModel.FileBodyText);
+                else
+                    FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(Systeminfo.Instence.FileBodys[id]);
             }
             FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
             Systeminfo.Instence.UpdataOpenFileList();
@@ -140,6 +143,11 @@ namespace OS_CD.FunctionPages {
                 MessageBoxServices.ShowSimpleStringDialog("不能删除根目录!!!", false, false);
                 return;
             }
+            MessageBoxServices.ShowSimpleStringDialog("确认删除!!!", true, true, true, FileRemoveSeccess);
+        }
+
+        private void FileRemoveSeccess(object obj) {
+            int id = (FileTree.SelectedItem as TFileNode).ID;
             FileSystem.Instance.DestoryFileNode(id);
             Systeminfo.Instence.UpdateFileTree();
         }

@@ -75,8 +75,10 @@ namespace OS_CD {
 
         private void SetRights_Commandaction(object para) {
             switch (para.ToString()) {
-                case "R":break;
-                case "W":break;
+                case "R":
+                    break;
+                case "W":
+                    break;
             }
         }
         #endregion
