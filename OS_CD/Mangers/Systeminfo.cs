@@ -233,7 +233,7 @@ namespace OS_CD {
 
         public void UpdataOpenFileList() {
             List<TFileNode> dic = new List<TFileNode>();
-            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList) {
+            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).OpenFileRecordList) {
                 dic.Add(new TFileNode(FileSystem.Instance.GetFileNodeById(pairs.Key)));
             }
             OpenedFile = dic;
@@ -260,7 +260,7 @@ namespace OS_CD {
 
         private List<TFileNode> GetOpenFileList() {
             List<TFileNode> op = new List<TFileNode>();
-            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).openFileRecordList)
+            foreach (var pairs in FileSystem.Instance.GetUserById(UserNow.ID).OpenFileRecordList)
             {
                 op.Add(new TFileNode(FileSystem.Instance.GetFileNodeById(pairs.Key)));
             }
