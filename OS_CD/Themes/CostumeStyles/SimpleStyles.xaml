@@ -451,6 +451,10 @@
                 Value="Collapsed" />
         <Setter Property="LabelVisibility"
                 Value="Visible" />
+        <Setter Property="Textloc"
+                Value="True" />
+        <Setter Property="LabelPadding"
+                Value="4,0,0,0" />
         <Setter Property="FontSize"
                 Value="12" />
         <Setter Property="LabelFontSize"

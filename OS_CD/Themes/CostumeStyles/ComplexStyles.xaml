@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
                     xmlns:Models="clr-namespace:OS_CD.Models"
                     xmlns:local="clr-namespace:OS_CD">
 
@@ -1119,12 +1120,175 @@
     </Style>
 
 
-    <!--ContextMenu-->
-
-
-    <!--MenuItems-->
-
-
+    <!--FilePageCombobox-->
+    <Style x:Key="FilePageCombobox"
+           TargetType="ComboBox">
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border x:Name="RootBorder">
+                                    <Grid x:Name="RootGrid"
+                                          Margin="0,0,0,0">
+                                        <ContentPresenter x:Name="Content"
+                                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                          Margin="0" />
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="{x:Type local:User}">
+                    <Grid x:Name="ListItem"
+                          Background="Transparent"
+                          UseLayoutRounding="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="FileName"
+                                   Text="{Binding Name}"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Center"
+                                   FontSize="11"
+                                   Foreground="#606060"
+                                   Style="{StaticResource LoginPage_Label}" />
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="FileName"
+                                    Property="Foreground"
+                                    Value="#808080" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid x:Name="templateRoot"
+                          SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
+                                              Width="0" />
+                        </Grid.ColumnDefinitions>
+                        <Popup x:Name="PART_Popup"
+                               AllowsTransparency="true"
+                               Grid.ColumnSpan="2"
+                               IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                               Placement="Bottom">
+                            <Border x:Name="dropDownBorder"
+                                        BorderBrush="{StaticResource MainWindow_Border_Normal}"
+                                        BorderThickness="1"
+                                        MaxHeight="160"
+                                        Background="{StaticResource MainWindow_BG}">
+                                    <ScrollViewer x:Name="DropDownScrollViewer"
+                                                  Style="{StaticResource SC_ScrollViewer}">
+                                        <Grid x:Name="grid"
+                                              RenderOptions.ClearTypeHint="Enabled">
+                                            <Canvas x:Name="canvas"
+                                                    HorizontalAlignment="Left"
+                                                    Height="0"
+                                                    VerticalAlignment="Top"
+                                                    Width="0">
+                                                <Rectangle x:Name="opaqueRect"
+                                                           Fill="{Binding Background, ElementName=dropDownBorder}"
+                                                           Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                           Width="{Binding ActualWidth, ElementName=dropDownBorder}" />
+                                            </Canvas>
+                                            <ItemsPresenter x:Name="ItemsPresenter"
+                                                            KeyboardNavigation.DirectionalNavigation="Contained"
+                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Border>
+                        </Popup>
+                        <local:YT_IconToggelButton x:Name="toggleButton"
+                                                   LabelVisibility="Collapsed"
+                                                   ToolTipVisiblity="Collapsed"
+                                                   ForeIcon="&#xE761;"
+                                                   BackIcon="&#xE760;"
+                                                   IconMaskN="#20FFFFFF"
+                                                   Grid.Column="1"
+                                                   RenderTransformOrigin=".5 .5"
+                                                   IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   Style="{StaticResource FilePage_PorwerButton}">
+                            <local:YT_IconToggelButton.RenderTransform>
+                                <RotateTransform Angle="0" />
+                            </local:YT_IconToggelButton.RenderTransform>
+                        </local:YT_IconToggelButton>
+                        <Border x:Name="border"
+                                BorderThickness="0"
+                                Margin="{TemplateBinding BorderThickness}">
+                            <TextBox x:Name="PART_EditableTextBox"
+                                     Text="{Binding SelectedItem.Name,RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                     Margin="{TemplateBinding Padding}"
+                                     FontSize="11"
+                                     Foreground="#808080"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Opacity"
+                                    TargetName="border"
+                                    Value="0.56" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin"
+                                 Value="true">
+                            <Setter Property="Foreground"
+                                    Value="Black" />
+                        </Trigger>
+                        <Trigger Property="HasItems"
+                                 Value="false">
+                            <Setter Property="Height"
+                                    TargetName="dropDownBorder"
+                                    Value="95" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsGrouping"
+                                           Value="true" />
+                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping"
+                                           Value="false" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="ScrollViewer.CanContentScroll"
+                                    Value="false" />
+                        </MultiTrigger>
+                        <Trigger Property="ScrollViewer.CanContentScroll"
+                                 SourceName="DropDownScrollViewer"
+                                 Value="false">
+                            <Setter Property="Canvas.Top"
+                                    TargetName="opaqueRect"
+                                    Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}" />
+                            <Setter Property="Canvas.Left"
+                                    TargetName="opaqueRect"
+                                    Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 
 </ResourceDictionary>

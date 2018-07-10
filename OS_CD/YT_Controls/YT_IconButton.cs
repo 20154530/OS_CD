@@ -429,20 +429,6 @@ namespace OS_CD {
                 new PropertyMetadata(Visibility.Visible));
         #endregion
 
-        #region RoatAngel
-        public double RoatAngel {
-            get { return (double)GetValue(RoatAngelProperty); }
-            set { SetValue(RoatAngelProperty, value); }
-        }
-        public static readonly DependencyProperty RoatAngelProperty =
-            DependencyProperty.Register("RoatAngel", typeof(double),
-                typeof(YT_IconToggelButton), new PropertyMetadata(0.0, new PropertyChangedCallback(OnRoatAngelChanged)));
-        private static void OnRoatAngelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((YT_IconToggelButton)d).IconRotate.Angle = (double)e.NewValue;
-        }
-        #endregion
-
         #region IconRotate
         public RotateTransform IconRotate {
             get { return (RotateTransform)GetValue(IconRotateProperty); }

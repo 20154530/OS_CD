@@ -45,6 +45,8 @@ namespace OS_CD {
 
         public event EventHandler OnFileOpen;
 
+        public event EventHandler OnSetRights;
+
         #endregion
 
 
@@ -74,12 +76,7 @@ namespace OS_CD {
         }
 
         private void SetRights_Commandaction(object para) {
-            switch (para.ToString()) {
-                case "R":
-                    break;
-                case "W":
-                    break;
-            }
+            OnSetRights.Invoke(this,new PropertyChangeArgs(para, para));
         }
         #endregion
 

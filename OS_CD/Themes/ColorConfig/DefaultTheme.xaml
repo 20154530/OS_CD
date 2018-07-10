@@ -127,13 +127,13 @@
 
 
     <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_N"
-                     Color="#606060" />
+                     Color="#808080" />
     <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_R"
-                     Color="#606060" />
+                     Color="#808080" />
     <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_P"
-                     Color="#606060" />
+                     Color="#808080" />
     <SolidColorBrush x:Key="FileTreePowerButton_Icon_BG_S"
-                     Color="#606060" />
+                     Color="#808080" />
     <SolidColorBrush x:Key="FileTreePowerButton_IconMask_BG_N"
                      Color="Transparent" />
     <SolidColorBrush x:Key="FileTreePowerButton_IconMask_BG_R"

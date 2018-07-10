@@ -132,27 +132,33 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="详情"
                                    Style="{StaticResource DiskPageLabel}"
+                                   Height="24"
                                    FontWeight="Normal"
                                    FontSize="14" />
                         <TextBlock Text="名称"
                                    Grid.Row="1"
+                                   Height="24"
                                    Style="{StaticResource DiskPageLabel}"
                                    FontSize="12" />
                         <TextBlock  Text="{Binding Filenow.Name,Source={x:Static local:Systeminfo.Instence}}"
                                     Style="{StaticResource DiskPageLabel}"
                                     Grid.Row="1"
                                     Grid.Column="1"
+                                    Height="24"
                                     FontSize="12" />
                         <TextBlock Text="父目录"
+                                   Height="24"
                                    Style="{StaticResource DiskPageLabel}"
                                    Grid.Row="2"
                                    FontSize="12" />
                         <TextBlock  Text="{Binding Filenow.PID,Source={x:Static local:Systeminfo.Instence}}"
                                     Style="{StaticResource DiskPageLabel}"
+                                    Height="24"
                                     Grid.Row="2"
                                     Grid.Column="1"
                                     FontSize="12" />
                         <TextBlock Text="权限"
+                                   Height="24"
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="3"
@@ -161,33 +167,42 @@
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="3"
+                                   Height="24"
                                    Grid.Column="1"
                                    FontSize="12" />
                         <TextBlock Text="设置权限"
+                                   Height="24"
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource  HideNoPower}}"
                                    Grid.Row="4"
                                    FontSize="12" />
                         <StackPanel Orientation="Horizontal"
+                                    Height="24"
                                     Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNoPower}}"
                                     Grid.Row="4"
                                     Grid.Column="1">
-                            <local:YT_IconToggelButton Style="{StaticResource FilePage_PorwerButton}"
+                            <ComboBox x:Name="SelectedUssers" 
+                                      Style="{StaticResource FilePageCombobox}" 
+                                      ItemsSource="{Binding Users,Source={x:Static local:Systeminfo.Instence}}"/>
+                            <local:YT_IconToggelButton x:Name="ReadR"
+                                                       Style="{StaticResource FilePage_PorwerButton}"
                                                        Command="{Binding SetRights}"
-                                                       Width="60"
+                                                       Width="48"
                                                        Content="读取"
-                                                       BackIcon="读取"
+                                                       BackText="读取"
                                                        CommandParameter="R"
                                                        IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},Mode=OneWay}" />
-                            <local:YT_IconToggelButton Style="{StaticResource FilePage_PorwerButton}"
+                            <local:YT_IconToggelButton x:Name="WriteR"
+                                                       Style="{StaticResource FilePage_PorwerButton}"
                                                        Command="{Binding SetRights}"
-                                                       Width="60"
+                                                       Width="48"
                                                        Content="写入"
-                                                       BackIcon="写入"
+                                                       BackText="写入"
                                                        CommandParameter="W"
                                                        IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},ConverterParameter=1,Mode=OneWay}" />
                         </StackPanel>
                         <TextBlock Text="磁盘占用"
+                                   Height="24"
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="5"
@@ -196,6 +211,7 @@
                                    Style="{StaticResource DiskPageLabel}"
                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
                                    Grid.Row="5"
+                                   Height="24"
                                    Grid.Column="1"
                                    FontSize="12" />
                     </Grid>

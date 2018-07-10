@@ -146,7 +146,7 @@ namespace OS_CD {
             
             BlockRemain = FileSystem.Instance.Disc.freeBlockList.Count;
             BlockUsed = 512 - BlockRemain;
-            Usage = String.Format("{0:F2} %", BlockUsed / 51.2);
+            Usage = String.Format("{0:F2} %", BlockUsed / 5.12);
 
             foreach (var pairs in FileSystem.Instance.Disc.usageBlockList) {
                 Blockcell[pairs.Key] = pairs.Value;
@@ -172,17 +172,18 @@ namespace OS_CD {
 
         #region User
         //UserPage
-        private ObservableCollection<User> users;
-        public ObservableCollection<User> Users {
+        private List<User> users;
+        public List<User> Users {
             get => users;
             set {
                 users = value;
+                OnPropertyChanged("UserList");
             }
         }
 
         private void InitUser() {
             UserNow = noUser;
-            Users = new ObservableCollection<User>();
+            Users = new List<User>();
             LoadUsers();
             FileSystem.Instance.UCBListChanged += Instance_UCBListChanged;
         }
@@ -194,8 +195,12 @@ namespace OS_CD {
         private void LoadUsers() {
             Users.Clear();
             if (FileSystem.Instance.UCBList.Count > 0)
+            {
                 foreach (var pair in FileSystem.Instance.UCBList)
+                {
                     Users.Add(pair.Value);
+                }
+            }
         }
         #endregion
 

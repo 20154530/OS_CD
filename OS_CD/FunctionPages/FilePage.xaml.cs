@@ -24,7 +24,13 @@ namespace OS_CD.FunctionPages {
             viewModel.OnFileRename += ViewModel_OnFileRename;
             viewModel.OnFileClose += ViewModel_OnFileClose;
             viewModel.OnFileOpen += ViewModel_OnFileOpen;
+            viewModel.OnSetRights += ViewModel_OnSetRights;
             InitializeComponent();
+        }
+
+        private void ViewModel_OnSetRights(object sender, EventArgs e) {
+            
+         
         }
 
         public override void EndInit() {
