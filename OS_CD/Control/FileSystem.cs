@@ -218,10 +218,14 @@ namespace OS_CD {
             if (fileNode.GetType() == typeof(Folder))
             {
                 //销毁其下的子文件
-                foreach (var subFileNodeId in ((Folder)fileNode).subFileNodeIdList)
+                //foreach (var subFileNodeId in ((Folder)fileNode).subFileNodeIdList)
+                //{
+                //    //foreach循环中修改List 会报错
+                //    DestoryFileNode(subFileNodeId);
+                //}
+                for (int i = (((Folder)fileNode).subFileNodeIdList.Count()-1) ; i >= 0;i--)
                 {
-                    //FileNode subFileNode = GetFileNodeById(subFileNodeId);
-                    DestoryFileNode(subFileNodeId);
+                    DestoryFileNode(((Folder)fileNode).subFileNodeIdList[i]);
                 }
                 //销毁文件夹
                 LogOffFileNode(fileNodeId);
