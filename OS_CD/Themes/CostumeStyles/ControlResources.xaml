@@ -5,7 +5,10 @@
     <!--ContextMenu-->
 
     <!--UserMenu-->
-    
+    <ContextMenu x:Key="FIleMenu"
+                 DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}}">
+        
+    </ContextMenu>
     
     
     

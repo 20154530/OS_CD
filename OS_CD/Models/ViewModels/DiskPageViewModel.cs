@@ -10,9 +10,12 @@ using System.Windows.Controls;
 namespace OS_CD {
     internal class DiskPageViewModel : ViewModelBase {
 
-        public DiskPageViewModel() {
 
+
+        public DiskPageViewModel() {
+           
         }
+
 
         #region   COLORTEST
         //blockcell[12] = 1;

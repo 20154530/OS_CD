@@ -183,7 +183,32 @@ namespace OS_CD.Mangers.ValueConverters {
     }
 
     /// <summary>
-    /// 获得文件内容目录的名称
+    /// 获得文件占用盘块信息
+    /// </summary>
+    public class GetFBlockList : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            File f = FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value)) as File;
+            if (f is null)
+            {
+                return "";
+            }
+            else
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append("");
+                foreach (int i in f.blockIdList)
+                    builder.AppendFormat(" {0} ",i);
+                return builder.ToString();
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 获得文件内容的名称
     /// </summary>
     public class GetFContent : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
@@ -202,13 +227,38 @@ namespace OS_CD.Mangers.ValueConverters {
     }
 
     /// <summary>
+    /// ID _ Name
+    /// </summary>
+    public class GetFName : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            FileNode f = FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value));
+            if (f is null)
+            {
+                return "";
+            }
+            else
+                return f.name;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
     /// 获得当前用户权限
     /// </summary>
     public class GetPowerList : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             File f = (FileSystem.Instance.GetFileNodeById(System.Convert.ToInt32(value)) as File);
             if (f != null)
-                return f.PowerList[Systeminfo.Instence.UserNow.ID];
+            {
+                string s = f.PowerList[Systeminfo.Instence.UserNow.ID];
+                if (s is null)
+                    return "此用户没有权限";
+                else
+                    return s;
+            }
             else
                 return "未知";
         }
@@ -218,6 +268,10 @@ namespace OS_CD.Mangers.ValueConverters {
         }
     }
 
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class HideNotFile : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (((TFileNode)value).Contains.Count == 0)

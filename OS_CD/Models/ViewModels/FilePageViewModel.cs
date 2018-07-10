@@ -11,14 +11,6 @@ namespace OS_CD {
     internal class FilePageViewModel : ViewModelBase {
 
         #region Commands
-        private Visibility addFileButtonVisibility = Visibility.Collapsed;
-        public Visibility AddFileButtonVisibility {
-            get => addFileButtonVisibility;
-            set {
-                addFileButtonVisibility = value;
-                OnPropertyChanged("AddFileButtonVisibility");
-            }
-        }
 
         public CommandBase AddFile { get; set; }
 
@@ -37,16 +29,21 @@ namespace OS_CD {
         public event EventHandler OnFileAdded;
 
         public event EventHandler OnFileRename;
+
+        public event EventHandler OnFileClose;
+
+        public event EventHandler OnFileOpen;
         #endregion
 
 
         #region Actions
-        private void OpenFile_Commandaction(object para) {
 
+        private void OpenFile_Commandaction(object para) {
+            OnFileOpen?.Invoke(this,EventArgs.Empty);
         }
 
         private void CloseFile_Commandaction(object para) {
-
+            OnFileClose?.Invoke(this, new PropertyChangeArgs(para, para));
         }
 
         private void AddFile_Commandaction(object para) {

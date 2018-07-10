@@ -15,6 +15,11 @@ namespace OS_CD.FunctionPages {
             InitializeComponent();
         }
 
+        public override void EndInit() {
+            base.EndInit();
+            Systeminfo.Instence.LoadDisk();
+        }
+
         private void DiskBlocks_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             int selected = (int)((ListView)sender).SelectedItem;
             try

@@ -20,6 +20,7 @@
     <Convert:GetPowerList x:Key="GetPowerList" />
     <Convert:HideNotFile x:Key="HideNotPara" />
     <Convert:GetFContent x:Key="GetFContent" />
-
+    <Convert:GetFBlockList x:Key="GetFBlockList" />
+    <Convert:GetFName x:Key="GetFName" />
 
 </ResourceDictionary>

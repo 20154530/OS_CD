@@ -794,7 +794,7 @@
         </Setter>
         <Setter Property="ItemTemplate">
             <Setter.Value>
-                <DataTemplate DataType="{x:Type local:User}">
+                <DataTemplate DataType="{x:Type Models:TFileNode}">
                     <Grid x:Name="ListItem"
                           Background="Transparent"
                           UseLayoutRounding="True">
@@ -845,6 +845,92 @@
         </Setter>
     </Style>
 
+    <Style x:Key="PowerListView"
+           TargetType="ListView">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="SelectionMode"
+                Value="Single" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="RootBorder">
+                                    <Grid x:Name="RootGrid"
+                                          Margin="0,0,0,0">
+                                        <ContentPresenter x:Name="Content"
+                                                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                          Margin="0" />
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate >
+                    <Grid x:Name="ListItem"
+                          Background="Transparent"
+                          UseLayoutRounding="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="FileName"
+                                   Text="{Binding}"
+                                   HorizontalAlignment="Stretch"
+                                   TextAlignment="Center"
+                                   Background="{StaticResource MainWindow_Border_Normal}"
+                                   Foreground="{StaticResource MainWindow_BG}"
+                                   Style="{StaticResource LoginPage_Label}" />
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="FileName"
+                                    Property="Foreground"
+                                    Value="{StaticResource MainWindow_BG}" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border x:Name="Bd"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <!--TreeView-->
 
     <Style x:Key="FileTreeView"
@@ -872,6 +958,8 @@
                 <Style TargetType="TreeViewItem">
                     <Setter Property="Foreground"
                             Value="{StaticResource FilePage_FG}" />
+                    <Setter Property="ContextMenu"
+                            Value=""
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TreeViewItem">
@@ -886,6 +974,7 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <local:YT_IconToggelButton Style="{StaticResource FileTreeRadioButton}"
+                                                               DataContext="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TreeView}}"
                                                                IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource Mode=TemplatedParent},Mode=TwoWay}"
                                                                ToolTipVisiblity="{Binding Content, ElementName=PART_Header,Converter={StaticResource FileTreeToolTipSelector}}"
                                                                ForeToolTip="展开"
@@ -917,7 +1006,10 @@
                                                 TargetName="ItemsHost"
                                                 Value="Collapsed" />
                                     </Trigger>
-                                    <Trigger Property="IsSelected"
+                                    <Trigger Property="IsExpanded"
+                                             Value="True">
+                                    </Trigger>
+                                        <Trigger Property="IsSelected"
                                              Value="true">
                                         <Setter Property="Background"
                                                 TargetName="Bd"
