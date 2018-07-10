@@ -174,14 +174,18 @@
                                     Grid.Column="1">
                             <local:YT_IconToggelButton Style="{StaticResource FilePage_PorwerButton}"
                                                        Command="{Binding SetRights}"
+                                                       Width="60"
                                                        Content="读取"
+                                                       BackIcon="读取"
                                                        CommandParameter="R"
-                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower}}" />
+                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},Mode=OneWay}" />
                             <local:YT_IconToggelButton Style="{StaticResource FilePage_PorwerButton}"
                                                        Command="{Binding SetRights}"
+                                                       Width="60"
                                                        Content="写入"
+                                                       BackIcon="写入"
                                                        CommandParameter="W"
-                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},ConverterParameter=1}" />
+                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},ConverterParameter=1,Mode=OneWay}" />
                         </StackPanel>
                         <TextBlock Text="磁盘占用"
                                    Style="{StaticResource DiskPageLabel}"
