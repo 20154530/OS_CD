@@ -165,6 +165,18 @@ namespace OS_CD {
         {
             return subFileNodeIdList.Contains(fileNodeID) ? true : false;
         }
+
+        public bool IsNameExist(string fileNodeName)
+        {
+            foreach(int fileNodeId in subFileNodeIdList)
+            {
+                if(FileSystem.instance.GetFileNodeById(fileNodeId).name == fileNodeName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     [Serializable]
