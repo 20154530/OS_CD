@@ -84,8 +84,7 @@ namespace OS_CD {
 
         public int GetFileSize()
         {
-            //假设文件的附属信息多占用一个单元的内存
-            return fileBody.GetSize() + 1;
+            return fileBody.GetSize();
         }
     }
 
