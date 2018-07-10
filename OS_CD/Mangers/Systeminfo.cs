@@ -296,9 +296,12 @@ namespace OS_CD {
         }
 
         private void Systeminfo_LoginStateChanged(object sender, EventArgs e) {
-            fileDictionary = GetDictioniary();
-            OpenedFile = GetOpenFileList();
-            Filenow = new TFileNode(-1, -1, "无文件");
+            if ((((PropertyChangeArgs)e).NewValue as User).ID != -1)
+            {
+                fileDictionary = GetDictioniary();
+                OpenedFile = GetOpenFileList();
+                Filenow = new TFileNode(-1, -1, "无文件");
+            }
         }
 
         #endregion
