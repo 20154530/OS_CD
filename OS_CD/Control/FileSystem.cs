@@ -320,7 +320,7 @@ namespace OS_CD {
 
         public bool CloseFile(FileNodeId fileNodeId, UserId userId)
         {
-            if (UCBList.ContainsKey(userId) && UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
+            if (!UCBList.ContainsKey(userId) || !UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
             
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() == typeof(Folder))
@@ -357,7 +357,8 @@ namespace OS_CD {
         //将用户对文件的修改更新到文件中
         public bool updateFile(FileNodeId fileNodeId, UserId userId) {
 
-            if (UCBList.ContainsKey(userId) && UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
+            if (!UCBList.ContainsKey(userId) ||!UCBList[userId].openFileRecordList.ContainsKey(fileNodeId)) return false;
+
             UserOpenFileRecord userOpenFileRecord = GetUserById(userId).openFileRecordList[fileNodeId];
             var fileNode = GetFileNodeById(fileNodeId);
             if (fileNode.GetType() != typeof(File))
