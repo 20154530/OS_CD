@@ -46,18 +46,17 @@ namespace OS_CD.FunctionPages {
                     MessageBoxServices.ShowSimpleStringDialog("选择文件而不是文件夹", false, false);
                 }
                 FileSystem.Instance.OpenFileNode(id, Systeminfo.Instence.UserNow.ID);
-                FileCon.Text = (FileSystem.Instance.GetFileNodeById(tfn.ID) as File).fileBody.GetContent();
                 Systeminfo.Instence.UpdataOpenFileList();
+                viewModel.LastFileId = id;
             }
         }
 
         private void ViewModel_OnFileClose(object sender, EventArgs e) {
             int id = Convert.ToInt32(((PropertyChangeArgs)e).NewValue);
-            FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(FileCon.Text);
+            FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(viewModel.FileBodyText);
             FileSystem.Instance.CloseFile(id, Systeminfo.Instence.UserNow.ID);
-
             Systeminfo.Instence.UpdataOpenFileList();
-            FileCon.Text = "";
+            viewModel.FileBodyText = "";
         }
 
         private void ViewModel_OnFileRename(object sender, EventArgs e) {
@@ -118,10 +117,13 @@ namespace OS_CD.FunctionPages {
         }
 
         private void OpenFileLabel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            Systeminfo.Instence.OpenFilenow = FileTree.SelectedItem as TFileNode;
+            Systeminfo.Instence.OpenFilenow = OpenFileLabel.SelectedItem as TFileNode;
             int id = Systeminfo.Instence.OpenFilenow.ID;
-            FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[id].buff.SetContent(FileCon.Text);
-
+            if (Properties.Settings.Default.SelectedFile != 0)
+                FileSystem.Instance.GetUserById(Systeminfo.Instence.UserNow.ID).openFileRecordList[viewModel.LastFileId].buff.SetContent(viewModel.FileBodyText);
+            FileSystem.Instance.updateFile(viewModel.LastFileId, Systeminfo.Instence.UserNow.ID);
+            viewModel.FileBodyText = (FileSystem.Instance.GetFileNodeById(id) as File).fileBody.GetContent();
+            viewModel.LastFileId = id;
         }
 
         private void AddFileButton_Click(object sender, RoutedEventArgs e) {
@@ -134,6 +136,10 @@ namespace OS_CD.FunctionPages {
 
         private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
             Systeminfo.Instence.Filenow = e.NewValue as TFileNode;
+        }
+
+        private void OpenFileLabel_Selected(object sender, RoutedEventArgs e) {
+
         }
     }
 }

@@ -94,5 +94,17 @@ namespace OS_CD.Properties {
                 this["BlockRemain"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int SelectedFile {
+            get {
+                return ((int)(this["SelectedFile"]));
+            }
+            set {
+                this["SelectedFile"] = value;
+            }
+        }
     }
 }

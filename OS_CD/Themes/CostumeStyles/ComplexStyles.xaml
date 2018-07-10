@@ -779,8 +779,22 @@
                                 <Border x:Name="RootBorder">
                                     <Grid x:Name="RootGrid"
                                           Margin="0,2,0,2">
-                                        <Grid
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Rectangle x:Name="TopL"
+                                                   Style="{StaticResource V_Seperoator}"
+                                                   Visibility="Collapsed"
+                                                   Fill="{StaticResource MainWindow_FG}" />
+                                        <Rectangle x:Name="BottomL"
+                                                   Style="{StaticResource V_Seperoator}"
+                                                   Fill="{StaticResource MainWindow_FG}"
+                                                   Visibility="Collapsed"
+                                                   Grid.Column="2" />
                                         <ContentPresenter x:Name="Content"
+                                                          Grid.Column="1"
                                                           VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -790,9 +804,12 @@
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected"
                                              Value="True">
-                                        <Setter TargetName="RootBorder"
-                                                Property="Background"
-                                                Value="#606060" />
+                                        <Setter TargetName="TopL"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                        <Setter TargetName="BottomL"
+                                                Property="Visibility"
+                                                Value="Visible" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -815,6 +832,7 @@
                                    Tag="{Binding ID}"
                                    Text="{Binding Name}"
                                    FontSize="12"
+                                   Margin="4,0,0,0"
                                    HorizontalAlignment="Stretch"
                                    TextAlignment="Center"
                                    Style="{StaticResource LoginPage_Label}" />
@@ -902,7 +920,7 @@
         </Setter>
         <Setter Property="ItemTemplate">
             <Setter.Value>
-                <DataTemplate >
+                <DataTemplate>
                     <Grid x:Name="ListItem"
                           Background="Transparent"
                           UseLayoutRounding="True">
@@ -1023,7 +1041,7 @@
                                     <Trigger Property="IsExpanded"
                                              Value="True">
                                     </Trigger>
-                                        <Trigger Property="IsSelected"
+                                    <Trigger Property="IsSelected"
                                              Value="true">
                                         <Setter Property="Background"
                                                 TargetName="Bd"
@@ -1042,7 +1060,8 @@
             <Setter.Value>
                 <HierarchicalDataTemplate DataType="{x:Type Models:TFileNode}"
                                           ItemsSource="{Binding Contains}">
-                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                    <StackPanel Orientation="Horizontal"
+                                Background="Transparent">
                         <local:YT_TextBox x:Name="FileName"
                                           Height="16"
                                           DisableCommand="{Binding NameChanged}"

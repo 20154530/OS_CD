@@ -207,7 +207,7 @@
                            Margin="2,0,0,0" />
                 <TextBox x:Name="FileCon"
                          Margin="4,8,0,0"
-                         Text="{Binding OpenFilenow.ID,Source={x:Static local:Systeminfo.Instence},Mode=OneWay,Converter={StaticResource GetFContent}}"
+                         Text="{Binding FileBodyText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                          Background="Transparent"
                          BorderThickness="0"
                          Grid.Row="1" />

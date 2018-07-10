@@ -11,7 +11,16 @@ namespace OS_CD {
     internal class FilePageViewModel : ViewModelBase {
 
         #region Commands
+        public int LastFileId = Properties.Settings.Default.SelectedFile;
 
+        private string fileBodyText = "";
+        public String FileBodyText {
+            get => fileBodyText;
+            set {
+                fileBodyText = value;
+                OnPropertyChanged("FileBodyText");
+            }
+        }
         public CommandBase AddFile { get; set; }
 
         public CommandBase RemoveFile { get; set; }
@@ -39,7 +48,7 @@ namespace OS_CD {
         #region Actions
 
         private void OpenFile_Commandaction(object para) {
-            OnFileOpen?.Invoke(this,EventArgs.Empty);
+            OnFileOpen?.Invoke(this, EventArgs.Empty);
         }
 
         private void CloseFile_Commandaction(object para) {

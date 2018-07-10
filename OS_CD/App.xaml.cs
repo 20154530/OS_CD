@@ -22,9 +22,10 @@ namespace OS_CD {
         }
 
         protected override void OnExit(ExitEventArgs e) {
+            OS_CD.Properties.Settings.Default.SelectedFile = 0;
             OS_CD.Properties.Settings.Default.Save();
             base.OnExit(e);
-
+            
             SerializeFileSystem.SerializeObject(RootPath + "data.dat", FileSystem.Instance);
         }
 
