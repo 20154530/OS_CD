@@ -416,10 +416,27 @@ namespace OS_CD {
                         //将缓冲修改内容添加到源文件
                         file.fileBody.Copy(buff);
                         userOpenFileRecord.fileEvent = FileEvent.Empty;
-                        //将分配的内存块号添加到源文件中
-                        foreach (var index in Enumerable.Range(0, needFreeBlockAmount))
+                        if (needFreeBlockAmount >0)
                         {
-                            file.blockIdList.Add(this.disc.GetBlockFromFreeGroup(file.ID));
+                            //将分配的内存块号添加到源文件中
+                            foreach (var index in Enumerable.Range(0, needFreeBlockAmount))
+                            {
+                                file.blockIdList.Add(this.disc.GetBlockFromFreeGroup(file.ID));
+                            }
+
+                        }
+                        else if(needFreeBlockAmount ==0)
+                        {
+                            //不需要再分配内存
+                        }
+                        else
+                        {
+                            //释放内存
+                            foreach(var index in Enumerable.Range(0,-needFreeBlockAmount))
+                            {
+                                this.disc.AddBlockToFreeGroup(file.blockIdList.Last());
+                                file.blockIdList.Remove(file.blockIdList.Last());
+                            }
                         }
                         //更新文件事件的记录
                         file.eventInfo.AddEventTime(FileEvent.Write, userId, DateTime.Now);
