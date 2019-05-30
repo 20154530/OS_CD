@@ -284,7 +284,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock x:Name="ContentIcon"
                                        Text="{TemplateBinding Content}"
-                                       FontFamily="{DynamicResource Segoe}"
+                                       FontFamily=" Segoe MDL2 Assets"
                                        Foreground="{TemplateBinding IconN}"
                                        FontSize="{TemplateBinding FontSize}"
                                        FontWeight="{TemplateBinding FontWeight}"

@@ -33,7 +33,7 @@
                                          Command="{Binding OpenUserSelectMenuCommand}"
                                          CommandParameter="LoginPage.xaml"
                                          ForeToolTip="登录"
-                                         Content="&#xE13D;" />
+                                         Content="&#xEA8C;" />
                 </Grid>
                 <Grid x:Name="Function_Area"
                       Grid.Row="1"

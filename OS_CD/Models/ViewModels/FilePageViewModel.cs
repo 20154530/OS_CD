@@ -76,7 +76,7 @@ namespace OS_CD {
         }
 
         private void SetRights_Commandaction(object para) {
-            OnSetRights.Invoke(this,new PropertyChangeArgs(para, para));
+            OnSetRights?.Invoke(this,new PropertyChangeArgs(para, para));
         }
         #endregion
 

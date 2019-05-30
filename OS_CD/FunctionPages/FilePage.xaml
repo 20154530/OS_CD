@@ -1,10 +1,11 @@
-﻿<Page x:Class="OS_CD.FunctionPages.FilePage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:OS_CD"
       xmlns:Properties="clr-namespace:OS_CD.Properties"
+      xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+      x:Class="OS_CD.FunctionPages.FilePage"
       mc:Ignorable="d"
       Title="FilePage">
     <Grid x:Name="RootGrid"
@@ -27,7 +28,7 @@
               Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="180"
-                                  Width="{Binding FilePageGridWidth, Source={x:Static Properties:Settings.Default},Converter={StaticResource DoubleToGrid},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                  Width="{Binding FilePageGridWidth, Converter={StaticResource DoubleToGrid}, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition MinWidth="0" />
             </Grid.ColumnDefinitions>
@@ -61,7 +62,7 @@
                                 BorderBrush="{StaticResource MainWindow_Border_Normal}"
                                 BorderThickness="1">
                             <StackPanel>
-                                <local:YT_IconButton Style="{StaticResource  DialogTextButtonStyle}"
+                                <local:YT_IconButton Style="{StaticResource DialogTextButtonStyle}"
                                                      Command="{Binding AddFile}"
                                                      Click="YT_IconButton_Click"
                                                      Width="96"
@@ -70,7 +71,7 @@
                                                      ContentHorizontalAlignment="Left"
                                                      ContentTextAlignment="Left"
                                                      ContentText="添加文件" />
-                                <local:YT_IconButton Style="{StaticResource  DialogTextButtonStyle}"
+                                <local:YT_IconButton Style="{StaticResource DialogTextButtonStyle}"
                                                      Command="{Binding AddFile}"
                                                      Click="YT_IconButton_Click"
                                                      CommandParameter="0"
@@ -107,7 +108,7 @@
                 <TreeView x:Name="FileTree"
                           Grid.Row="1"
                           SelectedItemChanged="FileTree_SelectedItemChanged"
-                          ItemsSource="{Binding FileDictionary,Source={x:Static local:Systeminfo.Instence}}"
+                          ItemsSource="{Binding FileDictionary, Source={x:Static local:Systeminfo.Instence}}"
                           Style="{StaticResource FileTreeView}" />
                 <GridSplitter Style="{StaticResource DefaultSplitter_V}"
                               Grid.Row="2"
@@ -140,7 +141,7 @@
                                    Height="24"
                                    Style="{StaticResource DiskPageLabel}"
                                    FontSize="12" />
-                        <TextBlock  Text="{Binding Filenow.Name,Source={x:Static local:Systeminfo.Instence}}"
+                        <TextBlock  Text="{Binding Filenow.Name, Source={x:Static local:Systeminfo.Instence}}"
                                     Style="{StaticResource DiskPageLabel}"
                                     Grid.Row="1"
                                     Grid.Column="1"
@@ -151,7 +152,7 @@
                                    Style="{StaticResource DiskPageLabel}"
                                    Grid.Row="2"
                                    FontSize="12" />
-                        <TextBlock  Text="{Binding Filenow.PID,Source={x:Static local:Systeminfo.Instence}}"
+                        <TextBlock  Text="{Binding Filenow.PID, Source={x:Static local:Systeminfo.Instence}}"
                                     Style="{StaticResource DiskPageLabel}"
                                     Height="24"
                                     Grid.Row="2"
@@ -160,12 +161,12 @@
                         <TextBlock Text="权限"
                                    Height="24"
                                    Style="{StaticResource DiskPageLabel}"
-                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Visibility="{Binding Filenow, Converter={StaticResource HideNotPara}, Source={x:Static local:Systeminfo.Instence}}"
                                    Grid.Row="3"
                                    FontSize="12" />
-                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetPowerList}}"
+                        <TextBlock Text="{Binding Filenow.ID, Converter={StaticResource GetPowerList}, Source={x:Static local:Systeminfo.Instence}}"
                                    Style="{StaticResource DiskPageLabel}"
-                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Visibility="{Binding Filenow, Converter={StaticResource HideNotPara}, Source={x:Static local:Systeminfo.Instence}}"
                                    Grid.Row="3"
                                    Height="24"
                                    Grid.Column="1"
@@ -173,18 +174,18 @@
                         <TextBlock Text="设置权限"
                                    Height="24"
                                    Style="{StaticResource DiskPageLabel}"
-                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource  HideNoPower}}"
+                                   Visibility="{Binding Filenow, Converter={StaticResource HideNoPower}, Source={x:Static local:Systeminfo.Instence}}"
                                    Grid.Row="4"
                                    FontSize="12" />
                         <StackPanel Orientation="Horizontal"
                                     Height="24"
-                                    Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNoPower}}"
+                                    Visibility="{Binding Filenow, Converter={StaticResource HideNoPower}, Source={x:Static local:Systeminfo.Instence}}"
                                     Grid.Row="4"
                                     Grid.Column="1">
-                            <ComboBox x:Name="SelectedUssers" 
+                            <ComboBox x:Name="SelectedUssers"
                                       SelectionChanged="SelectedUssers_SelectionChanged"
-                                      Style="{StaticResource FilePageCombobox}" 
-                                      ItemsSource="{Binding Users,Source={x:Static local:Systeminfo.Instence}}"/>
+                                      Style="{StaticResource FilePageCombobox}"
+                                      ItemsSource="{Binding Users, Source={x:Static local:Systeminfo.Instence}}" />
                             <local:YT_IconToggelButton x:Name="ReadR"
                                                        Style="{StaticResource FilePage_PorwerButton}"
                                                        Command="{Binding SetRights}"
@@ -192,7 +193,7 @@
                                                        Content="读取"
                                                        BackText="读取"
                                                        CommandParameter="R"
-                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},Mode=OneWay}" />
+                                                       IsChecked="{Binding Filenow, Converter={StaticResource CheckPower}, Mode=OneWay, Source={x:Static local:Systeminfo.Instence}}" />
                             <local:YT_IconToggelButton x:Name="WriteR"
                                                        Style="{StaticResource FilePage_PorwerButton}"
                                                        Command="{Binding SetRights}"
@@ -200,17 +201,17 @@
                                                        Content="写入"
                                                        BackText="写入"
                                                        CommandParameter="W"
-                                                       IsChecked="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource CheckPower},ConverterParameter=1,Mode=OneWay}" />
+                                                       IsChecked="{Binding Filenow, ConverterParameter=1, Converter={StaticResource CheckPower}, Mode=OneWay, Source={x:Static local:Systeminfo.Instence}}" />
                         </StackPanel>
                         <TextBlock Text="磁盘占用"
                                    Height="24"
                                    Style="{StaticResource DiskPageLabel}"
-                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Visibility="{Binding Filenow, Converter={StaticResource HideNotPara}, Source={x:Static local:Systeminfo.Instence}}"
                                    Grid.Row="5"
                                    FontSize="12" />
-                        <TextBlock Text="{Binding Filenow.ID,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource GetFBlockList}}"
+                        <TextBlock Text="{Binding Filenow.ID, Converter={StaticResource GetFBlockList}, Source={x:Static local:Systeminfo.Instence}}"
                                    Style="{StaticResource DiskPageLabel}"
-                                   Visibility="{Binding Filenow,Source={x:Static local:Systeminfo.Instence},Converter={StaticResource HideNotPara}}"
+                                   Visibility="{Binding Filenow, Converter={StaticResource HideNotPara}, Source={x:Static local:Systeminfo.Instence}}"
                                    Grid.Row="5"
                                    Height="24"
                                    Grid.Column="1"
@@ -229,7 +230,7 @@
                 <ListView x:Name="OpenFileLabel"
                           Margin="4,0,0,0"
                           SelectionChanged="OpenFileLabel_SelectionChanged"
-                          ItemsSource="{Binding OpenedFile,Source={x:Static local:Systeminfo.Instence}}"
+                          ItemsSource="{Binding OpenedFile, Source={x:Static local:Systeminfo.Instence}}"
                           Style="{StaticResource FileLabelButtonView}" />
                 <Rectangle Style="{StaticResource H_Seperoator}"
                            Fill="{StaticResource FilePage_FG}"
@@ -237,7 +238,7 @@
                            Margin="2,0,0,0" />
                 <TextBox x:Name="FileCon"
                          Margin="4,8,0,0"
-                         Text="{Binding FileBodyText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding FileBodyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Background="Transparent"
                          BorderThickness="0"
                          Grid.Row="1" />

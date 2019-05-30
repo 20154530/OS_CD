@@ -38,7 +38,7 @@
     <Style x:Key="IconTextBlock"
            TargetType="TextBlock">
         <Setter Property="FontFamily"
-                Value="{DynamicResource Segoe}" />
+                Value="Segoe MDL2 Assets" />
         <Setter Property="Foreground"
                 Value="{StaticResource MainWindow_FG}" />
         <Setter Property="TextAlignment"

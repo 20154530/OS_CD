@@ -3,7 +3,7 @@
                     xmlns:Convert="clr-namespace:OS_CD.Mangers.ValueConverters"
                     xmlns:local="clr-namespace:OS_CD">
     <!--Font-->
-    <FontFamily x:Key="Segoe">/FontLibrary;Component/#Segoe</FontFamily>
+    <FontFamily x:Key="Segoe" ></FontFamily>
     <FontFamily x:Key="Digital">/FontLibrary;Component/#Digital</FontFamily>
 
     <!--Converters-->
@@ -24,5 +24,7 @@
     <Convert:GetFName x:Key="GetFName" />
     <Convert:HideNoPower x:Key="HideNoPower" />
     <Convert:CheckPower x:Key="CheckPower" />
+    <Convert:ExpandCd x:Key="ExpandCd" />
+    <Convert:BoolConv x:Key="BoolConv" />
 
 </ResourceDictionary>

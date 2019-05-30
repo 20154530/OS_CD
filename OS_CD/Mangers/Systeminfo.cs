@@ -207,6 +207,8 @@ namespace OS_CD {
         #endregion
 
         #region File
+        private HashSet<int> OpenNode;
+
         private Dictionary<int, string> fileBodys;
         public Dictionary<int, string> FileBodys {
             get => fileBodys;
@@ -271,9 +273,20 @@ namespace OS_CD {
             List<TFileNode> dic = new List<TFileNode>();
             foreach (var pair in FileSystem.Instance.FCBList)
             {
-                dic.Add(new TFileNode(pair.Value));
+                var ftnode = new TFileNode(pair.Value);
+                if (OpenNode.Contains(ftnode.ID))
+                    ftnode.IsExpand = true;
+                ftnode.IsExpandChanged += Ftnode_IsExpandChanged;
+                dic.Add(ftnode);
             }
             return getTrees(-1, dic);
+        }
+
+        private void Ftnode_IsExpandChanged(object sender, EventArgs e) {
+            TFileNode tfn = sender as TFileNode;
+            if (tfn.IsExpand)
+                OpenNode.Add(((TFileNode)sender).ID);
+            
         }
 
         private List<TFileNode> getTrees(int parentid, List<TFileNode> nodes) {
@@ -300,6 +313,7 @@ namespace OS_CD {
         private void InitFile() {
             LoginStateChanged += Systeminfo_LoginStateChanged;
             FileBodys = new Dictionary<int, string>();
+            OpenNode = new HashSet<int>();
         }
 
         private void Systeminfo_LoginStateChanged(object sender, EventArgs e) {

@@ -26,6 +26,18 @@ namespace OS_CD.Models {
 
         public int PID { get; set; }
 
+
+        public event EventHandler IsExpandChanged;
+        private bool isexpand = false;
+        public bool IsExpand {
+            get => isexpand;
+            set {
+                isexpand = value;
+                OnPropertyChanged("IsExpand");
+                IsExpandChanged?.Invoke(this,EventArgs.Empty);
+            }
+        }
+
         private bool rename = false;
         public bool Rename {
             get => rename;

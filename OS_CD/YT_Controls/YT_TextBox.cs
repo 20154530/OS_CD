@@ -63,9 +63,9 @@ namespace OS_CD {
         }
 
         protected override void OnPreviewMouseDoubleClick(MouseButtonEventArgs e) {
-            if (OriNoable) {
-                IsEnabled = !IsEnabled;
-            }
+            //if (OriNoable) {
+            //    IsEnabled = !IsEnabled;
+            //}
             base.OnPreviewMouseDoubleClick(e);
         }
 

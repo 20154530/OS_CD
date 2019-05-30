@@ -274,8 +274,14 @@ namespace OS_CD.Mangers.ValueConverters {
     /// </summary>
     public class HideNotFile : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (((TFileNode)value).Contains.Count == 0)
-                return Visibility.Visible;
+            var tfn = value as TFileNode;
+            if (tfn != null)
+            {
+                if (tfn.Contains.Count == 0)
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+            }
             else
                 return Visibility.Collapsed;
         }
@@ -331,6 +337,42 @@ namespace OS_CD.Mangers.ValueConverters {
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
             throw new NotImplementedException();
+        }
+    }
+
+
+
+    public class ExpandCd : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            var ss = value as TFileNode;
+
+            if (value is TFileNode)
+                return (value as TFileNode).IsExpand;
+            else
+                return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class BoolConv : IValueConverter {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+
+            Console.WriteLine(value.GetType());
+            if (value != null)
+                return (bool)value;
+            else
+                return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+           
+
+            return (bool)value;
         }
     }
 }

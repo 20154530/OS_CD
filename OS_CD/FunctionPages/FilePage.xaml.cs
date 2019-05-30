@@ -31,12 +31,14 @@ namespace OS_CD.FunctionPages {
         public override void EndInit() {
             base.EndInit();
             Systeminfo.Instence.FileBodys.Clear();
-           AddFilePopup.PlacementTarget = AddFileBtn;
+            AddFilePopup.PlacementTarget = AddFileBtn;
             SelectedUssers.SelectedItem = Systeminfo.Instence.UserNow;
+
         }
 
         private void ViewModel_OnSetRights(object sender, EventArgs e) {
-            if (!((FileTree.SelectedItem as TFileNode) is null)) {
+            if (!((FileTree.SelectedItem as TFileNode) is null))
+            {
                 TFileNode tfn = FileTree.SelectedItem as TFileNode;
                 User urs = SelectedUssers.SelectedItem as User;
                 FileSystem.Instance.GetFileNodeById(tfn.ID).SetPower(urs.ID, (bool)ReadR.IsChecked, (bool)WriteR.IsChecked, false);
@@ -66,7 +68,8 @@ namespace OS_CD.FunctionPages {
                 MessageBoxServices.ShowSimpleStringDialog("选择文件而不是文件夹", false, false);
                 return;
             }
-            else if (!(FileSystem.Instance.GetFileNodeById(id).CheckReadPower(Systeminfo.Instence.UserNow.ID))) {
+            else if (!(FileSystem.Instance.GetFileNodeById(id).CheckReadPower(Systeminfo.Instence.UserNow.ID)))
+            {
                 MessageBoxServices.ShowSimpleStringDialog("当前用户没有读取权限", false, false);
                 return;
             }
@@ -74,7 +77,8 @@ namespace OS_CD.FunctionPages {
             {
                 FileSystem.Instance.OpenFileNode(id, Systeminfo.Instence.UserNow.ID);
                 Systeminfo.Instence.UpdataOpenFileList();
-                Systeminfo.Instence.FileBodys.Add(id, (FileSystem.Instance.FCBList[id] as File).fileBody.GetContent());
+                if (!Systeminfo.Instence.FileBodys.ContainsKey(id))
+                    Systeminfo.Instence.FileBodys.Add(id, (FileSystem.Instance.FCBList[id] as File).fileBody.GetContent());
                 Properties.Settings.Default.SelectedFile = id;
                 OpenFileLabel.SelectedIndex = Systeminfo.Instence.FileBodys.Count;
                 viewModel.FileBodyText = Systeminfo.Instence.FileBodys[id];
@@ -120,7 +124,8 @@ namespace OS_CD.FunctionPages {
                 MessageBoxServices.ShowSimpleStringDialog("请选择一个文件夹来添加文件!", false, false);
                 return;
             }
-            else if (sf.FileMode.Equals(TFileNode.Mode.File)) {
+            else if (sf.FileMode.Equals(TFileNode.Mode.File))
+            {
                 MessageBoxServices.ShowSimpleStringDialog("不能在文件下继续创建结构!", false, false);
                 return;
             }
@@ -128,7 +133,8 @@ namespace OS_CD.FunctionPages {
             {
                 if (((PropertyChangeArgs)e).NewValue is null)
                 {
-                    if ((FileSystem.Instance.GetFileNodeById(sf.ID) as Folder).IsNameExist("新建文件")) {
+                    if ((FileSystem.Instance.GetFileNodeById(sf.ID) as Folder).IsNameExist("新建文件"))
+                    {
                         MessageBoxServices.ShowSimpleStringDialog("存在同名文件!", false, false);
                         return;
                     }
@@ -190,13 +196,15 @@ namespace OS_CD.FunctionPages {
         }
 
         private void FileTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
-            Systeminfo.Instence.Filenow = e.NewValue as TFileNode;
+            var file = e.NewValue as TFileNode;
+            Systeminfo.Instence.Filenow = file;
         }
 
         private void SelectedUssers_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             TFileNode tfn = FileTree.SelectedItem as TFileNode;
             User urs = SelectedUssers.SelectedItem as User;
-            if (tfn != null && urs != null) {
+            if (tfn != null && urs != null)
+            {
                 ReadR.IsChecked = FileSystem.Instance.GetFileNodeById(tfn.ID).CheckReadPower(urs.ID);
                 WriteR.IsChecked = FileSystem.Instance.GetFileNodeById(tfn.ID).CheckWriterPower(urs.ID);
             }
